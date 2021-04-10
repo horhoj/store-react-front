@@ -1,0 +1,18 @@
+$primary : #222436;
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #e5e5e5;
+  min-width: 360px;
+}
+
+.app__cursor-pointer {
+  cursor: pointer;
+}
+
+.app__disabled {
+  cursor: none;
+  opacity: .65 !important;
+}
+
