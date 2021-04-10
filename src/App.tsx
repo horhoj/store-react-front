@@ -1,11 +1,11 @@
 import React from 'react';
 
-function App() {
+export const App: React.FC = (): JSX.Element => {
   return (
-    <div className="container">
-        store
+    <div>
+      Store
     </div>
-  );
+  )
 }
 
-export default App;
+
