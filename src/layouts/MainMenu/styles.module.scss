@@ -1,0 +1,14 @@
+.mainMenu {
+  min-width: 230px;
+  color: #b8c7ce;
+  background-color: #222d32;
+  @media (width < 500px) {
+    & {
+      //background-color: #28a745;
+      //position: fixed;
+      //left: 0;
+      //top: 0;
+      //visibility: hidden;
+    }
+  }
+}
