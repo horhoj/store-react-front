@@ -1,3 +1,5 @@
+init: docker-up install dev
+
 #all
 docker-up: docker-down
 	docker-compose up -d --build
