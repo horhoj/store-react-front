@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss"
 
-export const MainHeader: React.FC = (): JSX.Element => {
+export const PrivateHeader: React.FC = (): JSX.Element => {
   return (
     <div className={`p-2 d-flex w-100 justify-content-between ${styles.mainHeader}`}>
       <div>
