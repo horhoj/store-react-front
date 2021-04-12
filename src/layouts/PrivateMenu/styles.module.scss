@@ -2,6 +2,10 @@
   min-width: 230px;
   color: #b8c7ce;
   background-color: #222d32;
+  & a {
+    color: #b8c7ce;
+
+  }
   @media (width < 500px) {
     & {
       //background-color: #28a745;

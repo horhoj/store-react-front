@@ -3,6 +3,7 @@ import React from "react";
 export type RouterPathNames =
   | 'home'
   | 'about'
+  | 'login'
   | 'RouteNotFound';
 
 export interface RouteItem {
@@ -10,7 +11,8 @@ export interface RouteItem {
   path: string;
   exact: boolean;
   private: boolean;
-  component: React.FC;
+  always: boolean;
+  component: any;
 }
 
 export type Routes = RouteItem[]
