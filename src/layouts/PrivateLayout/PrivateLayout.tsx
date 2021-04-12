@@ -1,6 +1,6 @@
 import React from "react";
 import {PrivateFooter} from "../PrivateFooter";
-import {PrivateMenu} from "../PrivateMenu/PrivateMenu";
+import {PrivateMenu} from "../PrivateMenu";
 import {PrivateHeader} from "../PrivateHeader";
 
 export const PrivateLayout: React.FC = ({children}): JSX.Element => {
