@@ -1,7 +1,7 @@
 import React from 'react';
 import {PrivateLayout} from "./layouts/PrivateLayout";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {privateRoutes} from "./router/routes";
+import {routes} from "./router/routes";
 import {PublicLayout} from "./layouts/PublicLayout/PublicLayout";
 
 
@@ -11,7 +11,7 @@ export const App: React.FC = (): JSX.Element => {
       <BrowserRouter>
         <Switch>
           {
-            privateRoutes.map(route => (
+            routes.map(route => (
               <Route path={route.path} exact={route.exact} key={route.name}>
                 {
                   route.private
