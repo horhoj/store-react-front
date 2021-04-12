@@ -6,13 +6,18 @@ const rootReducer = combineReducers<StoreState>({
   user: userReducer
 })
 
-//@ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+let composeEnhancers = null;
+try {
+  //@ts-ignore
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+} catch (e) {
+  console.log(e);
+}
 
 export const store = createStore(
   rootReducer,
   // composeEnhancers(applyMiddleware(sagaMiddleware))
-  composeEnhancers()
+  composeEnhancers ? composeEnhancers() : undefined
 );
 
 
