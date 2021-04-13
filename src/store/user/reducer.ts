@@ -4,7 +4,7 @@ const initialState: UserState = {
   isAuthenticated: false
 }
 
-export const reducer = (state: UserState = initialState, action: UserAction): UserState => {
+export const user = (state: UserState = initialState, action: UserAction): UserState => {
   switch (action.type) {
     case UserActionType.SET_IS_AUTHENTICATED:
       return {
