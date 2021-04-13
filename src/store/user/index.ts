@@ -1,3 +1,3 @@
-export * from './userReducer';
-export * from './userSelectors';
-export * from './userActions';
+export * from './reducer';
+export * from './selectors';
+export * from './actions';

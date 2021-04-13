@@ -4,10 +4,10 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {getPathByName, routes} from "./router/";
 import {PublicLayout} from "./layouts/PublicLayout";
 import {useSelector} from "react-redux";
-import {getUserIsAuthenticated} from "./store/user";
+import {getIsAuthenticated} from "./store/user";
 
 export const App: React.FC = (): JSX.Element => {
-  const userIsAuthenticated = useSelector(getUserIsAuthenticated);
+  const userIsAuthenticated = useSelector(getIsAuthenticated);
   return (
     <div className="d-flex min-vh-100 min-vw-100">
       <BrowserRouter>

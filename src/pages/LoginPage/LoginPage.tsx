@@ -1,12 +1,12 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {setUserIsAuthenticated} from "../../store/user";
+import {setIsAuthenticated} from "../../store/user";
 import styles from './styles.module.scss'
 
 export const LoginPage: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const loginHandle = () => {
-    dispatch(setUserIsAuthenticated(true));
+    dispatch(setIsAuthenticated(true));
   }
   return (
     <div className={`d-flex  flex-grow-1 flex-column ${styles.loginForm}`}>
