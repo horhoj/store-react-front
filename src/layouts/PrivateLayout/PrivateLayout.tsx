@@ -5,7 +5,7 @@ import {PrivateHeader} from "../PrivateHeader";
 
 export const PrivateLayout: React.FC = ({children}): JSX.Element => {
   return (
-    <div className="d-flex flex-grow-1 flex-column">
+    <div className="d-flex flex-grow-1 flex-column bg-white">
       <header className="d-flex">
         <PrivateHeader/>
       </header>
