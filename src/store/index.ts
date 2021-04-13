@@ -11,7 +11,7 @@ try {
   //@ts-ignore
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 } catch (e) {
-  console.log(e);
+  console.log('не обнаружен redux dev-tools');
 }
 
 export const store = createStore(
