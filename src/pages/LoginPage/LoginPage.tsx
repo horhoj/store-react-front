@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {setIsAuthenticated} from "../../store/user";
 import styles from './styles.module.scss'
 
-export const LoginPage: React.FC = (): JSX.Element => {
+export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const loginHandle = () => {
     dispatch(setIsAuthenticated(true));

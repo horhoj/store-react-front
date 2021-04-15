@@ -3,7 +3,7 @@ import {PrivateFooter} from "../PrivateFooter";
 import {PrivateMenu} from "../PrivateMenu";
 import {PrivateHeader} from "../PrivateHeader";
 
-export const PrivateLayout: React.FC = ({children}): JSX.Element => {
+export const PrivateLayout: React.FC = ({children}) => {
   return (
     <div className="d-flex flex-grow-1 flex-column bg-white">
       <header className="d-flex">
