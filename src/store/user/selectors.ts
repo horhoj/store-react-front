@@ -1,3 +1,4 @@
-import {StoreState} from "../types";
+import { StoreState } from '../types';
 
-export const getIsAuthenticated = (state: StoreState): boolean => state.user.isAuthenticated;
+export const getIsAuthenticated = (state: StoreState): boolean =>
+  state.user.isAuthenticated;

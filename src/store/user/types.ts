@@ -3,7 +3,7 @@ export enum UserActionType {
 }
 
 export interface UserState {
-  isAuthenticated: boolean
+  isAuthenticated: boolean;
 }
 
 export interface UserAction<T = any> {
@@ -11,4 +11,4 @@ export interface UserAction<T = any> {
   payload: T;
 }
 
-export type SetIsAuthenticated = UserAction<{ isAuthenticated: boolean }>
+export type SetIsAuthenticated = UserAction<{ isAuthenticated: boolean }>;

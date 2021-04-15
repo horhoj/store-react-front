@@ -1,11 +1,10 @@
-import {combineReducers, createStore} from "redux";
-import {StoreState} from "./types";
-import {user} from "./user";
-
+import { combineReducers, createStore } from 'redux';
+import { StoreState } from './types';
+import { user } from './user';
 
 const rootReducer = combineReducers<StoreState>({
-  user
-})
+  user,
+});
 
 let composeEnhancers = null;
 try {
@@ -18,7 +17,5 @@ try {
 export const store = createStore(
   rootReducer,
   // composeEnhancers(applyMiddleware(sagaMiddleware))
-  composeEnhancers ? composeEnhancers() : undefined
+  composeEnhancers ? composeEnhancers() : undefined,
 );
-
-

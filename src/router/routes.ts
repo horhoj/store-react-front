@@ -1,13 +1,12 @@
-import {RouterPathNames, RouteItem} from "./types";
-import {HomePage} from "../pages/HomePage";
-import {RouteNotFoundPage} from "../pages/RouteNotFoundPage";
-import {AboutPage} from "../pages/AboutPage";
-import {LoginPage} from "../pages/LoginPage";
-
+import { RouterPathNames, RouteItem } from './types';
+import { HomePage } from '../pages/HomePage';
+import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
+import { AboutPage } from '../pages/AboutPage';
+import { LoginPage } from '../pages/LoginPage';
 
 export const routes: RouteItem[] = [
   {
-    name: "home",
+    name: 'home',
     path: '/',
     exact: true,
     private: true,
@@ -15,7 +14,7 @@ export const routes: RouteItem[] = [
     component: HomePage,
   },
   {
-    name: "about",
+    name: 'about',
     path: '/about',
     exact: false,
     private: true,
@@ -23,23 +22,25 @@ export const routes: RouteItem[] = [
     component: AboutPage,
   },
   {
-    name: "login",
+    name: 'login',
     path: '/login',
     exact: false,
     private: false,
     always: false,
-    component: LoginPage
+    component: LoginPage,
   },
   {
-    name: "RouteNotFound",
+    name: 'RouteNotFound',
     path: '*',
     exact: false,
     private: false,
     always: true,
     component: RouteNotFoundPage,
-  }
+  },
 ];
 
 export const getPathByName = (name: RouterPathNames): string =>
-  routes.filter(route => route.name.toString().toLowerCase() === name.toString().toLowerCase())[0].path;
-
+  routes.filter(
+    (route) =>
+      route.name.toString().toLowerCase() === name.toString().toLowerCase(),
+  )[0].path;

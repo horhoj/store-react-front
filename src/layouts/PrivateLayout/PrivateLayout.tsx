@@ -1,25 +1,23 @@
-import React from "react";
-import {PrivateFooter} from "../PrivateFooter";
-import {PrivateMenu} from "../PrivateMenu";
-import {PrivateHeader} from "../PrivateHeader";
+import React from 'react';
+import { PrivateFooter } from '../PrivateFooter';
+import { PrivateMenu } from '../PrivateMenu';
+import { PrivateHeader } from '../PrivateHeader';
 
-export const PrivateLayout: React.FC = ({children}) => {
+export const PrivateLayout: React.FC = ({ children }) => {
   return (
     <div className="d-flex flex-grow-1 flex-column bg-white">
       <header className="d-flex">
-        <PrivateHeader/>
+        <PrivateHeader />
       </header>
       <div className="d-flex flex-grow-1">
         <div className={`d-flex `}>
-          <PrivateMenu/>
+          <PrivateMenu />
         </div>
-        <div className="p-2 d-flex flex-grow-1">
-          {children}
-        </div>
+        <div className="p-2 d-flex flex-grow-1">{children}</div>
       </div>
       <div className="d-flex">
-        <PrivateFooter/>
+        <PrivateFooter />
       </div>
     </div>
-  )
-}
+  );
+};
