@@ -1,5 +1,5 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { AjaxWorkReport } from '../auth/types';
+import { AjaxWorkReport } from './types';
 import { logger } from '../../utils/logger';
 import { BASE_URL, DEFAULT_HEADERS } from '../../config/API';
 

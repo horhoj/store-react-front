@@ -1,5 +1,6 @@
 import {
-  SetIsAuthenticated,
+  SetIsAuthenticatedAction,
+  SetIsLoadingAction,
   UserAction,
   UserActionType,
   UserState,
@@ -7,6 +8,7 @@ import {
 
 const initialState: UserState = {
   isAuthenticated: false,
+  isLoading: false,
 };
 
 export const user = (
@@ -17,7 +19,13 @@ export const user = (
     case UserActionType.SET_IS_AUTHENTICATED:
       return {
         ...state,
-        isAuthenticated: (action as SetIsAuthenticated).payload.isAuthenticated,
+        isAuthenticated: (action as SetIsAuthenticatedAction).payload
+          .isAuthenticated,
+      };
+    case UserActionType.SET_IS_LOADING:
+      return {
+        ...state,
+        isLoading: (action as SetIsLoadingAction).payload.isLoading,
       };
     default:
       return state;
