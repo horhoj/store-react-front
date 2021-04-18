@@ -9,7 +9,7 @@ export const LoginPage: React.FC = () => {
   const isLoading = useSelector(authSelectors.getIsLoading);
   const loginHandle = () => {
     dispatch(
-      authActions.loginWorkerAction({
+      authActions.loginWorker({
         email: 'xman@mail.ru',
         password: 'p@ssw0rd',
       }),

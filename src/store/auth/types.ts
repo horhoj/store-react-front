@@ -18,12 +18,12 @@ export interface AuthAction<T = any> {
   payload: T;
 }
 
-export type SetIsAuthenticatedAction = AuthAction<{ isAuthenticated: boolean }>;
+export type SetIsAuthenticated = AuthAction<{ isAuthenticated: boolean }>;
 
-export type SetIsLoadingAction = AuthAction<{
+export type SetIsLoading = AuthAction<{
   isLoading: boolean;
 }>;
 
-export type SetErrorsAction = AuthAction<{ errors: object }>;
+export type SetErrors = AuthAction<{ errors: object }>;
 
-export type LoginWorkerAction = AuthAction<UserCredential>;
+export type Login = AuthAction<{ userCredential: UserCredential }>;
