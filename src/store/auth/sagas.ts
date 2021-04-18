@@ -14,7 +14,8 @@ export function* loginWorker(action: LoginWorkerAction) {
     yield call(loginRequest, action.payload);
     yield put<AuthAction>(authActions.setIsAuthenticatedAction(true));
   } catch (e) {
-    logger(e);
+    yield put<AuthAction>(authActions.setErrorsAction(e));
+    logger('loginWorker error', e);
   } finally {
     yield put<AuthAction>(authActions.setIsLoadingAction(false));
   }

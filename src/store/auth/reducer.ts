@@ -4,11 +4,13 @@ import {
   AuthAction,
   authActionType,
   AuthState,
+  SetErrorsAction,
 } from './types';
 
 const initialState: AuthState = {
   isAuthenticated: false,
   isLoading: false,
+  errors: [],
 };
 
 export const authReducer = (
@@ -21,6 +23,11 @@ export const authReducer = (
         ...state,
         isAuthenticated: (action as SetIsAuthenticatedAction).payload
           .isAuthenticated,
+      };
+    case authActionType.SET_ERRORS:
+      return {
+        ...state,
+        errors: (action as SetErrorsAction).payload.errors,
       };
     case authActionType.SET_IS_LOADING:
       return {
