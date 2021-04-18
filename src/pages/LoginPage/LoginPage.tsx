@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSelectors, userActions } from '../../store/user';
+import { authSelectors, authActions } from '../../store/auth';
 import styles from './styles.module.scss';
 import Spinner from '../../componets/Spinner';
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(userSelectors.getIsLoading);
+  const isLoading = useSelector(authSelectors.getIsLoading);
   const loginHandle = () => {
     dispatch(
-      userActions.loginWorkerAction({
+      authActions.loginWorkerAction({
         email: 'xman@mail.ru',
         password: 'p@ssw0rd',
       }),

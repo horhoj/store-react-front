@@ -2,12 +2,12 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 import { StoreState } from './types';
-import { user } from './user';
-import { userWatcher } from './user';
+import { authReducer } from './auth';
+import { authWatcher } from './auth';
 import { logger } from '../utils/logger';
 
 const rootReducer = combineReducers<StoreState>({
-  user,
+  auth: authReducer,
 });
 
 let composeEnhancers = null;
@@ -28,7 +28,7 @@ export const store = createStore(
 );
 
 function* appWatcher() {
-  yield all([userWatcher()]);
+  yield all([authWatcher()]);
 }
 
 sagaMiddleware.run(appWatcher);
