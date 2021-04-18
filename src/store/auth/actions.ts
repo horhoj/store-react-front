@@ -7,7 +7,7 @@ import {
 } from './types';
 import { UserCredential } from '../../types/auth';
 
-const setIsAuthenticatedAction = (
+export const setIsAuthenticatedAction = (
   isAuthenticated: boolean,
 ): SetIsAuthenticatedAction => ({
   type: authActionType.SET_IS_AUTHENTICATED,
@@ -16,19 +16,19 @@ const setIsAuthenticatedAction = (
   },
 });
 
-const setIsLoadingAction = (isLoading: boolean): SetIsLoadingAction => ({
+export const setIsLoadingAction = (isLoading: boolean): SetIsLoadingAction => ({
   type: authActionType.SET_IS_LOADING,
   payload: { isLoading },
 });
 
-const setErrorsAction = (errors: object): SetErrorsAction => ({
+export const setErrorsAction = (errors: object): SetErrorsAction => ({
   type: authActionType.SET_ERRORS,
   payload: {
     errors,
   },
 });
 
-const loginWorkerAction = (
+export const loginWorkerAction = (
   userCredential: UserCredential,
 ): LoginWorkerAction => ({
   type: authActionType.LOGIN,
@@ -36,10 +36,3 @@ const loginWorkerAction = (
     ...userCredential,
   },
 });
-
-export const authActions = {
-  setIsAuthenticatedAction,
-  setIsLoadingAction,
-  loginWorkerAction,
-  setErrorsAction,
-};

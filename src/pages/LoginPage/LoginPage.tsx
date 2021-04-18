@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authActions } from '../../store/auth';
+import { authActions, authSelectors } from '../../store/auth';
 import styles from './styles.module.scss';
 import Spinner from '../../componets/Spinner';
 
