@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, authSelectors } from '../../store/auth';
 import styles from './styles.module.scss';
@@ -21,6 +21,15 @@ export const LoginPage: React.FC = () => {
   const onSubmit = (values: UserCredential) => {
     dispatch(authActions.login(values));
   };
+
+  const clearError = () => {
+    dispatch(authActions.setLoginError(null));
+  };
+
+  useEffect(() => {
+    clearError();
+    return () => clearError();
+  }, []);
 
   return (
     <div className={`d-flex  flex-grow-1 flex-column ${styles.loginForm}`}>

@@ -26,8 +26,8 @@ export function* login(action: Login) {
 
 export function* logout() {
   try {
-    yield call(logoutRequest);
     yield put(setIsAuthenticated(false));
+    yield call(logoutRequest);
   } catch (e) {
     logger('logout error', e);
   }
