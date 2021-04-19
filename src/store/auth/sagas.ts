@@ -3,6 +3,11 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import { setIsLoading, setLoginError, setIsAuthenticated } from './actions';
 import { logger } from '../../utils/logger';
 import { loginRequest, logoutRequest } from '../../api/entity/auth';
+import { userActions } from '../user';
+import { AxiosResponse } from 'axios';
+import { userDataRequest } from '../../api/entity/user';
+import { UserAction } from '../user/types';
+import { setData } from '../user/actions';
 
 export function* authWatcher() {
   yield takeEvery(authActionType.LOGIN, login);
@@ -14,6 +19,8 @@ export function* login(action: Login) {
     yield put<AuthAction>(setIsLoading(true));
     yield put<AuthAction>(setLoginError(null));
     yield call(loginRequest, action.payload.userCredential);
+    const response: AxiosResponse = yield call(userDataRequest);
+    yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {
     const error: number = e.response ? e.response.status : 0;
@@ -27,8 +34,9 @@ export function* login(action: Login) {
 export function* logout() {
   try {
     yield put(setIsAuthenticated(false));
+    yield put(userActions.setData(null));
     yield call(logoutRequest);
   } catch (e) {
-    logger('logout error', e);
+    call(logger, 'logout error', e);
   }
 }
