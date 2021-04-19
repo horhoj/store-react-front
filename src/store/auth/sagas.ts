@@ -2,10 +2,11 @@ import { Login, AuthAction, authActionType } from './types';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import { setIsLoading, setLoginError, setIsAuthenticated } from './actions';
 import { logger } from '../../utils/logger';
-import { loginRequest } from '../../api/entity/auth/loginRequest';
+import { loginRequest, logoutRequest } from '../../api/entity/auth';
 
 export function* authWatcher() {
   yield takeEvery(authActionType.LOGIN, login);
+  yield takeEvery(authActionType.LOGOUT, logout);
 }
 
 export function* login(action: Login) {
@@ -17,8 +18,17 @@ export function* login(action: Login) {
   } catch (e) {
     const error: number = e.response ? e.response.status : 0;
     yield put<AuthAction>(setLoginError(error));
-    yield call(logger, 'login loginError', e);
+    yield call(logger, 'login error', e);
   } finally {
     yield put<AuthAction>(setIsLoading(false));
+  }
+}
+
+export function* logout() {
+  try {
+    yield call(logoutRequest);
+    yield put(setIsAuthenticated(false));
+  } catch (e) {
+    logger('logout error', e);
   }
 }

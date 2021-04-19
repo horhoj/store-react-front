@@ -5,6 +5,7 @@ export enum authActionType {
   SET_IS_LOADING = 'AUTH/SET_IS_LOADING',
   LOGIN = 'AUTH/LOGIN',
   SET_ERRORS = 'AUTH/SET_ERRORS',
+  LOGOUT = 'AUTH/LOGOUT',
 }
 
 export interface AuthState {
@@ -29,3 +30,5 @@ export type SetIsLoading = AuthAction<{
 export type SetLoginError = AuthAction<{ error: LoginError }>;
 
 export type Login = AuthAction<{ userCredential: UserCredential }>;
+
+export type Logout = AuthAction;

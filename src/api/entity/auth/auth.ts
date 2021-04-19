@@ -1,7 +1,7 @@
-import { UserCredential } from '../../../../types/auth';
+import { UserCredential } from '../../../types/auth';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ajaxRequest } from '../../../transport';
-import { ACCESS_TOKEN_LS_KEY } from '../../../../config/API';
+import { ajaxRequest, ajaxRequestWithAuthHeader } from '../../transport';
+import { ACCESS_TOKEN_LS_KEY } from '../../../config/API';
 import { LoginResponse, LoginResponseSchema } from './types';
 
 export const loginRequest = async (
@@ -17,4 +17,13 @@ export const loginRequest = async (
   );
   await LoginResponseSchema.validate(response?.data);
   if (response) localStorage.setItem(ACCESS_TOKEN_LS_KEY, response.data.token);
+};
+
+export const logoutRequest = async () => {
+  const requestConfig: AxiosRequestConfig = {
+    url: '/auth/logout',
+    method: 'get',
+  };
+  await ajaxRequestWithAuthHeader(requestConfig);
+  localStorage.removeItem(ACCESS_TOKEN_LS_KEY);
 };

@@ -1,9 +1,10 @@
 import {
   authActionType,
   Login,
-  SetLoginError,
+  Logout,
   SetIsAuthenticated,
   SetIsLoading,
+  SetLoginError,
 } from './types';
 import { UserCredential } from '../../types/auth';
 
@@ -33,4 +34,9 @@ export const login = (userCredential: UserCredential): Login => ({
   payload: {
     userCredential,
   },
+});
+
+export const logout = (): Logout => ({
+  type: authActionType.LOGOUT,
+  payload: null,
 });
