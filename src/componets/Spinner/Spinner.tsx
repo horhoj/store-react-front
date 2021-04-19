@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './Spinner.module.scss';
 import { SpinnerProps } from './types';
 
-const Spinner: React.FC<SpinnerProps> = ({
+export const Spinner: React.FC<SpinnerProps> = ({
   parentComponentCenterPosition = false,
-}): JSX.Element => {
+}) => {
   const loader = (
     <svg className={styles.loader} viewBox="0 0 24 24">
       <circle className={styles.loader__value} cx="12" cy="12" r="10" />
@@ -29,5 +29,3 @@ const Spinner: React.FC<SpinnerProps> = ({
     loader
   );
 };
-
-export default Spinner;

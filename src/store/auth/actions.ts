@@ -1,7 +1,7 @@
 import {
   authActionType,
   Login,
-  SetErrors,
+  SetLoginError,
   SetIsAuthenticated,
   SetIsLoading,
 } from './types';
@@ -21,14 +21,14 @@ export const setIsLoading = (isLoading: boolean): SetIsLoading => ({
   payload: { isLoading },
 });
 
-export const setErrors = (errors: object): SetErrors => ({
+export const setLoginError = (error: number | null): SetLoginError => ({
   type: authActionType.SET_ERRORS,
   payload: {
-    errors,
+    error,
   },
 });
 
-export const loginWorker = (userCredential: UserCredential): Login => ({
+export const login = (userCredential: UserCredential): Login => ({
   type: authActionType.LOGIN,
   payload: {
     userCredential,

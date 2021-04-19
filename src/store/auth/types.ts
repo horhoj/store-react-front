@@ -10,8 +10,10 @@ export enum authActionType {
 export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
-  errors: object;
+  loginError: LoginError;
 }
+
+export type LoginError = number | null;
 
 export interface AuthAction<T = any> {
   type: authActionType;
@@ -24,6 +26,6 @@ export type SetIsLoading = AuthAction<{
   isLoading: boolean;
 }>;
 
-export type SetErrors = AuthAction<{ errors: object }>;
+export type SetLoginError = AuthAction<{ error: LoginError }>;
 
 export type Login = AuthAction<{ userCredential: UserCredential }>;

@@ -6,7 +6,7 @@ import { PublicLayout } from './layouts/PublicLayout';
 import { useSelector } from 'react-redux';
 import { authSelectors } from './store/auth';
 
-export const App: React.FC = (): JSX.Element => {
+export const App: React.FC = () => {
   const userIsAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   return (
     <div className="d-flex min-vh-100 min-vw-100">
