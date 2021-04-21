@@ -29,6 +29,7 @@ export const LoginPage: React.FC = () => {
   useEffect(() => {
     clearError();
     return () => clearError();
+    // eslint-disable-next-line
   }, []);
 
   return (

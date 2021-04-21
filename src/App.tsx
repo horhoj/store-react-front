@@ -7,12 +7,14 @@ import { Spinner } from './componets/Spinner';
 export const App: React.FC = () => {
   const isLoading = useSelector(userSelectors.getIsLoading);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(userActions.getData());
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <div className="d-flex min-vh-100 min-vw-100">
+    <div className="d-flex min-vh-100">
       {isLoading ? (
         <Spinner parentComponentCenterPosition={true} />
       ) : (

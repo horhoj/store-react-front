@@ -2,6 +2,7 @@ import {
   ProductsAction,
   ProductsActionType,
   ProductsState,
+  SetRequestConfigDiff,
   SetError,
   SetIsLoading,
   SetProducts,
@@ -11,6 +12,13 @@ const initialState: ProductsState = {
   isLoading: false,
   products: null,
   error: null,
+  requestConfig: {
+    page: 1,
+    sort_asc: 1,
+    search: '',
+    per_page: 10,
+    sort_field: 'title',
+  },
 };
 
 export const productsReducer = (
@@ -32,6 +40,14 @@ export const productsReducer = (
       return {
         ...state,
         error: (action as SetError).payload.error,
+      };
+    case ProductsActionType.SET_REQUEST_CONFIG_DIFF:
+      return {
+        ...state,
+        requestConfig: {
+          ...state.requestConfig,
+          ...(action as SetRequestConfigDiff).payload.requestConfigDiff,
+        },
       };
     default:
       return state;
