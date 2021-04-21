@@ -5,10 +5,12 @@ import { StoreState } from './types';
 import { authReducer, authWatcher } from './auth';
 import { logger } from '../utils/logger';
 import { userReducer, userWatcher } from './user';
+import { productsReducer, productsWatcher } from './products';
 
 const rootReducer = combineReducers<StoreState>({
   auth: authReducer,
   user: userReducer,
+  products: productsReducer,
 });
 
 let composeEnhancers = null;
@@ -29,7 +31,7 @@ export const rootStore = createStore(
 );
 
 function* appWatcher() {
-  yield all([authWatcher(), userWatcher()]);
+  yield all([authWatcher(), userWatcher(), productsWatcher()]);
 }
 
 sagaMiddleware.run(appWatcher);

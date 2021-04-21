@@ -7,10 +7,13 @@ export const PrivateMenu: React.FC = () => {
   return (
     <div className={`p-2 ${styles.mainMenu}`}>
       <div>
-        <Link to={getPathByName('home')}>Home</Link>
+        <Link to={getPathByName('home')}>Главная</Link>
       </div>
       <div>
-        <Link to={getPathByName('about')}>About</Link>
+        <Link to={getPathByName('products')}>Товары</Link>
+      </div>
+      <div>
+        <Link to={getPathByName('about')}>О программе</Link>
       </div>
     </div>
   );

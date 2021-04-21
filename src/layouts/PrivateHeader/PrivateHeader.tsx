@@ -18,7 +18,7 @@ export const PrivateHeader: React.FC = () => {
     >
       <div>
         <button className="mr-4 btn btn-primary">M</button>
-        <span>Admin Panel</span>
+        <span>Панель управления</span>
       </div>
 
       <div className="d-flex">

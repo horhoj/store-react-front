@@ -3,6 +3,7 @@ import { HomePage } from '../pages/HomePage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { AboutPage } from '../pages/AboutPage';
 import { LoginPage } from '../pages/LoginPage';
+import { Products } from '../pages/Products';
 
 export const routes: RouteItem[] = [
   {
@@ -30,7 +31,15 @@ export const routes: RouteItem[] = [
     component: LoginPage,
   },
   {
-    name: 'RouteNotFound',
+    name: 'products',
+    path: '/products',
+    exact: false,
+    private: true,
+    always: false,
+    component: Products,
+  },
+  {
+    name: 'routeNotFound',
     path: '*',
     exact: false,
     private: false,

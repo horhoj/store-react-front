@@ -8,6 +8,7 @@ import { AxiosResponse } from 'axios';
 import { userDataRequest } from '../../api/entity/user';
 import { UserAction } from '../user/types';
 import { setData } from '../user/actions';
+import { getHTTPStatusFromError } from '../../utils/helpers';
 
 export function* authWatcher() {
   yield takeEvery(authActionType.LOGIN, login);
@@ -23,7 +24,7 @@ export function* login(action: Login) {
     yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {
-    const error: number = e.response ? e.response.status : 0;
+    const error: number = getHTTPStatusFromError(e);
     yield put<AuthAction>(setLoginError(error));
     yield call(logger, 'login error', e);
   } finally {

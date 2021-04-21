@@ -1,6 +1,9 @@
-import React from 'react';
-
-export type RouterPathNames = 'home' | 'about' | 'login' | 'RouteNotFound';
+export type RouterPathNames =
+  | 'home'
+  | 'about'
+  | 'login'
+  | 'routeNotFound'
+  | 'products';
 
 export interface RouteItem {
   name: RouterPathNames;
