@@ -1,11 +1,8 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { AjaxWorkReport } from './types';
 import { logger } from '../../utils/logger';
-import {
-  ACCESS_TOKEN_LS_KEY,
-  BASE_URL,
-  DEFAULT_HEADERS,
-} from '../../config/API';
+import { ACCESS_TOKEN_LS_KEY, DEFAULT_HEADERS } from '../../config/API';
+import { BASE_URL } from '../../config/host';
 
 export const ajaxRequest = async (
   requestConfig: AxiosRequestConfig,
