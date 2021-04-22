@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { productsActions, productsSelectors } from '../../store/products';
 import { DataTable } from '../../componets/DataTable';
-import { DataTableVisibleField } from '../../componets/DataTable/types';
+import {
+  DataTableGoToPageBtnClkCb,
+  DataTableRowActionBtnClkCb,
+  DataTableSearchCb,
+  DataTableVisibleField,
+} from '../../componets/DataTable/types';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,6 +49,31 @@ export const Products: React.FC = () => {
     }
   };
 
+  const rowActionBtnClkCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
+    console.log(id, type);
+  };
+
+  const goToPageBtnClkCb: DataTableGoToPageBtnClkCb = (id: number) => {
+    dispatch(
+      productsActions.getProducts({
+        page: id,
+      }),
+    );
+    // console.log(id);
+  };
+
+  const searchCb: DataTableSearchCb = (findStr: string) => {
+    // console.log(findStr);
+    dispatch(
+      productsActions.getProducts({
+        page: 1,
+        sort_asc: 1,
+        search: findStr,
+        sort_field: 'title',
+      }),
+    );
+  };
+
   useEffect(() => {
     getProducts();
     return () => clear();
@@ -66,18 +96,8 @@ export const Products: React.FC = () => {
               : `ошибка с кодом ${error}`}
           </div>
         </div>
-      ) : (
-        ''
-      )}
+      ) : null}
       <div>
-        <div>
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={updateProductsHandle}
-          >
-            Обновить
-          </button>
-        </div>
         <div className="mt-3">
           <DataTable
             items={products?.data}
@@ -86,6 +106,14 @@ export const Products: React.FC = () => {
             columnClkCb={columnClkCb}
             sortField={currentRequestConfig.sort_field}
             sortAsc={currentRequestConfig.sort_asc}
+            actionCb={rowActionBtnClkCb}
+            currentPage={products?.current_page}
+            lastPage={products?.last_page}
+            goToPageBtnClkCb={goToPageBtnClkCb}
+            perPage={products?.per_page}
+            updateBtnClkCb={updateProductsHandle}
+            searchCb={searchCb}
+            findStr={currentRequestConfig.search}
           />
         </div>
       </div>
