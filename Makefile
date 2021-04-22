@@ -1,4 +1,4 @@
-init: docker-up install dev
+init: docker-up install build
 
 #all
 docker-up: docker-down
