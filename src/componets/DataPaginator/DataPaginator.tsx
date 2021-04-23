@@ -10,6 +10,8 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
   lastPage,
   currentPage,
   goToPageBtnClkCb,
+  perPage,
+  changePerPageCb,
 }) => {
   const goToFirstPageBtnClkHandle = () => {
     if (lastPage && currentPage) {
@@ -42,12 +44,19 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
       }
     }
   };
+
+  const changePerPageHandle = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    changePerPageCb(Number(e.target.value));
+  };
+
   return lastPage && currentPage ? (
     <div className="d-flex justify-content-center flex-column w-100 align-items-center">
-      <div className="h5">
-        {currentPage} : {lastPage}
+      <div className="h5 d-flex justify-content-center align-items-center">
+        <span className="mr-2">
+          Страница {currentPage} из {lastPage}
+        </span>
       </div>
-      <div className="mt-2">
+      <div className="mt-2 d-flex">
         <button
           className="btn btn-primary mr-1"
           onClick={goToFirstPageBtnClkHandle}
@@ -60,6 +69,17 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
         >
           {PREV_PAGE}
         </button>
+
+        <select
+          className="form-control mr-1"
+          onChange={changePerPageHandle}
+          value={perPage}
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
 
         <button
           className="btn btn-primary mr-1"

@@ -3,7 +3,10 @@ import {
   DataGridRowActionBtnClkCb,
   DataGridVisibleField,
 } from '../DataGrid/types';
-import { DataPaginatorGoToPageBtnClkCb } from '../DataPaginator/types';
+import {
+  DataPaginatorChangePerPageCb,
+  DataPaginatorGoToPageBtnClkCb,
+} from '../DataPaginator/types';
 import { DataSearchCb, DataSearchUpdateBtnClkCb } from '../DataSearch/types';
 
 export interface DataTableProps {
@@ -21,6 +24,7 @@ export interface DataTableProps {
   updateBtnClkCb: DataTableUpdateBtnClkCb;
   searchCb: DataTableSearchCb;
   findStr: string;
+  changePerPageCb: DataTableChangePerPageCb;
 }
 
 export interface DataTableVisibleField extends DataGridVisibleField {}
@@ -35,3 +39,6 @@ export interface DataTableGoToPageBtnClkCb
 export interface DataTableUpdateBtnClkCb extends DataSearchUpdateBtnClkCb {}
 
 export interface DataTableSearchCb extends DataSearchCb {}
+
+export interface DataTableChangePerPageCb
+  extends DataPaginatorChangePerPageCb {}

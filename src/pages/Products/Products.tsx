@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productsActions, productsSelectors } from '../../store/products';
 import { DataTable } from '../../componets/DataTable';
 import {
+  DataTableChangePerPageCb,
   DataTableGoToPageBtnClkCb,
   DataTableRowActionBtnClkCb,
   DataTableSearchCb,
@@ -72,6 +73,18 @@ export const Products: React.FC = () => {
     );
   };
 
+  const changePerPageCb: DataTableChangePerPageCb = (perPage: number) => {
+    // console.log(perPage);
+    dispatch(
+      productsActions.getProducts({
+        page: 1,
+        sort_asc: 1,
+        sort_field: 'title',
+        per_page: perPage,
+      }),
+    );
+  };
+
   useEffect(() => {
     getProducts();
     return () => clear();
@@ -112,6 +125,7 @@ export const Products: React.FC = () => {
             updateBtnClkCb={updateProductsHandle}
             searchCb={searchCb}
             findStr={currentRequestConfig.search}
+            changePerPageCb={changePerPageCb}
           />
         </div>
       </div>

@@ -20,6 +20,7 @@ export const DataTable: React.FC<DataTableProps> = ({
   updateBtnClkCb,
   searchCb,
   findStr,
+  changePerPageCb,
 }) => {
   return (
     <div
@@ -51,6 +52,8 @@ export const DataTable: React.FC<DataTableProps> = ({
               lastPage={lastPage}
               goToPageBtnClkCb={goToPageBtnClkCb}
               currentPage={currentPage}
+              perPage={perPage}
+              changePerPageCb={changePerPageCb}
             />
           </div>
         </fieldset>
