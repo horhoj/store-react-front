@@ -6,7 +6,7 @@ import { BASE_URL } from '../../config/host';
 
 export const ajaxRequest = async (
   requestConfig: AxiosRequestConfig,
-): Promise<AxiosPromise | undefined> => {
+): Promise<AxiosPromise> => {
   const ajaxWorkReport: AjaxWorkReport = {
     config: requestConfig,
     response: null,

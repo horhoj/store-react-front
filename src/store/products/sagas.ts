@@ -1,7 +1,11 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
-import { GetProducts, ProductsAction, ProductsActionType } from './types';
+import {
+  GetProducts,
+  GetProductsRequest,
+  ProductsAction,
+  ProductsActionType,
+} from './types';
 import { getProductsRequest } from '../../api/entity/products';
-import { AxiosResponse } from 'axios';
 import { logger } from '../../utils/logger';
 import {
   setError,
@@ -28,7 +32,7 @@ export function* getProducts(action: GetProducts) {
     );
     yield put<ProductsAction>(setError(null));
     yield put<ProductsAction>(setIsLoading(true));
-    const response: AxiosResponse = yield call(
+    const response: GetProductsRequest = yield call(
       requestExecutor,
       getProductsRequest,
       requestConfig,

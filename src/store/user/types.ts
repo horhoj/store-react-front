@@ -1,4 +1,6 @@
 import { UserEntityType } from '../../types/user';
+import { SagaReturnType } from 'redux-saga/effects';
+import { userDataRequest } from '../../api/entity/user';
 
 export enum UserActionType {
   SET_DATA = 'USER/SET_DATA',
@@ -10,6 +12,8 @@ export interface UserState {
   data: UserData;
   isLoading: boolean;
 }
+
+export type UserDataRequest = SagaReturnType<typeof userDataRequest>;
 
 export type UserData = UserEntityType | null;
 

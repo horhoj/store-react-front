@@ -1,14 +1,16 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ajaxRequestWithAuthHeader } from '../../transport';
-import { UserResponseSchema } from '../../../types/user';
+import { UserEntityType, UserResponseSchema } from '../../../types/user';
 
-export const userDataRequest = async (): Promise<AxiosResponse | undefined> => {
+export const userDataRequest = async (): Promise<
+  AxiosResponse<UserEntityType>
+> => {
   const requestConfig: AxiosRequestConfig = {
     url: '/auth/user',
     method: 'get',
   };
 
-  const response: AxiosResponse | undefined = await ajaxRequestWithAuthHeader(
+  const response: AxiosResponse<UserEntityType> = await ajaxRequestWithAuthHeader(
     requestConfig,
   );
   await UserResponseSchema.validate(response?.data);

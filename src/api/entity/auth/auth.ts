@@ -12,14 +12,14 @@ export const loginRequest = async (
     data: userCredential,
     method: 'post',
   };
-  const response: AxiosResponse<LoginResponse> | undefined = await ajaxRequest(
+  const response: AxiosResponse<LoginResponse> = await ajaxRequest(
     requestConfig,
   );
-  await LoginResponseSchema.validate(response?.data);
+  await LoginResponseSchema.validate(response.data);
   if (response) localStorage.setItem(ACCESS_TOKEN_LS_KEY, response.data.token);
 };
 
-export const logoutRequest = async () => {
+export const logoutRequest = async (): Promise<void> => {
   const requestConfig: AxiosRequestConfig = {
     url: '/auth/logout',
     method: 'get',

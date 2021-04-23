@@ -1,5 +1,7 @@
 import { ProductsResponseType } from '../../types/products';
 import { GetProductsRequestConfig } from '../../api/entity/products/types';
+import { SagaReturnType } from 'redux-saga/effects';
+import { getProductsRequest } from '../../api/entity/products';
 
 export enum ProductsActionType {
   SET_PRODUCTS = 'PRODUCTS/SET_PRODUCTS',
@@ -20,6 +22,8 @@ export interface ProductsAction<T = any> {
   type: ProductsActionType;
   payload: T;
 }
+
+export type GetProductsRequest = SagaReturnType<typeof getProductsRequest>;
 
 export type ProductsType = ProductsResponseType | null;
 

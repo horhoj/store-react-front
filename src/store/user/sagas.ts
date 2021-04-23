@@ -1,9 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { UserAction, UserActionType } from './types';
+import { UserAction, UserActionType, UserDataRequest } from './types';
 import { setData, setIsLoading } from './actions';
 import { logger } from '../../utils/logger';
 import { userDataRequest } from '../../api/entity/user';
-import { AxiosResponse } from 'axios';
 import { AuthAction } from '../auth/types';
 import { setIsAuthenticated } from '../auth/actions';
 
@@ -13,7 +12,7 @@ export function* userWatcher() {
 
 export function* getData() {
   try {
-    const response: AxiosResponse = yield call(userDataRequest);
+    const response: UserDataRequest = yield call(userDataRequest);
     yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {
