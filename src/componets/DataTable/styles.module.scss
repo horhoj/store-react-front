@@ -2,3 +2,7 @@
   display: grid;
   grid-template-columns: 100px 1fr 100px;
 }
+
+.transitionOpacity {
+  transition: opacity .3s ease;
+}

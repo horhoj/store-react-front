@@ -4,6 +4,7 @@ import { Spinner } from '../Spinner';
 import { DataPaginator } from '../DataPaginator';
 import { DataSearch } from '../DataSearch';
 import { DataGrid } from '../DataGrid';
+import styles from './styles.module.scss';
 
 export const DataTable: React.FC<DataTableProps> = ({
   items,
@@ -24,7 +25,9 @@ export const DataTable: React.FC<DataTableProps> = ({
 }) => {
   return (
     <div
-      className={`w-100 position-relative ${isLoading ? 'app__disabled' : ''}`}
+      className={`w-100 position-relative ${styles.transitionOpacity} ${
+        isLoading ? 'app__disabled' : ''
+      }`}
     >
       {isLoading ? <Spinner parentComponentCenterPosition={true} /> : ''}
       {items && visibleFields ? (

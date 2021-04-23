@@ -16,28 +16,38 @@ export const DataGrid: React.FC<DataGridProps> = ({
 }) => {
   return items && visibleFields ? (
     <div className="mt-3">
-      <table className={`table table-striped table-sm `}>
+      <table className="table table-striped table-sm font-weight-normal">
         <thead>
           <tr>
-            <th className="border bg-primary text-white text-center">№</th>
+            <th className="border bg-primary cur text-white text-center">
+              <div className="btn text-white app__cursor-default app__line-height-1">
+                №
+              </div>
+            </th>
             {visibleFields.map((field) => (
               <th
                 className={`border app__cursor-pointer text-center  ${
-                  field.name === sortField ? 'btn-info' : 'btn-primary'
+                  field.name === sortField ? 'btn-info ' : 'btn-primary'
                 }`}
                 key={field.name}
-                onClick={() => columnClkCb(field.name)}
               >
-                {field.title}&nbsp;
-                {field.name === sortField
-                  ? sortAsc === 1
-                    ? ARRAY_UP
-                    : ARRAY_DOWN
-                  : ''}
+                <button
+                  className="btn w-100 text-white app__line-height-1"
+                  onClick={() => columnClkCb(field.name)}
+                >
+                  {field.title}&nbsp;
+                  {field.name === sortField
+                    ? sortAsc === 1
+                      ? ARRAY_UP
+                      : ARRAY_DOWN
+                    : ''}
+                </button>
               </th>
             ))}
             <th className="border bg-primary text-white text-center">
-              Действия
+              <div className="btn  text-white app__cursor-default app__line-height-1 ">
+                Действия
+              </div>
             </th>
           </tr>
         </thead>

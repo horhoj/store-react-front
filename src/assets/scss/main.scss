@@ -8,11 +8,20 @@ body {
 }
 
 .app__cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
+}
+
+.app__cursor-default {
+  cursor: default !important;
 }
 
 .app__disabled {
   cursor: none;
   opacity: .65 !important;
 }
+
+.app__line-height-1 {
+  line-height: 1 !important;
+}
+
 
