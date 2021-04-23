@@ -1,3 +1,11 @@
+import {
+  DataGridColumnClkCb,
+  DataGridRowActionBtnClkCb,
+  DataGridVisibleField,
+} from '../DataGrid/types';
+import { DataPaginatorGoToPageBtnClkCb } from '../DataPaginator/types';
+import { DataSearchCb, DataSearchUpdateBtnClkCb } from '../DataSearch/types';
+
 export interface DataTableProps {
   items: any[] | undefined;
   visibleFields: DataTableVisibleField[];
@@ -15,27 +23,15 @@ export interface DataTableProps {
   findStr: string;
 }
 
-export interface DataTableVisibleField {
-  name: string;
-  title: string;
-}
+export interface DataTableVisibleField extends DataGridVisibleField {}
 
-export interface DataTableColumnClkCb {
-  (fieldName: string): void;
-}
+export interface DataTableColumnClkCb extends DataGridColumnClkCb {}
 
-export interface DataTableRowActionBtnClkCb {
-  (params: { id: number; type: 'edit' | 'view' | 'delete' }): void;
-}
+export interface DataTableRowActionBtnClkCb extends DataGridRowActionBtnClkCb {}
 
-export interface DataTableGoToPageBtnClkCb {
-  (page: number): void;
-}
+export interface DataTableGoToPageBtnClkCb
+  extends DataPaginatorGoToPageBtnClkCb {}
 
-export interface DataTableUpdateBtnClkCb {
-  (): void;
-}
+export interface DataTableUpdateBtnClkCb extends DataSearchUpdateBtnClkCb {}
 
-export interface DataTableSearchCb {
-  (findStr: string): void;
-}
+export interface DataTableSearchCb extends DataSearchCb {}

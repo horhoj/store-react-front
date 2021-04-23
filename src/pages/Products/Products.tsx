@@ -59,11 +59,9 @@ export const Products: React.FC = () => {
         page: id,
       }),
     );
-    // console.log(id);
   };
 
   const searchCb: DataTableSearchCb = (findStr: string) => {
-    // console.log(findStr);
     dispatch(
       productsActions.getProducts({
         page: 1,
