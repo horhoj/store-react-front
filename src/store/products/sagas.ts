@@ -1,10 +1,11 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects';
 import {
-  GetProducts,
-  GetProductsRequest,
-  ProductsAction,
-  ProductsActionType,
-} from './types';
+  call,
+  put,
+  takeEvery,
+  select,
+  SagaReturnType,
+} from 'redux-saga/effects';
+import { GetProducts, ProductsAction, ProductsActionType } from './types';
 import { getProductsRequest } from '../../api/entity/products';
 import { logger } from '../../utils/logger';
 import {
@@ -32,7 +33,7 @@ export function* getProducts(action: GetProducts) {
     );
     yield put<ProductsAction>(setError(null));
     yield put<ProductsAction>(setIsLoading(true));
-    const response: GetProductsRequest = yield call(
+    const response: SagaReturnType<typeof getProductsRequest> = yield call(
       requestExecutor,
       getProductsRequest,
       requestConfig,

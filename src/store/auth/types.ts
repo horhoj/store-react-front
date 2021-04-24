@@ -1,6 +1,4 @@
 import { UserCredential } from '../../types/auth';
-import { SagaReturnType } from 'redux-saga/effects';
-import { userDataRequest } from '../../api/entity/user';
 
 export enum authActionType {
   SET_IS_AUTHENTICATED = 'AUTH/SET_IS_AUTHENTICATED',
@@ -22,8 +20,6 @@ export interface AuthAction<T = any> {
   type: authActionType;
   payload: T;
 }
-
-export type UserDataRequest = SagaReturnType<typeof userDataRequest>;
 
 export type SetIsAuthenticated = AuthAction<{ isAuthenticated: boolean }>;
 

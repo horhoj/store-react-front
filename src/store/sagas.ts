@@ -1,5 +1,4 @@
-import { AxiosResponse } from 'axios';
-import { call, put } from 'redux-saga/effects';
+import { call, put, SagaReturnType } from 'redux-saga/effects';
 import { logger } from '../utils/logger';
 import { AuthAction } from './auth/types';
 import { authActions } from './auth';
@@ -7,7 +6,7 @@ import { getHTTPStatusFromError } from '../utils/helpers';
 
 export function* requestExecutor(cb: any, ...arg: any[]) {
   try {
-    const response: AxiosResponse = yield call(cb, ...arg);
+    const response: SagaReturnType<typeof cb> = yield call(cb, ...arg);
     return response;
   } catch (e) {
     yield call(logger, 'requestExecutor error', e);

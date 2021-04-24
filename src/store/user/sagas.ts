@@ -1,5 +1,5 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { UserAction, UserActionType, UserDataRequest } from './types';
+import { call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
+import { UserAction, UserActionType } from './types';
 import { setData, setIsLoading } from './actions';
 import { logger } from '../../utils/logger';
 import { userDataRequest } from '../../api/entity/user';
@@ -12,7 +12,9 @@ export function* userWatcher() {
 
 export function* getData() {
   try {
-    const response: UserDataRequest = yield call(userDataRequest);
+    const response: SagaReturnType<typeof userDataRequest> = yield call(
+      userDataRequest,
+    );
     yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {

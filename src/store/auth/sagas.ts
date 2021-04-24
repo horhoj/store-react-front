@@ -1,5 +1,5 @@
-import { Login, AuthAction, authActionType, UserDataRequest } from './types';
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { Login, AuthAction, authActionType } from './types';
+import { put, takeEvery, call, SagaReturnType } from 'redux-saga/effects';
 import { setIsLoading, setLoginError, setIsAuthenticated } from './actions';
 import { logger } from '../../utils/logger';
 import { loginRequest, logoutRequest } from '../../api/entity/auth';
@@ -19,7 +19,9 @@ export function* login(action: Login) {
     yield put<AuthAction>(setIsLoading(true));
     yield put<AuthAction>(setLoginError(null));
     yield call(loginRequest, action.payload.userCredential);
-    const response: UserDataRequest = yield call(userDataRequest);
+    const response: SagaReturnType<typeof userDataRequest> = yield call(
+      userDataRequest,
+    );
     yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {
