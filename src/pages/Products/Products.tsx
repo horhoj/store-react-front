@@ -9,6 +9,8 @@ import {
   DataTableSearchCb,
   DataTableVisibleField,
 } from '../../componets/DataTable/types';
+import { generatePath, useHistory } from 'react-router';
+import { getPathByName } from '../../router';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ export const Products: React.FC = () => {
   const error = useSelector(productsSelectors.getError);
   const isLoading = useSelector(productsSelectors.getIsLoading);
   const currentRequestConfig = useSelector(productsSelectors.getRequestConfig);
+  const history = useHistory();
 
   const productsVisibleFields: DataTableVisibleField[] = [
     { name: 'id', title: 'ИД' },
@@ -51,7 +54,11 @@ export const Products: React.FC = () => {
   };
 
   const rowActionBtnClkCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
-    console.log(id, type);
+    if (type === 'edit') {
+      const pathTemplate: string = getPathByName('product');
+      const path: string = generatePath(pathTemplate, { id });
+      history.push(path);
+    }
   };
 
   const goToPageBtnClkCb: DataTableGoToPageBtnClkCb = (id: number) => {

@@ -18,7 +18,7 @@ export function* getData() {
     yield put<UserAction>(setData(response.data));
     yield put<AuthAction>(setIsAuthenticated(true));
   } catch (e) {
-    logger('getData', e);
+    yield call(logger, 'getData', e);
   } finally {
     yield put<UserAction>(setIsLoading(false));
   }

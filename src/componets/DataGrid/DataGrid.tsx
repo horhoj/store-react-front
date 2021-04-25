@@ -69,19 +69,13 @@ export const DataGrid: React.FC<DataGridProps> = ({
               <td>
                 <div className="d-flex justify-content-center align-items-center">
                   <button
-                    className="btn btn-info btn-sm mr-1"
-                    onClick={() => actionCb({ id: item.id, type: 'view' })}
-                  >
-                    V
-                  </button>
-                  <button
-                    className="btn btn-warning btn-sm mr-1"
+                    className="btn btn-primary btn-sm mr-2"
                     onClick={() => actionCb({ id: item.id, type: 'edit' })}
                   >
                     E
                   </button>
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-primary btn-sm"
                     onClick={() => actionCb({ id: item.id, type: 'delete' })}
                   >
                     D

@@ -1,17 +1,17 @@
 import * as yup from 'yup';
 
-export const ProductsEntitySchema = yup.object({
+export const ProductEntitySchema = yup.object({
   id: yup.number().required(),
   title: yup.string().defined(),
   description: yup.string().defined(),
   params: yup.string().defined(),
 });
 
-export interface ProductsEntityType
-  extends yup.Asserts<typeof ProductsEntitySchema> {}
+export interface ProductEntityType
+  extends yup.Asserts<typeof ProductEntitySchema> {}
 
 export const ProductsResponseSchema = yup.object({
-  data: yup.array(ProductsEntitySchema).required(),
+  data: yup.array(ProductEntitySchema).required(),
   current_page: yup.number().required(),
   last_page: yup.number().required(),
   per_page: yup.number().required(),

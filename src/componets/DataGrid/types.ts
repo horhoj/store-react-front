@@ -19,5 +19,5 @@ export interface DataGridColumnClkCb {
 }
 
 export interface DataGridRowActionBtnClkCb {
-  (params: { id: number; type: 'edit' | 'view' | 'delete' }): void;
+  (params: { id: number; type: 'edit' | 'delete' }): void;
 }

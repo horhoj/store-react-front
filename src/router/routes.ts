@@ -4,6 +4,7 @@ import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { AboutPage } from '../pages/AboutPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products } from '../pages/Products';
+import { Product } from '../pages/Product';
 
 export const routes: RouteItem[] = [
   {
@@ -17,7 +18,7 @@ export const routes: RouteItem[] = [
   {
     name: 'about',
     path: '/about',
-    exact: false,
+    exact: true,
     private: true,
     always: false,
     component: AboutPage,
@@ -25,7 +26,7 @@ export const routes: RouteItem[] = [
   {
     name: 'login',
     path: '/login',
-    exact: false,
+    exact: true,
     private: false,
     always: false,
     component: LoginPage,
@@ -33,10 +34,18 @@ export const routes: RouteItem[] = [
   {
     name: 'products',
     path: '/products',
-    exact: false,
+    exact: true,
     private: true,
     always: false,
     component: Products,
+  },
+  {
+    name: 'product',
+    path: '/product/:id',
+    exact: true,
+    always: false,
+    private: true,
+    component: Product,
   },
   {
     name: 'routeNotFound',
@@ -48,8 +57,14 @@ export const routes: RouteItem[] = [
   },
 ];
 
-export const getPathByName = (name: RouterPathNames): string =>
-  routes.filter(
+export const getPathByName = (name: RouterPathNames): string => {
+  const routeItem: RouteItem | undefined = routes.find(
     (route) =>
       route.name.toString().toLowerCase() === name.toString().toLowerCase(),
-  )[0].path;
+  );
+  if (routeItem) {
+    return routeItem.path;
+  } else {
+    throw new Error('getPathByName: Unknown route!');
+  }
+};
