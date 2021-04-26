@@ -41,3 +41,16 @@ export const getProductRequest = async (
 
   return response;
 };
+
+export const updateProductRequest = async (
+  productData: ProductEntityType,
+): Promise<void> => {
+  const url = `/products/${productData.id}`;
+  const requestConfig: AxiosRequestConfig = {
+    url,
+    method: 'put',
+    data: productData,
+  };
+
+  await ajaxRequestWithAuthHeader(requestConfig);
+};

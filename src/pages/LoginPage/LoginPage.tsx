@@ -46,9 +46,7 @@ export const LoginPage: React.FC = () => {
               : `ошибка с кодом ${error}`}
           </div>
         </div>
-      ) : (
-        ''
-      )}
+      ) : null}
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}

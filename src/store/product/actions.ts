@@ -5,7 +5,10 @@ import {
   SetError,
   SetIsLoading,
   SetProduct,
+  SetRedirectToProductList,
+  UpdateProduct,
 } from './types';
+import { ProductEntityType } from '../../types/products';
 
 export const setProduct = (product: ProductType): SetProduct => ({
   type: ProductActionType.SET_PRODUCT,
@@ -28,9 +31,27 @@ export const getProduct = (id: number): GetProduct => ({
   },
 });
 
-export const setError = (error: number): SetError => ({
+export const setError = (error: number | null): SetError => ({
   type: ProductActionType.SET_ERROR,
   payload: {
     error,
+  },
+});
+
+export const updateProduct = (
+  productData: ProductEntityType,
+): UpdateProduct => ({
+  type: ProductActionType.UPDATE_PRODUCT,
+  payload: {
+    productData,
+  },
+});
+
+export const setRedirectToProductList = (
+  redirect: boolean,
+): SetRedirectToProductList => ({
+  type: ProductActionType.SET_REDIRECT_TO_PRODUCT_LIST,
+  payload: {
+    redirect,
   },
 });
