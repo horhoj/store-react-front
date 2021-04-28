@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { DataSearchProps } from './types';
-import styles from './styles.module.scss';
 import { TimeoutID } from '../../types/system';
 import { INPUT_DELAY } from '../../config/UI';
 
@@ -8,9 +7,8 @@ export const DataSearch: React.FC<DataSearchProps> = ({
   findStr,
   searchCb,
   isLoading,
-  updateBtnClkCb,
 }) => {
-  const [findStrValue, setFindStrValue] = useState<string>('');
+  const [findStrValue, setFindStrValue] = useState<string>(findStr);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
 
@@ -45,12 +43,12 @@ export const DataSearch: React.FC<DataSearchProps> = ({
   };
 
   return (
-    <div className={styles.finder}>
+    <div className="d-flex">
       <button
-        className="btn btn-primary btn-sm mr-2 ml-1"
-        onClick={updateBtnClkCb}
+        className="btn btn-primary mr-2"
+        onClick={findStrCLearBtnClkHandle}
       >
-        Обновить
+        Очистить
       </button>
       <input
         type="text"
@@ -59,12 +57,6 @@ export const DataSearch: React.FC<DataSearchProps> = ({
         onChange={(e) => setFindStrValue(e.target.value)}
         ref={searchInputRef}
       />
-      <button
-        className="btn btn-primary btn-sm ml-2 mr-1"
-        onClick={findStrCLearBtnClkHandle}
-      >
-        Очистить
-      </button>
     </div>
   );
 };

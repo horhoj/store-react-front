@@ -14,6 +14,10 @@ export const DataGrid: React.FC<DataGridProps> = ({
   currentPage = 0,
   actionCb,
 }) => {
+  const deleteActionHandle = (id: number) => {
+    const result = window.confirm('Удалить?');
+    if (result) actionCb({ id, type: 'delete' });
+  };
   return items && visibleFields ? (
     <div className="mt-3">
       <table className="table table-striped table-sm font-weight-normal">
@@ -76,7 +80,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                   </button>
                   <button
                     className="btn btn-primary btn-sm"
-                    onClick={() => actionCb({ id: item.id, type: 'delete' })}
+                    onClick={() => deleteActionHandle(item.id)}
                   >
                     D
                   </button>

@@ -9,6 +9,7 @@ import { ProductEntityType } from '../../types/products';
 import { setRedirectToProductList } from '../../store/product/actions';
 import { getRedirectToProductList } from '../../store/product/selectors';
 import { getPathByName } from '../../router';
+import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
 export const Product = () => {
   const id = useParams<{ id: string }>().id;
@@ -20,7 +21,9 @@ export const Product = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(productActions.getProduct(Number(id)));
+    if (id !== ENTITY_FORM_NEW_ID) {
+      dispatch(productActions.getProduct(Number(id)));
+    }
     return () => {
       dispatch(productActions.setError(null));
       dispatch(productActions.setProduct(null));
@@ -34,10 +37,15 @@ export const Product = () => {
       const path = getPathByName('products');
       history.push(path);
     }
+    // eslint-disable-next-line
   }, [redirectToProductList]);
 
   const submitCb: ProductFormSubmitCb = (values: ProductEntityType) => {
-    dispatch(productActions.updateProduct(values));
+    if (id === ENTITY_FORM_NEW_ID) {
+      dispatch(productActions.addProduct(values));
+    } else {
+      dispatch(productActions.updateProduct(values));
+    }
   };
 
   return (
@@ -57,9 +65,13 @@ export const Product = () => {
       ) : null}
       <div className="position-relative">
         {isLoading ? <Spinner parentComponentCenterPosition={true} /> : null}
-        {product ? (
-          <ProductForm initialValues={product} submitCb={submitCb} />
-        ) : null}
+        <fieldset disabled={isLoading}>
+          {id === ENTITY_FORM_NEW_ID ? (
+            <ProductForm submitCb={submitCb} />
+          ) : product ? (
+            <ProductForm initialValues={product} submitCb={submitCb} />
+          ) : null}
+        </fieldset>
       </div>
     </div>
   );

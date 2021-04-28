@@ -58,20 +58,20 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
       </div>
       <div className="mt-2 d-flex">
         <button
-          className="btn btn-primary mr-1"
+          className="btn btn-primary mr-2"
           onClick={goToFirstPageBtnClkHandle}
         >
           {FIRST_PAGE}
         </button>
         <button
-          className="btn btn-primary mr-1"
+          className="btn btn-primary mr-2"
           onClick={goToPrevPageBtnClkHandle}
         >
           {PREV_PAGE}
         </button>
 
         <select
-          className="form-control mr-1"
+          className="form-control mr-2"
           onChange={changePerPageHandle}
           value={perPage}
         >
@@ -82,15 +82,12 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
         </select>
 
         <button
-          className="btn btn-primary mr-1"
+          className="btn btn-primary mr-2"
           onClick={goToNextPageBtnClkHandle}
         >
           {NEXT_PAGE}
         </button>
-        <button
-          className="btn btn-primary mr-1"
-          onClick={goToLastPageBtnClkHandle}
-        >
+        <button className="btn btn-primary" onClick={goToLastPageBtnClkHandle}>
           {LAST_PAGE}
         </button>
       </div>

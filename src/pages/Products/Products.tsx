@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productsActions, productsSelectors } from '../../store/products';
 import { DataTable } from '../../componets/DataTable';
 import {
+  DataTableAddBtnClkCb,
   DataTableChangePerPageCb,
   DataTableGoToPageBtnClkCb,
   DataTableRowActionBtnClkCb,
@@ -11,6 +12,7 @@ import {
 } from '../../componets/DataTable/types';
 import { generatePath, useHistory } from 'react-router';
 import { getPathByName } from '../../router';
+import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,11 +28,6 @@ export const Products: React.FC = () => {
     { name: 'description', title: 'Описание' },
     { name: 'params', title: 'Параметры' },
   ];
-
-  const clear = () => {
-    dispatch(productsActions.setError(null));
-    dispatch(productsActions.setProducts(null));
-  };
 
   const getProducts = () => {
     dispatch(productsActions.getProducts({}));
@@ -58,6 +55,10 @@ export const Products: React.FC = () => {
       const pathTemplate: string = getPathByName('product');
       const path: string = generatePath(pathTemplate, { id });
       history.push(path);
+      return;
+    }
+    if (type === 'delete') {
+      dispatch(productsActions.deleteProduct(id));
     }
   };
 
@@ -94,12 +95,21 @@ export const Products: React.FC = () => {
 
   useEffect(() => {
     getProducts();
-    return () => clear();
+    return () => {
+      dispatch(productsActions.setError(null));
+      dispatch(productsActions.setProducts(null));
+    };
     // eslint-disable-next-line
   }, []);
 
   const updateProductsHandle = () => {
     getProducts();
+  };
+
+  const addBtnClkCb: DataTableAddBtnClkCb = () => {
+    const pathTemplate: string = getPathByName('product');
+    const path: string = generatePath(pathTemplate, { id: ENTITY_FORM_NEW_ID });
+    history.push(path);
   };
 
   return (
@@ -133,6 +143,7 @@ export const Products: React.FC = () => {
             searchCb={searchCb}
             findStr={currentRequestConfig.search}
             changePerPageCb={changePerPageCb}
+            addBtnClkCb={addBtnClkCb}
           />
         </div>
       </div>

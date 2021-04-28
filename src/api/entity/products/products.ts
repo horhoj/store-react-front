@@ -54,3 +54,24 @@ export const updateProductRequest = async (
 
   await ajaxRequestWithAuthHeader(requestConfig);
 };
+
+export const addProductRequest = async (
+  productData: ProductEntityType,
+): Promise<void> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: '/products',
+    method: 'post',
+    data: productData,
+  };
+
+  await ajaxRequestWithAuthHeader(requestConfig);
+};
+
+export const deleteProductRequest = async (id: number) => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `/products/${id}`,
+    method: 'delete',
+  };
+
+  await ajaxRequestWithAuthHeader(requestConfig);
+};

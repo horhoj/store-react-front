@@ -7,6 +7,7 @@ export enum ProductsActionType {
   GET_PRODUCTS = 'PRODUCTS/GET_PRODUCTS',
   SET_ERROR = 'PRODUCTS/SET_ERROR',
   SET_REQUEST_CONFIG_DIFF = 'PRODUCTS/SET_REQUEST_CONFIG_DIFF',
+  DELETE_PRODUCT = 'PRODUCTS/DELETE_PRODUCT',
 }
 
 export interface ProductsState {
@@ -35,4 +36,8 @@ export type SetError = ProductsAction<{ error: number | null }>;
 
 export type SetRequestConfigDiff = ProductsAction<{
   requestConfigDiff: Partial<GetProductsRequestConfig>;
+}>;
+
+export type DeleteProduct = ProductsAction<{
+  id: number;
 }>;

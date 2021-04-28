@@ -3,8 +3,15 @@ import { ProductFormInputProperties, ProductFormProps } from './types';
 import { Formik } from 'formik';
 import { ProductEntitySchema, ProductEntityType } from '../../types/products';
 
+const defaultValues: ProductEntityType = {
+  id: 0,
+  title: '',
+  params: '',
+  description: '',
+};
+
 export const ProductForm: React.FC<ProductFormProps> = ({
-  initialValues,
+  initialValues = defaultValues,
   submitCb,
 }) => {
   const onSubmit = (values: ProductEntityType) => {
@@ -50,7 +57,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 {...({ name: 'description' } as ProductFormInputProperties)}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.description}
+                value={values.description ?? ''}
               />
               <div className="small text-danger">
                 {errors.description &&
@@ -66,7 +73,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 {...({ name: 'params' } as ProductFormInputProperties)}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.params}
+                value={values.params ?? ''}
               />
               <div className="small text-danger">
                 {errors.params && touched.params && errors.params}

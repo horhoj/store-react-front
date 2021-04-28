@@ -1,11 +1,12 @@
 import {
+  DeleteProduct,
   GetProducts,
   ProductsActionType,
   ProductsType,
-  SetRequestConfigDiff,
   SetError,
   SetIsLoading,
   SetProducts,
+  SetRequestConfigDiff,
 } from './types';
 import { GetProductsRequestConfig } from '../../api/entity/products/types';
 
@@ -45,5 +46,12 @@ export const setRequestConfigDiff = (
   type: ProductsActionType.SET_REQUEST_CONFIG_DIFF,
   payload: {
     requestConfigDiff,
+  },
+});
+
+export const deleteProduct = (id: number): DeleteProduct => ({
+  type: ProductsActionType.DELETE_PRODUCT,
+  payload: {
+    id,
   },
 });

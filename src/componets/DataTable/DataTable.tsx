@@ -22,6 +22,7 @@ export const DataTable: React.FC<DataTableProps> = ({
   searchCb,
   findStr,
   changePerPageCb,
+  addBtnClkCb,
 }) => {
   return (
     <div
@@ -32,11 +33,19 @@ export const DataTable: React.FC<DataTableProps> = ({
       {isLoading ? <Spinner parentComponentCenterPosition={true} /> : ''}
       {items && visibleFields ? (
         <fieldset disabled={isLoading}>
+          <div className="mb-3">
+            <button className="btn btn-primary mr-2" onClick={addBtnClkCb}>
+              Добавить
+            </button>
+            <button className="btn btn-primary" onClick={updateBtnClkCb}>
+              Обновить
+            </button>
+          </div>
+
           <DataSearch
             searchCb={searchCb}
             findStr={findStr}
             isLoading={isLoading}
-            updateBtnClkCb={updateBtnClkCb}
           />
           <div>
             <DataGrid

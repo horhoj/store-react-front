@@ -2,7 +2,6 @@ export interface DataSearchProps {
   findStr: string;
   searchCb: DataSearchCb;
   isLoading: boolean;
-  updateBtnClkCb: DataSearchUpdateBtnClkCb;
 }
 
 export interface DataSearchCb {

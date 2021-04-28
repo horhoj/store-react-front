@@ -1,4 +1,5 @@
 import {
+  AddProduct,
   GetProduct,
   ProductActionType,
   ProductType,
@@ -53,5 +54,12 @@ export const setRedirectToProductList = (
   type: ProductActionType.SET_REDIRECT_TO_PRODUCT_LIST,
   payload: {
     redirect,
+  },
+});
+
+export const addProduct = (productData: ProductEntityType): AddProduct => ({
+  type: ProductActionType.ADD_PRODUCT,
+  payload: {
+    productData,
   },
 });

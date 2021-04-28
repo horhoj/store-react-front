@@ -5,8 +5,16 @@ import {
   select,
   SagaReturnType,
 } from 'redux-saga/effects';
-import { GetProducts, ProductsAction, ProductsActionType } from './types';
-import { getProductsRequest } from '../../api/entity/products';
+import {
+  DeleteProduct,
+  GetProducts,
+  ProductsAction,
+  ProductsActionType,
+} from './types';
+import {
+  deleteProductRequest,
+  getProductsRequest,
+} from '../../api/entity/products';
 import { logger } from '../../utils/logger';
 import {
   setError,
@@ -21,6 +29,7 @@ import { getRequestConfig } from './selectors';
 
 export function* productsWatcher() {
   yield takeEvery(ProductsActionType.GET_PRODUCTS, getProducts);
+  yield takeEvery(ProductsActionType.DELETE_PRODUCT, deleteProduct);
 }
 
 export function* getProducts(action: GetProducts) {
@@ -44,6 +53,28 @@ export function* getProducts(action: GetProducts) {
     const error: number = getHTTPStatusFromError(e);
     yield put<ProductsAction>(setError(error));
     yield call(logger, 'getProducts', e);
+  } finally {
+    yield put<ProductsAction>(setIsLoading(false));
+  }
+}
+
+export function* deleteProduct(action: DeleteProduct) {
+  try {
+    yield put<ProductsAction>(setIsLoading(true));
+    yield put<ProductsAction>(setError(null));
+    yield call(requestExecutor, deleteProductRequest, action.payload.id);
+    const requestConfig: GetProductsRequestConfig = yield select(
+      getRequestConfig,
+    );
+    const response: SagaReturnType<typeof getProductsRequest> = yield call(
+      requestExecutor,
+      getProductsRequest,
+      requestConfig,
+    );
+    yield put<ProductsAction>(setProducts(response.data));
+  } catch (e) {
+    const error: number = getHTTPStatusFromError(e);
+    yield put<ProductsAction>(setError(error));
   } finally {
     yield put<ProductsAction>(setIsLoading(false));
   }

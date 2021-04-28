@@ -25,6 +25,7 @@ export interface DataTableProps {
   searchCb: DataTableSearchCb;
   findStr: string;
   changePerPageCb: DataTableChangePerPageCb;
+  addBtnClkCb: DataTableAddBtnClkCb;
 }
 
 export interface DataTableVisibleField extends DataGridVisibleField {}
@@ -42,3 +43,7 @@ export interface DataTableSearchCb extends DataSearchCb {}
 
 export interface DataTableChangePerPageCb
   extends DataPaginatorChangePerPageCb {}
+
+export interface DataTableAddBtnClkCb {
+  (): void;
+}
