@@ -2,6 +2,7 @@ import React from 'react';
 import { ProductFormInputProperties, ProductFormProps } from './types';
 import { Formik } from 'formik';
 import { ProductEntitySchema, ProductEntityType } from '../../types/products';
+import styles from './styles.module.scss';
 
 const defaultValues: ProductEntityType = {
   id: 0,
@@ -13,6 +14,7 @@ const defaultValues: ProductEntityType = {
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialValues = defaultValues,
   submitCb,
+  cancelCb,
 }) => {
   const onSubmit = (values: ProductEntityType) => {
     submitCb(values);
@@ -79,15 +81,25 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 {errors.params && touched.params && errors.params}
               </div>
             </div>
-            <button className="btn btn-primary btn-sm mt-3 mr-2" type="submit">
-              Сохранить
-            </button>
-            <button
-              className="btn btn-primary btn-sm mt-3"
-              onClick={handleReset}
-            >
-              Сбросить
-            </button>
+            <div className={`mt-3 ${styles.buttonsPanel}`}>
+              <button className="btn btn-primary btn-sm mr-2" type="submit">
+                Сохранить
+              </button>
+              <button
+                className="btn btn-primary btn-sm mr-2"
+                type="button"
+                onClick={handleReset}
+              >
+                Сбросить
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary btn-sm mr-2"
+                onClick={cancelCb}
+              >
+                Отмена
+              </button>
+            </div>
           </form>
         )}
       </Formik>

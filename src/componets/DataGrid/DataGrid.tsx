@@ -1,5 +1,6 @@
 import React from 'react';
 import { DataGridProps } from './types';
+import styles from './styles.module.scss';
 
 const ARRAY_UP = <>&uArr;</>;
 const ARRAY_DOWN = <>&dArr;</>;
@@ -72,18 +73,20 @@ export const DataGrid: React.FC<DataGridProps> = ({
               ))}
               <td>
                 <div className="d-flex justify-content-center align-items-center">
-                  <button
-                    className="btn btn-primary btn-sm mr-2"
-                    onClick={() => actionCb({ id: item.id, type: 'edit' })}
-                  >
-                    E
-                  </button>
-                  <button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => deleteActionHandle(item.id)}
-                  >
-                    D
-                  </button>
+                  <div className={styles.buttonsPanel}>
+                    <button
+                      className="btn btn-primary btn-sm mr-2"
+                      onClick={() => actionCb({ id: item.id, type: 'edit' })}
+                    >
+                      Изменить
+                    </button>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() => deleteActionHandle(item.id)}
+                    >
+                      Удалить
+                    </button>
+                  </div>
                 </div>
               </td>
             </tr>

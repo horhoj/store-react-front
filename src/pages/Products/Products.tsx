@@ -82,7 +82,6 @@ export const Products: React.FC = () => {
   };
 
   const changePerPageCb: DataTableChangePerPageCb = (perPage: number) => {
-    // console.log(perPage);
     dispatch(
       productsActions.getProducts({
         page: 1,
@@ -97,7 +96,6 @@ export const Products: React.FC = () => {
     getProducts();
     return () => {
       dispatch(productsActions.setError(null));
-      dispatch(productsActions.setProducts(null));
     };
     // eslint-disable-next-line
   }, []);

@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productActions, productSelectors } from '../../store/product';
 import { Spinner } from '../../componets/Spinner';
 import { ProductForm } from '../../componets/ProductForm';
-import { ProductFormSubmitCb } from '../../componets/ProductForm/types';
+import {
+  ProductFormCancelCb,
+  ProductFormSubmitCb,
+} from '../../componets/ProductForm/types';
 import { ProductEntityType } from '../../types/products';
 import { setRedirectToProductList } from '../../store/product/actions';
 import { getRedirectToProductList } from '../../store/product/selectors';
@@ -48,8 +51,17 @@ export const Product = () => {
     }
   };
 
+  const cancelCb: ProductFormCancelCb = () => {
+    const path = getPathByName('products');
+    history.push(path);
+  };
+
   return (
-    <div className="d-flex flex-grow-1 flex-column">
+    <div
+      className={`d-flex flex-grow-1 flex-column app__transition-opacity ${
+        isLoading ? 'app__disabled' : ''
+      }`}
+    >
       <h5>Редактируется товар с ИД: {id}</h5>
       {error !== null ? (
         <div className="alert alert-danger">
@@ -67,9 +79,13 @@ export const Product = () => {
         {isLoading ? <Spinner parentComponentCenterPosition={true} /> : null}
         <fieldset disabled={isLoading}>
           {id === ENTITY_FORM_NEW_ID ? (
-            <ProductForm submitCb={submitCb} />
+            <ProductForm submitCb={submitCb} cancelCb={cancelCb} />
           ) : product ? (
-            <ProductForm initialValues={product} submitCb={submitCb} />
+            <ProductForm
+              initialValues={product}
+              submitCb={submitCb}
+              cancelCb={cancelCb}
+            />
           ) : null}
         </fieldset>
       </div>

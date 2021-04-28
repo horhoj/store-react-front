@@ -1,4 +1,4 @@
-init: docker-up install build
+init: docker-up install prod
 
 #all
 docker-up: docker-down
@@ -23,7 +23,7 @@ console:
 dev:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run start --host=0.0.0.0"
 
-build:
+prod:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run build"
 
 install:
