@@ -7,8 +7,8 @@ import styles from './styles.module.scss';
 const defaultValues: ProductEntityType = {
   id: 0,
   title: '',
-  params: '',
   description: '',
+  options: '',
 };
 
 export const ProductForm: React.FC<ProductFormProps> = ({
@@ -72,13 +72,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               <input
                 className="form-control"
                 type="text"
-                {...({ name: 'params' } as ProductFormInputProperties)}
+                {...({ name: 'options' } as ProductFormInputProperties)}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.params ?? ''}
+                value={values.options ?? ''}
               />
               <div className="small text-danger">
-                {errors.params && touched.params && errors.params}
+                {errors.options && touched.options && errors.options}
               </div>
             </div>
             <div className={`mt-3 ${styles.buttonsPanel}`}>

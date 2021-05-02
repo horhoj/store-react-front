@@ -8,11 +8,11 @@ import {
   DataTableGoToPageBtnClkCb,
   DataTableRowActionBtnClkCb,
   DataTableSearchCb,
-  DataTableVisibleField,
 } from '../../componets/DataTable/types';
 import { generatePath, useHistory } from 'react-router';
 import { getPathByName } from '../../router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
+import { ProductsFormVisibleFields } from '../../api/entity/products/types';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,11 +22,11 @@ export const Products: React.FC = () => {
   const currentRequestConfig = useSelector(productsSelectors.getRequestConfig);
   const history = useHistory();
 
-  const productsVisibleFields: DataTableVisibleField[] = [
+  const productsVisibleFields: ProductsFormVisibleFields[] = [
     { name: 'id', title: 'ИД' },
     { name: 'title', title: 'Наименование' },
     { name: 'description', title: 'Описание' },
-    { name: 'params', title: 'Параметры' },
+    { name: 'options', title: 'Параметры' },
   ];
 
   const getProducts = () => {
