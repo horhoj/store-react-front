@@ -15,11 +15,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="d-flex min-vh-100">
-      {isLoading ? (
-        <Spinner parentComponentCenterPosition={true} />
-      ) : (
-        <RoutesStructure />
-      )}
+      {isLoading ? <Spinner /> : <RoutesStructure />}
     </div>
   );
 };

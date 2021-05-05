@@ -1,3 +1,1 @@
-export interface SpinnerProps {
-  parentComponentCenterPosition?: boolean;
-}
+export interface SpinnerProps {}

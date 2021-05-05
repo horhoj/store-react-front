@@ -24,12 +24,8 @@ export const DataTable: React.FC<DataTableProps> = ({
   addBtnClkCb,
 }) => {
   return (
-    <div
-      className={`w-100 position-relative app__transition-opacity  ${
-        isLoading ? 'app__disabled' : ''
-      }`}
-    >
-      {isLoading ? <Spinner parentComponentCenterPosition={true} /> : ''}
+    <div className="w-100 position-relative app__transition-opacity">
+      {isLoading ? <Spinner /> : ''}
       {items && visibleFields ? (
         <fieldset disabled={isLoading}>
           <div className="mb-3">

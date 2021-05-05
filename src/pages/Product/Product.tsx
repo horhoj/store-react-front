@@ -76,7 +76,7 @@ export const Product = () => {
         </div>
       ) : null}
       <div className="position-relative">
-        {isLoading ? <Spinner parentComponentCenterPosition={true} /> : null}
+        {isLoading ? <Spinner /> : null}
         <fieldset disabled={isLoading}>
           {id === ENTITY_FORM_NEW_ID ? (
             <ProductForm submitCb={submitCb} cancelCb={cancelCb} />

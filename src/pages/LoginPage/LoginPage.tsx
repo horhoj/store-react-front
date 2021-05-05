@@ -109,7 +109,7 @@ export const LoginPage: React.FC = () => {
           </form>
         )}
       </Formik>
-      {isLoading ? <Spinner parentComponentCenterPosition={true} /> : null}
+      {isLoading ? <Spinner /> : null}
     </div>
   );
 };

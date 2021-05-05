@@ -18,7 +18,7 @@ const overriddenFields: ProductEntityTypeKeys[] = ['description', 'options'];
 
 let ProductResponseStructure = { ...ProductStructure };
 
-overriddenFields.map((item) => {
+overriddenFields.forEach((item) => {
   ProductResponseStructure = {
     ...ProductResponseStructure,
     [item]: ProductResponseStructure[item].defined(),
