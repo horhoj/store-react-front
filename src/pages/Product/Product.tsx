@@ -57,11 +57,7 @@ export const Product = () => {
   };
 
   return (
-    <div
-      className={`d-flex flex-grow-1 flex-column app__transition-opacity ${
-        isLoading ? 'app__disabled' : ''
-      }`}
-    >
+    <div className="d-flex flex-grow-1 flex-column app__transition-opacity">
       <h5>Редактируется товар с ИД: {id}</h5>
       {error !== null ? (
         <div className="alert alert-danger">
@@ -78,15 +74,11 @@ export const Product = () => {
       <div className="position-relative">
         {isLoading ? <Spinner /> : null}
         <fieldset disabled={isLoading}>
-          {id === ENTITY_FORM_NEW_ID ? (
-            <ProductForm submitCb={submitCb} cancelCb={cancelCb} />
-          ) : product ? (
-            <ProductForm
-              initialValues={product}
-              submitCb={submitCb}
-              cancelCb={cancelCb}
-            />
-          ) : null}
+          <ProductForm
+            submitCb={submitCb}
+            cancelCb={cancelCb}
+            initialValues={product}
+          />
         </fieldset>
       </div>
     </div>

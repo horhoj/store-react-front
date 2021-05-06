@@ -12,7 +12,7 @@ const defaultValues: ProductEntityType = {
 };
 
 export const ProductForm: React.FC<ProductFormProps> = ({
-  initialValues = defaultValues,
+  initialValues,
   submitCb,
   cancelCb,
 }) => {
@@ -23,7 +23,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   return (
     <div>
       <Formik
-        initialValues={initialValues}
+        enableReinitialize={true}
+        initialValues={initialValues || defaultValues}
         onSubmit={onSubmit}
         validationSchema={ProductEntitySchema}
       >

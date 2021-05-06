@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 const ProductStructure = {
   id: yup.number().required(),
-  title: yup.string().required('должно быть заполнено'),
+  title: yup.string().required('должно быть заполнено').max(200),
   description: yup.string().nullable(),
   options: yup.string().nullable(),
 };
