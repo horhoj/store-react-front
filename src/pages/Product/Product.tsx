@@ -32,16 +32,14 @@ export const Product = () => {
       dispatch(productActions.setProduct(null));
       dispatch(setRedirectToProductList(false));
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (redirectToProductList) {
       const path = getPathByName('products');
       history.push(path);
     }
-    // eslint-disable-next-line
-  }, [redirectToProductList]);
+  }, [redirectToProductList, history]);
 
   const submitCb: ProductFormSubmitCb = (values: ProductEntityType) => {
     if (id === ENTITY_FORM_NEW_ID) {

@@ -22,15 +22,13 @@ export const LoginPage: React.FC = () => {
     dispatch(authActions.login(values));
   };
 
-  const clearError = () => {
-    dispatch(authActions.setLoginError(null));
-  };
-
   useEffect(() => {
+    const clearError = () => {
+      dispatch(authActions.setLoginError(null));
+    };
     clearError();
     return () => clearError();
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={`d-flex  flex-grow-1 flex-column ${styles.loginForm}`}>

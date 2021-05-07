@@ -29,10 +29,6 @@ export const Products: React.FC = () => {
     { name: 'options', title: 'Параметры' },
   ];
 
-  const getProducts = () => {
-    dispatch(productsActions.getProducts({}));
-  };
-
   const columnClkCb = (fieldName: string) => {
     if (currentRequestConfig.sort_field === fieldName) {
       dispatch(
@@ -93,15 +89,14 @@ export const Products: React.FC = () => {
   };
 
   useEffect(() => {
-    getProducts();
+    dispatch(productsActions.getProducts({}));
     return () => {
       dispatch(productsActions.setError(null));
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   const updateProductsHandle = () => {
-    getProducts();
+    dispatch(productsActions.getProducts({}));
   };
 
   const addBtnClkCb: DataTableAddBtnClkCb = () => {
