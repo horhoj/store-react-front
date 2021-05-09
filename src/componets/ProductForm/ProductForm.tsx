@@ -9,6 +9,7 @@ const defaultValues: ProductEntityType = {
   title: '',
   description: '',
   options: '',
+  category: '',
 };
 
 export const ProductForm: React.FC<ProductFormProps> = ({
