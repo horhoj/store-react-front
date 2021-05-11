@@ -54,9 +54,21 @@ export const Product = () => {
     history.push(path);
   };
 
+  const productForm = (
+    <ProductForm
+      submitCb={submitCb}
+      cancelCb={cancelCb}
+      initialValues={product}
+    />
+  );
+
   return (
     <div className="d-flex flex-grow-1 flex-column app__transition-opacity">
-      <h5>Редактируется товар с ИД: {id}</h5>
+      {id === ENTITY_FORM_NEW_ID ? (
+        <h5>Добавление товара</h5>
+      ) : (
+        <h5>Редактируется товар с ИД: {id}</h5>
+      )}
       {error !== null ? (
         <div className="alert alert-danger">
           <h5>Ошибка!</h5>
@@ -72,11 +84,11 @@ export const Product = () => {
       <div className="position-relative">
         {isLoading ? <Spinner /> : null}
         <fieldset disabled={isLoading}>
-          <ProductForm
-            submitCb={submitCb}
-            cancelCb={cancelCb}
-            initialValues={product}
-          />
+          {id === ENTITY_FORM_NEW_ID
+            ? productForm
+            : error !== 404
+            ? productForm
+            : null}
         </fieldset>
       </div>
     </div>
