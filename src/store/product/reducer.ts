@@ -35,6 +35,13 @@ export const productReducer = (
         redirectToProductList: (action as SetRedirectToProductList).payload
           .redirect,
       };
+    case ProductActionType.CLEAR:
+      return {
+        ...state,
+        error: null,
+        product: null,
+        redirectToProductList: false,
+      };
     default:
       return state;
   }

@@ -10,6 +10,8 @@ export enum ProductsActionType {
   DELETE_PRODUCT = 'PRODUCTS/DELETE_PRODUCT',
 }
 
+export type ProductsType = ProductsResponseType | null;
+
 export interface ProductsState {
   products: ProductsType;
   isLoading: boolean;
@@ -21,8 +23,6 @@ export interface ProductsAction<T = any> {
   type: ProductsActionType;
   payload: T;
 }
-
-export type ProductsType = ProductsResponseType | null;
 
 export type SetProducts = ProductsAction<{ products: ProductsType }>;
 

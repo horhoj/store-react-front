@@ -1,5 +1,6 @@
 import {
   AddProduct,
+  Clear,
   GetProduct,
   ProductActionType,
   ProductType,
@@ -62,4 +63,9 @@ export const addProduct = (productData: ProductEntityType): AddProduct => ({
   payload: {
     productData,
   },
+});
+
+export const clear = (): Clear => ({
+  type: ProductActionType.CLEAR,
+  payload: null,
 });

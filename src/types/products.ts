@@ -5,7 +5,6 @@ const ProductStructure = {
   title: yup.string().required('должно быть заполнено').max(200),
   description: yup.string().nullable(),
   options: yup.string().nullable(),
-  category: yup.string().nullable(),
 };
 
 export const ProductEntitySchema = yup.object(ProductStructure);
@@ -15,11 +14,7 @@ export interface ProductEntityType
 
 export type ProductEntityTypeKeys = keyof ProductEntityType;
 
-const overriddenFields: ProductEntityTypeKeys[] = [
-  'description',
-  'options',
-  'category',
-];
+const overriddenFields: ProductEntityTypeKeys[] = ['description', 'options'];
 
 let ProductResponseStructure = { ...ProductStructure };
 

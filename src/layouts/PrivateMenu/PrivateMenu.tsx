@@ -13,6 +13,9 @@ export const PrivateMenu: React.FC = () => {
         <Link to={getPathByName('products')}>Товары</Link>
       </div>
       <div>
+        <Link to={getPathByName('categories')}>Категории</Link>
+      </div>
+      <div>
         <Link to={getPathByName('about')}>О программе</Link>
       </div>
     </div>

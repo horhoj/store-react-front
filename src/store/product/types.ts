@@ -8,6 +8,7 @@ export enum ProductActionType {
   UPDATE_PRODUCT = 'PRODUCT/UPDATE_PRODUCT',
   SET_REDIRECT_TO_PRODUCT_LIST = 'PRODUCT/SET_REDIRECT_TO_PRODUCT_LIST',
   ADD_PRODUCT = 'PRODUCT/ADD_PRODUCT',
+  CLEAR = 'PRODUCT/CLEAR',
 }
 
 export interface ProductState {
@@ -49,3 +50,5 @@ export type SetRedirectToProductList = ProductAction<{ redirect: boolean }>;
 export type AddProduct = ProductAction<{
   productData: ProductEntityType;
 }>;
+
+export type Clear = ProductAction;

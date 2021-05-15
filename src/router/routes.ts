@@ -5,6 +5,7 @@ import { AboutPage } from '../pages/AboutPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products } from '../pages/Products';
 import { Product } from '../pages/Product';
+import { Categories } from '../pages/Categories';
 
 export const routes: RouteItem[] = [
   {
@@ -46,6 +47,14 @@ export const routes: RouteItem[] = [
     always: false,
     private: true,
     component: Product,
+  },
+  {
+    name: 'categories',
+    path: '/categories',
+    exact: true,
+    always: false,
+    private: true,
+    component: Categories,
   },
   {
     name: 'routeNotFound',

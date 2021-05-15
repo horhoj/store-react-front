@@ -9,8 +9,6 @@ import {
   ProductFormSubmitCb,
 } from '../../componets/ProductForm/types';
 import { ProductEntityType } from '../../types/products';
-import { setRedirectToProductList } from '../../store/product/actions';
-import { getRedirectToProductList } from '../../store/product/selectors';
 import { getPathByName } from '../../router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
@@ -20,7 +18,9 @@ export const Product = () => {
   const error = useSelector(productSelectors.getError);
   const product = useSelector(productSelectors.getProduct);
   const isLoading = useSelector(productSelectors.getIsLoading);
-  const redirectToProductList = useSelector(getRedirectToProductList);
+  const redirectToProductList = useSelector(
+    productSelectors.getRedirectToProductList,
+  );
   const history = useHistory();
 
   useEffect(() => {
@@ -28,9 +28,7 @@ export const Product = () => {
       dispatch(productActions.getProduct(Number(id)));
     }
     return () => {
-      dispatch(productActions.setError(null));
-      dispatch(productActions.setProduct(null));
-      dispatch(setRedirectToProductList(false));
+      dispatch(productActions.clear());
     };
   }, [dispatch, id]);
 

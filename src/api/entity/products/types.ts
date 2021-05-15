@@ -1,13 +1,7 @@
-import { Products } from '../../../pages/Products';
 import { ProductEntityTypeKeys } from '../../../types/products';
+import { GetEntitiesRequestConfig } from '../types';
 
-export interface GetProductsRequestConfig {
-  page: number;
-  per_page: number;
-  search: string;
-  sort_field: string;
-  sort_asc: 0 | 1;
-}
+export interface GetProductsRequestConfig extends GetEntitiesRequestConfig {}
 
 export interface ProductsFormVisibleFields {
   name: ProductEntityTypeKeys;

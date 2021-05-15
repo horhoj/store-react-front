@@ -27,7 +27,6 @@ export const Products: React.FC = () => {
     { name: 'title', title: 'Наименование' },
     { name: 'description', title: 'Описание' },
     { name: 'options', title: 'Параметры' },
-    { name: 'category', title: 'Категория' },
   ];
 
   const columnClkCb = (fieldName: string) => {
