@@ -22,3 +22,12 @@ export const getCategoriesRequest = async (
 
   return response;
 };
+
+export const deleteCategoryRequest = async (id: number) => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `/categories/${id}`,
+    method: 'delete',
+  };
+
+  await ajaxRequestWithAuthHeader(requestConfig);
+};

@@ -1,4 +1,9 @@
-import { CategoriesAction, CategoriesActionType, GetCategories } from './types';
+import {
+  CategoriesAction,
+  CategoriesActionType,
+  DeleteCategory,
+  GetCategories,
+} from './types';
 import {
   call,
   put,
@@ -16,11 +21,15 @@ import { GetCategoriesRequestConfig } from '../../api/entity/categories/types';
 import { getRequestConfig } from './selectors';
 import { getHTTPStatusFromError } from '../../utils/helpers';
 import { logger } from '../../utils/logger';
-import { getCategoriesRequest } from '../../api/entity/categories';
+import {
+  deleteCategoryRequest,
+  getCategoriesRequest,
+} from '../../api/entity/categories';
 import { requestExecutor } from '../sagas';
 
 export function* categoriesWatcher() {
   yield takeEvery(CategoriesActionType.GET_CATEGORIES, getCategories);
+  yield takeEvery(CategoriesActionType.DELETE_CATEGORIES, deleteCategory);
 }
 
 export function* getCategories(action: GetCategories) {
@@ -44,6 +53,28 @@ export function* getCategories(action: GetCategories) {
     const error: number = getHTTPStatusFromError(e);
     yield put<CategoriesAction>(setError(error));
     yield call(logger, 'getCategories', e);
+  } finally {
+    yield put<CategoriesAction>(setIsLoading(false));
+  }
+}
+
+export function* deleteCategory(action: DeleteCategory) {
+  try {
+    yield put<CategoriesAction>(setIsLoading(true));
+    yield put<CategoriesAction>(setError(null));
+    yield call(requestExecutor, deleteCategoryRequest, action.payload.id);
+    const requestConfig: GetCategoriesRequestConfig = yield select(
+      getRequestConfig,
+    );
+    const response: SagaReturnType<typeof getCategoriesRequest> = yield call(
+      requestExecutor,
+      getCategoriesRequest,
+      requestConfig,
+    );
+    yield put<CategoriesAction>(setCategories(response.data));
+  } catch (e) {
+    const error: number = getHTTPStatusFromError(e);
+    yield put<CategoriesAction>(setError(error));
   } finally {
     yield put<CategoriesAction>(setIsLoading(false));
   }

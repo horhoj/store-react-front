@@ -61,7 +61,8 @@ export const Categories: React.FC = () => {
 
   const actionCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
     if (type === 'delete') {
-      console.log(id, 'delete');
+      // console.log(id, 'delete');
+      dispatch(categoriesActions.deleteCategory(id));
     }
     if (type === 'edit') {
       console.log(id, 'edit');

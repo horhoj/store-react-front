@@ -6,6 +6,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { Products } from '../pages/Products';
 import { Product } from '../pages/Product';
 import { Categories } from '../pages/Categories';
+import { Category } from '../pages/Category';
 
 export const routes: RouteItem[] = [
   {
@@ -55,6 +56,14 @@ export const routes: RouteItem[] = [
     always: false,
     private: true,
     component: Categories,
+  },
+  {
+    name: 'category',
+    path: '/category/:id',
+    exact: true,
+    always: false,
+    private: true,
+    component: Category,
   },
   {
     name: 'routeNotFound',
