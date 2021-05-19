@@ -1,6 +1,6 @@
 import { StoreState } from '../types';
-import { ProductsType } from './types';
 import { GetProductsRequestConfig } from '../../api/entity/products/types';
+import { ProductsType } from './types';
 
 export const getProducts = (state: StoreState): ProductsType =>
   state.products.products;

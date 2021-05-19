@@ -1,9 +1,9 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
+import { logger } from '../utils/logger';
 import { StoreState } from './types';
 import { authReducer, authWatcher } from './auth';
-import { logger } from '../utils/logger';
 import { userReducer, userWatcher } from './user';
 import { productsReducer, productsWatcher } from './products';
 import { productReducer, productWatcher } from './product';
@@ -21,8 +21,7 @@ const rootReducer = combineReducers<StoreState>({
 
 let composeEnhancers = null;
 try {
-  //@ts-ignore
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  composeEnhancers = compose;
 } catch (e) {
   logger('не обнаружен redux dev-tools');
 }

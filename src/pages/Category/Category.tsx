@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { CategoryForm } from '../../componets/CategoryForm';
 import { useDispatch, useSelector } from 'react-redux';
+import { CategoryForm } from '../../componets/CategoryForm';
 import { categoryActions, categorySelectors } from '../../store/category';
 import { getPathByName } from '../../router';
 import { CategoryEntityType } from '../../types/categories';

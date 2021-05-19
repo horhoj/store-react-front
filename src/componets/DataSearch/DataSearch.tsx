@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DataSearchProps } from './types';
 import { TimeoutID } from '../../types/system';
 import { INPUT_DELAY } from '../../config/UI';
+import { DataSearchProps } from './types';
 
 export const DataSearch: React.FC<DataSearchProps> = ({
   findStr,

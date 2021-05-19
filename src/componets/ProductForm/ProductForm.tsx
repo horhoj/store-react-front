@@ -1,7 +1,7 @@
 import React from 'react';
-import { ProductFormInputProperties, ProductFormProps } from './types';
 import { Formik } from 'formik';
 import { ProductEntitySchema, ProductEntityType } from '../../types/products';
+import { ProductFormInputProperties, ProductFormProps } from './types';
 import styles from './styles.module.scss';
 
 const defaultValues: ProductEntityType = {

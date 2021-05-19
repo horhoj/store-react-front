@@ -1,17 +1,5 @@
 import { call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import {
-  AddProduct,
-  GetProduct,
-  ProductAction,
-  ProductActionType,
-  UpdateProduct,
-} from './types';
-import {
-  setError,
-  setIsLoading,
-  setProduct,
-  setRedirectToProductList,
-} from './actions';
+import { SagaIterator } from 'redux-saga';
 import { getHTTPStatusFromError } from '../../utils/helpers';
 import {
   addProductRequest,
@@ -19,14 +7,27 @@ import {
   updateProductRequest,
 } from '../../api/entity/products';
 import { requestExecutor } from '../sagas';
+import {
+  setError,
+  setIsLoading,
+  setProduct,
+  setRedirectToProductList,
+} from './actions';
+import {
+  AddProduct,
+  GetProduct,
+  ProductAction,
+  ProductActionType,
+  UpdateProduct,
+} from './types';
 
-export function* productWatcher() {
+export function* productWatcher(): SagaIterator {
   yield takeEvery(ProductActionType.GET_PRODUCT, getProduct);
   yield takeEvery(ProductActionType.UPDATE_PRODUCT, updateProduct);
   yield takeEvery(ProductActionType.ADD_PRODUCT, addProduct);
 }
 
-export function* getProduct(action: GetProduct) {
+export function* getProduct(action: GetProduct): SagaIterator {
   try {
     yield put<ProductAction>(setIsLoading(true));
     const response: SagaReturnType<typeof getProductRequest> = yield call(
@@ -43,7 +44,7 @@ export function* getProduct(action: GetProduct) {
   }
 }
 
-export function* updateProduct(action: UpdateProduct) {
+export function* updateProduct(action: UpdateProduct): SagaIterator {
   try {
     yield put<ProductAction>(setIsLoading(true));
     yield call(
@@ -60,7 +61,7 @@ export function* updateProduct(action: UpdateProduct) {
   }
 }
 
-export function* addProduct(action: AddProduct) {
+export function* addProduct(action: AddProduct): SagaIterator {
   try {
     yield put<ProductAction>(setIsLoading(true));
     yield call(requestExecutor, addProductRequest, action.payload.productData);

@@ -1,8 +1,8 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { AjaxWorkReport } from './types';
+import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { logger } from '../../utils/logger';
 import { ACCESS_TOKEN_LS_KEY, DEFAULT_HEADERS } from '../../config/API';
 import { BASE_URL } from '../../config/host';
+import { AjaxWorkReport } from './types';
 
 export const ajaxRequest = async (
   requestConfig: AxiosRequestConfig,
@@ -34,7 +34,7 @@ export const ajaxRequest = async (
 
 export const ajaxRequestWithAuthHeader = async (
   requestConfig: AxiosRequestConfig,
-) => {
+): Promise<AxiosResponse> => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN_LS_KEY) ?? '';
   const finalRequestConfig: AxiosRequestConfig = {
     ...requestConfig,
@@ -43,5 +43,5 @@ export const ajaxRequestWithAuthHeader = async (
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  return await ajaxRequest(finalRequestConfig);
+  return ajaxRequest(finalRequestConfig);
 };

@@ -1,17 +1,5 @@
 import { call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import {
-  AddCategory,
-  CategoryAction,
-  CategoryActionType,
-  GetCategory,
-  UpdateCategory,
-} from './types';
-import {
-  setCategory,
-  setError,
-  setIsLoading,
-  setRedirectToCategoryAction,
-} from './actions';
+import { SagaIterator } from 'redux-saga';
 import {
   addCategoryRequest,
   getCategoryRequest,
@@ -19,14 +7,27 @@ import {
 } from '../../api/entity/categories';
 import { requestExecutor } from '../sagas';
 import { getHTTPStatusFromError } from '../../utils/helpers';
+import {
+  setCategory,
+  setError,
+  setIsLoading,
+  setRedirectToCategoryAction,
+} from './actions';
+import {
+  AddCategory,
+  CategoryAction,
+  CategoryActionType,
+  GetCategory,
+  UpdateCategory,
+} from './types';
 
-export function* categoryWatcher() {
+export function* categoryWatcher(): SagaIterator {
   yield takeEvery(CategoryActionType.GET_CATEGORY, getCategory);
   yield takeEvery(CategoryActionType.UPDATE_CATEGORY, updateCategory);
   yield takeEvery(CategoryActionType.ADD_CATEGORY, addCategory);
 }
 
-export function* getCategory(action: GetCategory) {
+export function* getCategory(action: GetCategory): SagaIterator {
   try {
     yield put<CategoryAction>(setIsLoading(true));
     yield put<CategoryAction>(setError(null));
@@ -44,7 +45,7 @@ export function* getCategory(action: GetCategory) {
   }
 }
 
-export function* updateCategory(action: UpdateCategory) {
+export function* updateCategory(action: UpdateCategory): SagaIterator {
   try {
     yield put<CategoryAction>(setIsLoading(true));
     yield call(
@@ -61,7 +62,7 @@ export function* updateCategory(action: UpdateCategory) {
   }
 }
 
-export function* addCategory(action: AddCategory) {
+export function* addCategory(action: AddCategory): SagaIterator {
   try {
     yield put<CategoryAction>(setIsLoading(true));
     yield call(

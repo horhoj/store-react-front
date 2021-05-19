@@ -10,9 +10,8 @@ export const userDataRequest = async (): Promise<
     method: 'get',
   };
 
-  const response: AxiosResponse<UserEntityType> = await ajaxRequestWithAuthHeader(
-    requestConfig,
-  );
+  const response: AxiosResponse<UserEntityType> =
+    await ajaxRequestWithAuthHeader(requestConfig);
   await UserResponseSchema.validate(response?.data);
   return response;
 };

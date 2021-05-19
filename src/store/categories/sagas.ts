@@ -1,24 +1,12 @@
 import {
-  CategoriesAction,
-  CategoriesActionType,
-  DeleteCategory,
-  GetCategories,
-} from './types';
-import {
   call,
   put,
   SagaReturnType,
   select,
   takeEvery,
 } from 'redux-saga/effects';
-import {
-  setCategories,
-  setError,
-  setIsLoading,
-  setRequestConfigDiff,
-} from './actions';
+import { SagaIterator } from 'redux-saga';
 import { GetCategoriesRequestConfig } from '../../api/entity/categories/types';
-import { getRequestConfig } from './selectors';
 import { getHTTPStatusFromError } from '../../utils/helpers';
 import { logger } from '../../utils/logger';
 import {
@@ -26,13 +14,26 @@ import {
   getCategoriesRequest,
 } from '../../api/entity/categories';
 import { requestExecutor } from '../sagas';
+import { getRequestConfig } from './selectors';
+import {
+  setCategories,
+  setError,
+  setIsLoading,
+  setRequestConfigDiff,
+} from './actions';
+import {
+  CategoriesAction,
+  CategoriesActionType,
+  DeleteCategory,
+  GetCategories,
+} from './types';
 
-export function* categoriesWatcher() {
+export function* categoriesWatcher(): SagaIterator {
   yield takeEvery(CategoriesActionType.GET_CATEGORIES, getCategories);
   yield takeEvery(CategoriesActionType.DELETE_CATEGORIES, deleteCategory);
 }
 
-export function* getCategories(action: GetCategories) {
+export function* getCategories(action: GetCategories): SagaIterator {
   try {
     yield put<CategoriesAction>(
       setRequestConfigDiff(action.payload.getCategoriesRequestConfig),
@@ -58,7 +59,7 @@ export function* getCategories(action: GetCategories) {
   }
 }
 
-export function* deleteCategory(action: DeleteCategory) {
+export function* deleteCategory(action: DeleteCategory): SagaIterator {
   try {
     yield put<CategoriesAction>(setIsLoading(true));
     yield put<CategoriesAction>(setError(null));

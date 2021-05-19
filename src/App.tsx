@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { RoutesStructure } from './router';
 import { useDispatch, useSelector } from 'react-redux';
+import { RoutesStructure } from './router';
 import { userActions, userSelectors } from './store/user';
 import { Spinner } from './componets/Spinner';
 

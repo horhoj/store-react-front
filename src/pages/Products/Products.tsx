@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { generatePath, useHistory } from 'react-router';
 import { productsActions, productsSelectors } from '../../store/products';
 import { DataTable } from '../../componets/DataTable';
 import {
@@ -9,7 +10,6 @@ import {
   DataTableRowActionBtnClkCb,
   DataTableSearchCb,
 } from '../../componets/DataTable/types';
-import { generatePath, useHistory } from 'react-router';
 import { getPathByName } from '../../router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
 import { ProductsFormVisibleFields } from '../../api/entity/products/types';

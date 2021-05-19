@@ -1,3 +1,4 @@
+import { CategoryEntityType } from '../../types/categories';
 import {
   AddCategory,
   CategoryActionType,
@@ -10,7 +11,6 @@ import {
   SetRedirectToCategoryAction,
   UpdateCategory,
 } from './types';
-import { CategoryEntityType } from '../../types/categories';
 
 export const setCategory = (category: CategoryType): SetCategory => ({
   type: CategoryActionType.SET_CATEGORY,

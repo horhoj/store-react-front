@@ -17,7 +17,9 @@ export const DataGrid: React.FC<DataGridProps> = ({
 }) => {
   const deleteActionHandle = (id: number) => {
     const result = window.confirm('Удалить?');
-    if (result) actionCb({ id, type: 'delete' });
+    if (result) {
+      actionCb({ id, type: 'delete' });
+    }
   };
   return items && visibleFields ? (
     <div className="mt-3">

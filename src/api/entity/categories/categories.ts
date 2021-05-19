@@ -1,4 +1,3 @@
-import { GetCategoriesRequestConfig } from './types';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import {
   CategoryEntityType,
@@ -7,6 +6,7 @@ import {
   CategoryEntitySchema,
 } from '../../../types/categories';
 import { ajaxRequestWithAuthHeader } from '../../transport';
+import { GetCategoriesRequestConfig } from './types';
 
 export const getCategoriesRequest = async (
   getCategoriesRequestConfig: GetCategoriesRequestConfig,
@@ -16,16 +16,15 @@ export const getCategoriesRequest = async (
     method: 'get',
     params: getCategoriesRequestConfig,
   };
-  const response: AxiosResponse<CategoryResponseType> = await ajaxRequestWithAuthHeader(
-    requestConfig,
-  );
+  const response: AxiosResponse<CategoryResponseType> =
+    await ajaxRequestWithAuthHeader(requestConfig);
 
   await CategoriesResponseSchema.validate(response.data);
 
   return response;
 };
 
-export const deleteCategoryRequest = async (id: number) => {
+export const deleteCategoryRequest = async (id: number): Promise<void> => {
   const requestConfig: AxiosRequestConfig = {
     url: `/categories/${id}`,
     method: 'delete',
@@ -42,9 +41,8 @@ export const getCategoryRequest = async (
     method: 'get',
   };
 
-  const response: AxiosResponse<CategoryEntityType> = await ajaxRequestWithAuthHeader(
-    requestConfig,
-  );
+  const response: AxiosResponse<CategoryEntityType> =
+    await ajaxRequestWithAuthHeader(requestConfig);
   await CategoryEntitySchema.validate(response.data);
   return response;
 };

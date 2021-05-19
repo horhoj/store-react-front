@@ -1,9 +1,9 @@
 import React from 'react';
-import { DataTableProps } from './types';
 import { Spinner } from '../Spinner';
 import { DataPaginator } from '../DataPaginator';
 import { DataSearch } from '../DataSearch';
 import { DataGrid } from '../DataGrid';
+import { DataTableProps } from './types';
 
 export const DataTable: React.FC<DataTableProps> = ({
   items,

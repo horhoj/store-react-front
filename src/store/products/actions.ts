@@ -1,3 +1,4 @@
+import { GetProductsRequestConfig } from '../../api/entity/products/types';
 import {
   DeleteProduct,
   GetProducts,
@@ -8,7 +9,6 @@ import {
   SetProducts,
   SetRequestConfigDiff,
 } from './types';
-import { GetProductsRequestConfig } from '../../api/entity/products/types';
 
 export const setIsLoading = (isLoading: boolean): SetIsLoading => ({
   type: ProductsActionType.SET_IS_LOADING,

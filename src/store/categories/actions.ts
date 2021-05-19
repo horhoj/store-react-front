@@ -1,3 +1,4 @@
+import { GetCategoriesRequestConfig } from '../../api/entity/categories/types';
 import {
   CategoriesActionType,
   CategoriesType,
@@ -8,7 +9,6 @@ import {
   SetIsLoading,
   SetRequestConfigDiff,
 } from './types';
-import { GetCategoriesRequestConfig } from '../../api/entity/categories/types';
 
 export const setCategories = (categories: CategoriesType): SetCategories => ({
   type: CategoriesActionType.SET_CATEGORIES,

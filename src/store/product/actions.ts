@@ -1,3 +1,4 @@
+import { ProductEntityType } from '../../types/products';
 import {
   AddProduct,
   Clear,
@@ -10,7 +11,6 @@ import {
   SetRedirectToProductList,
   UpdateProduct,
 } from './types';
-import { ProductEntityType } from '../../types/products';
 
 export const setProduct = (product: ProductType): SetProduct => ({
   type: ProductActionType.SET_PRODUCT,

@@ -12,7 +12,7 @@ import { ProductEntityType } from '../../types/products';
 import { getPathByName } from '../../router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
-export const Product = () => {
+export const Product: React.FC = () => {
   const id = useParams<{ id: string }>().id;
   const dispatch = useDispatch();
   const error = useSelector(productSelectors.getError);

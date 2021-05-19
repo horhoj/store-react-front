@@ -17,9 +17,8 @@ export const getProductsRequest = async (
     params: getProductsRequestConfig,
   };
 
-  const response: AxiosResponse<ProductsResponseType> = await ajaxRequestWithAuthHeader(
-    requestConfig,
-  );
+  const response: AxiosResponse<ProductsResponseType> =
+    await ajaxRequestWithAuthHeader(requestConfig);
   await ProductsResponseSchema.validate(response.data);
 
   return response;
@@ -33,9 +32,8 @@ export const getProductRequest = async (
     method: 'get',
   };
 
-  const response: AxiosResponse<ProductEntityType> = await ajaxRequestWithAuthHeader(
-    requestConfig,
-  );
+  const response: AxiosResponse<ProductEntityType> =
+    await ajaxRequestWithAuthHeader(requestConfig);
 
   ProductEntitySchema.validate(response.data);
 
@@ -67,7 +65,7 @@ export const addProductRequest = async (
   await ajaxRequestWithAuthHeader(requestConfig);
 };
 
-export const deleteProductRequest = async (id: number) => {
+export const deleteProductRequest = async (id: number): Promise<void> => {
   const requestConfig: AxiosRequestConfig = {
     url: `/products/${id}`,
     method: 'delete',

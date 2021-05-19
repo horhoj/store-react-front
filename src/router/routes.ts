@@ -1,4 +1,3 @@
-import { RouterPathNames, RouteItem } from './types';
 import { HomePage } from '../pages/HomePage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { AboutPage } from '../pages/AboutPage';
@@ -7,6 +6,7 @@ import { Products } from '../pages/Products';
 import { Product } from '../pages/Product';
 import { Categories } from '../pages/Categories';
 import { Category } from '../pages/Category';
+import { RouterPathNames, RouteItem } from './types';
 
 export const routes: RouteItem[] = [
   {
@@ -82,7 +82,6 @@ export const getPathByName = (name: RouterPathNames): string => {
   );
   if (routeItem) {
     return routeItem.path;
-  } else {
-    throw new Error('getPathByName: Unknown route!');
   }
+  throw new Error('getPathByName: Unknown route!');
 };

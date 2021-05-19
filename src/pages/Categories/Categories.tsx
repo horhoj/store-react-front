@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { generatePath, useHistory } from 'react-router';
 import { categoriesActions, categoriesSelectors } from '../../store/categories';
 import { CategoriesFormVisibleFields } from '../../api/entity/categories/types';
 import { DataTable } from '../../componets/DataTable';
@@ -13,7 +14,6 @@ import {
   DataTableUpdateBtnClkCb,
 } from '../../componets/DataTable/types';
 import { getPathByName } from '../../router';
-import { generatePath, useHistory } from 'react-router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
 export const Categories: React.FC = () => {

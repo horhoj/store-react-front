@@ -29,5 +29,5 @@ prod:
 install:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm i"
 
-format:
-	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run format"
+lint:
+	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run lint"

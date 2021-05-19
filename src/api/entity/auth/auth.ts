@@ -1,5 +1,5 @@
-import { UserCredential } from '../../../types/auth';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { UserCredential } from '../../../types/auth';
 import { ajaxRequest, ajaxRequestWithAuthHeader } from '../../transport';
 import { ACCESS_TOKEN_LS_KEY } from '../../../config/API';
 import { LoginResponse, LoginResponseSchema } from './types';
@@ -16,7 +16,9 @@ export const loginRequest = async (
     requestConfig,
   );
   await LoginResponseSchema.validate(response.data);
-  if (response) localStorage.setItem(ACCESS_TOKEN_LS_KEY, response.data.token);
+  if (response) {
+    localStorage.setItem(ACCESS_TOKEN_LS_KEY, response.data.token);
+  }
 };
 
 export const logoutRequest = async (): Promise<void> => {

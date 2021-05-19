@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../../store/auth';
 import { userSelectors } from '../../store/user';
+import styles from './styles.module.scss';
 
 export const PrivateHeader: React.FC = () => {
   const dispatch = useDispatch();

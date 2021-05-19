@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { authSelectors } from '../store/auth';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { getPathByName, routes } from './routes';
+import { authSelectors } from '../store/auth';
 import { PrivateLayout } from '../layouts/PrivateLayout';
 import { PublicLayout } from '../layouts/PublicLayout';
+import { getPathByName, routes } from './routes';
 
 export const RoutesStructure: React.FC = () => {
   const userIsAuthenticated = useSelector(authSelectors.getIsAuthenticated);

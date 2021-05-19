@@ -1,3 +1,4 @@
+import { UserCredential } from '../../types/auth';
 import {
   authActionType,
   Login,
@@ -6,7 +7,6 @@ import {
   SetIsLoading,
   SetLoginError,
 } from './types';
-import { UserCredential } from '../../types/auth';
 
 export const setIsAuthenticated = (
   isAuthenticated: boolean,
