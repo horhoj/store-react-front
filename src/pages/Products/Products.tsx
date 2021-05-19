@@ -51,9 +51,7 @@ export const Products: React.FC = () => {
       const pathTemplate: string = getPathByName('product');
       const path: string = generatePath(pathTemplate, { id });
       history.push(path);
-      return;
-    }
-    if (type === 'delete') {
+    } else if (type === 'delete') {
       dispatch(productsActions.deleteProduct(id));
     }
   };

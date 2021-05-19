@@ -24,7 +24,7 @@ overriddenFields.forEach((item) => {
   };
 });
 
-export const CategoryResponseSchema = yup.object({
+export const CategoriesResponseSchema = yup.object({
   data: yup.array(yup.object(CategoryResponseStructure)).required(),
   current_page: yup.number().required(),
   last_page: yup.number().required(),
@@ -33,4 +33,4 @@ export const CategoryResponseSchema = yup.object({
 });
 
 export interface CategoryResponseType
-  extends yup.Asserts<typeof CategoryResponseSchema> {}
+  extends yup.Asserts<typeof CategoriesResponseSchema> {}

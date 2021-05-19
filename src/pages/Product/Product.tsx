@@ -79,16 +79,14 @@ export const Product = () => {
           </div>
         </div>
       ) : null}
-      <div className="position-relative">
-        {isLoading ? <Spinner /> : null}
-        <fieldset disabled={isLoading}>
-          {id === ENTITY_FORM_NEW_ID
-            ? productForm
-            : error !== 404
-            ? productForm
-            : null}
-        </fieldset>
-      </div>
+      {isLoading ? <Spinner /> : null}
+      <fieldset disabled={isLoading}>
+        {id === ENTITY_FORM_NEW_ID
+          ? productForm
+          : error !== 404
+          ? productForm
+          : null}
+      </fieldset>
     </div>
   );
 };

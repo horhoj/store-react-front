@@ -8,6 +8,7 @@ import { userReducer, userWatcher } from './user';
 import { productsReducer, productsWatcher } from './products';
 import { productReducer, productWatcher } from './product';
 import { categoriesReducer, categoriesWatcher } from './categories';
+import { categoryReducer, categoryWatcher } from './category';
 
 const rootReducer = combineReducers<StoreState>({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers<StoreState>({
   products: productsReducer,
   product: productReducer,
   categories: categoriesReducer,
+  category: categoryReducer,
 });
 
 let composeEnhancers = null;
@@ -41,6 +43,7 @@ function* appWatcher() {
     productsWatcher(),
     productWatcher(),
     categoriesWatcher(),
+    categoryWatcher(),
   ]);
 }
 

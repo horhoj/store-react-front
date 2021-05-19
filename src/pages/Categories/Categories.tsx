@@ -12,6 +12,9 @@ import {
   DataTableSearchCb,
   DataTableUpdateBtnClkCb,
 } from '../../componets/DataTable/types';
+import { getPathByName } from '../../router';
+import { generatePath, useHistory } from 'react-router';
+import { ENTITY_FORM_NEW_ID } from '../../config/app';
 
 export const Categories: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,6 +28,7 @@ export const Categories: React.FC = () => {
   const currentRequestConfig = useSelector(
     categoriesSelectors.getRequestConfig,
   );
+  const history = useHistory();
 
   const categoriesVisibleFields: CategoriesFormVisibleFields[] = [
     { name: 'id', title: 'ИД' },
@@ -57,15 +61,19 @@ export const Categories: React.FC = () => {
     );
   };
 
-  const addBtnClkCb: DataTableAddBtnClkCb = () => {};
+  const addBtnClkCb: DataTableAddBtnClkCb = () => {
+    const pathTemplate: string = getPathByName('category');
+    const path: string = generatePath(pathTemplate, { id: ENTITY_FORM_NEW_ID });
+    history.push(path);
+  };
 
   const actionCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
-    if (type === 'delete') {
-      // console.log(id, 'delete');
-      dispatch(categoriesActions.deleteCategory(id));
-    }
     if (type === 'edit') {
-      console.log(id, 'edit');
+      const pathTemplate: string = getPathByName('category');
+      const path: string = generatePath(pathTemplate, { id });
+      history.push(path);
+    } else if (type === 'delete') {
+      dispatch(categoriesActions.deleteCategory(id));
     }
   };
 
