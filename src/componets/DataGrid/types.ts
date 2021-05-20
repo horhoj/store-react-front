@@ -7,6 +7,7 @@ export interface DataGridProps {
   perPage: number | undefined;
   currentPage: number | undefined;
   actionCb: DataGridRowActionBtnClkCb;
+  findStr: string;
 }
 
 export interface DataGridVisibleField {

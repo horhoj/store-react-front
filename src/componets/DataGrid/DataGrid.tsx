@@ -14,6 +14,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
   perPage = 0,
   currentPage = 0,
   actionCb,
+  findStr,
 }) => {
   const deleteActionHandle = (id: number) => {
     const result = window.confirm('Удалить?');
@@ -21,6 +22,28 @@ export const DataGrid: React.FC<DataGridProps> = ({
       actionCb({ id, type: 'delete' });
     }
   };
+
+  const highlightFindStr = (val: string) => {
+    const regexp = new RegExp(findStr, 'ig');
+    const matchValue = String(val).match(regexp);
+    if (findStr !== '') {
+      const c = matchValue ? matchValue.shift() : '';
+      return String(val)
+        .split(regexp)
+        .map((item, index, array) => {
+          return index < array.length - 1 ? (
+            <span key={index}>
+              {item}
+              <span className="bg-warning">{c}</span>
+            </span>
+          ) : (
+            item
+          );
+        });
+    }
+    return val;
+  };
+
   return items && visibleFields ? (
     <div className="mt-3">
       <table className="table table-striped table-sm font-weight-normal">
@@ -69,7 +92,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
               {visibleFields.map((field) => (
                 <td key={field.name}>
                   <div className="d-flex justify-content-center align-items-center">
-                    {item[field.name]}
+                    {highlightFindStr(item[field.name])}
                   </div>
                 </td>
               ))}

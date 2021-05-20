@@ -52,6 +52,7 @@ export const DataTable: React.FC<DataTableProps> = ({
               actionCb={actionCb}
               columnClkCb={columnClkCb}
               visibleFields={visibleFields}
+              findStr={findStr}
             />
           </div>
           <div>
