@@ -21,7 +21,10 @@ const rootReducer = combineReducers<StoreState>({
 
 let composeEnhancers = null;
 try {
-  composeEnhancers = compose;
+  // composeEnhancers = compose;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 } catch (e) {
   logger('не обнаружен redux dev-tools');
 }
