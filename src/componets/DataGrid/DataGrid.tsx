@@ -34,7 +34,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
           return index < array.length - 1 ? (
             <span key={index}>
               {item}
-              <span className="bg-warning">{c}</span>
+              <span className="bg-warning pl-1 pr-1 rounded">{c}</span>
             </span>
           ) : (
             item
