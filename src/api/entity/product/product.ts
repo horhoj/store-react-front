@@ -1,6 +1,9 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ajaxRequestWithAuthHeader } from '../../transport';
-import { ProductEntitySchema, ProductEntityType } from '../../../types/product';
+import {
+  ProductResponseSchema,
+  ProductEntityType,
+} from '../../../types/product';
 
 export const getProductRequest = async (
   id: number,
@@ -13,7 +16,7 @@ export const getProductRequest = async (
   const response: AxiosResponse<ProductEntityType> =
     await ajaxRequestWithAuthHeader(requestConfig);
 
-  await ProductEntitySchema.validate(response.data);
+  await ProductResponseSchema.validate(response.data);
 
   return response;
 };

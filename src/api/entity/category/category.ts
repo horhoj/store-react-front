@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import {
-  CategoryEntitySchema,
+  CategoryResponseSchema,
   CategoryEntityType,
 } from '../../../types/category';
 import { ajaxRequestWithAuthHeader } from '../../transport';
@@ -15,7 +15,7 @@ export const getCategoryRequest = async (
 
   const response: AxiosResponse<CategoryEntityType> =
     await ajaxRequestWithAuthHeader(requestConfig);
-  await CategoryEntitySchema.validate(response.data);
+  await CategoryResponseSchema.validate(response.data);
   return response;
 };
 

@@ -23,3 +23,5 @@ overriddenFields.forEach((item) => {
     [item]: CategoryResponseStructure[item].defined(),
   };
 });
+
+export const CategoryResponseSchema = yup.object(CategoryResponseStructure);
