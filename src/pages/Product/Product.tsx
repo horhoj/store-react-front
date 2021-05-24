@@ -8,9 +8,10 @@ import {
   ProductFormCancelCb,
   ProductFormSubmitCb,
 } from '../../componets/ProductForm/types';
-import { ProductEntityType } from '../../types/products';
+import { ProductEntityType } from '../../types/product';
 import { getPathByName } from '../../router';
 import { ENTITY_FORM_NEW_ID } from '../../config/app';
+import { SERVER_NOT_RESPONDING } from '../../config/API';
 
 export const Product: React.FC = () => {
   const id = useParams<{ id: string }>().id;
@@ -71,7 +72,7 @@ export const Product: React.FC = () => {
         <div className="alert alert-danger">
           <h5>Ошибка!</h5>
           <div>
-            {error === 0
+            {error === SERVER_NOT_RESPONDING
               ? 'Не удалось подключится к серверу'
               : error === 404
               ? `не удалось найти данные по ИД: ${id}!`
@@ -81,11 +82,7 @@ export const Product: React.FC = () => {
       ) : null}
       {isLoading ? <Spinner /> : null}
       <fieldset disabled={isLoading}>
-        {id === ENTITY_FORM_NEW_ID
-          ? productForm
-          : error !== 404
-          ? productForm
-          : null}
+        {error !== 404 && error !== SERVER_NOT_RESPONDING ? productForm : null}
       </fieldset>
     </div>
   );

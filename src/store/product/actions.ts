@@ -1,4 +1,4 @@
-import { ProductEntityType } from '../../types/products';
+import { ProductEntityType } from '../../types/product';
 import {
   AddProduct,
   Clear,

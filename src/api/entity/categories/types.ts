@@ -1,9 +1,9 @@
 import { GetEntitiesRequestConfig } from '../types';
-import { CategoryEntityTypeKeys } from '../../../types/categories';
+import { CategoriesItemTypeKeys } from '../../../types/categories';
 
 export interface GetCategoriesRequestConfig extends GetEntitiesRequestConfig {}
 
 export interface CategoriesFormVisibleFields {
-  name: CategoryEntityTypeKeys;
+  name: CategoriesItemTypeKeys;
   title: string;
 }

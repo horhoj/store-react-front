@@ -1,4 +1,4 @@
-import { ProductEntityType } from '../../types/products';
+import { ProductEntityType } from '../../types/product';
 
 export enum ProductActionType {
   SET_PRODUCT = 'PRODUCT/SET_PRODUCT',

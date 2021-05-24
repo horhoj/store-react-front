@@ -1,4 +1,4 @@
-import { CategoryEntityType } from '../../types/categories';
+import { CategoryEntityType } from '../../types/category';
 import {
   AddCategory,
   CategoryActionType,

@@ -1,7 +1,7 @@
 import {
   CategoryEntityType,
   CategoryEntityTypeKeys,
-} from '../../types/categories';
+} from '../../types/category';
 
 export interface CategoryFormProps {
   initialValues: CategoryEntityType | null;

@@ -8,3 +8,5 @@ export const DEFAULT_HEADERS = {
 export const DEFAULT_LOGIN_EMAIL = 'xman@mail.ru';
 
 export const DEFAULT_LOGIN_PASSWORD = 'p@ssw0rd';
+
+export const SERVER_NOT_RESPONDING = 0;

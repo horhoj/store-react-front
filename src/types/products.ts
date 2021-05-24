@@ -1,32 +1,19 @@
 import * as yup from 'yup';
 
-const ProductStructure = {
+const ProductsItemStructure = yup.object({
   id: yup.number().required(),
-  title: yup.string().required('должно быть заполнено').max(200),
-  description: yup.string().nullable(),
-  options: yup.string().nullable(),
-};
-
-export const ProductEntitySchema = yup.object(ProductStructure);
-
-export interface ProductEntityType
-  extends yup.Asserts<typeof ProductEntitySchema> {}
-
-export type ProductEntityTypeKeys = keyof ProductEntityType;
-
-const overriddenFields: ProductEntityTypeKeys[] = ['description', 'options'];
-
-let ProductResponseStructure = { ...ProductStructure };
-
-overriddenFields.forEach((item) => {
-  ProductResponseStructure = {
-    ...ProductResponseStructure,
-    [item]: ProductResponseStructure[item].defined(),
-  };
+  title: yup.string().required(),
+  description: yup.string().nullable().defined(),
+  options: yup.string().nullable().defined(),
 });
 
+export interface ProductsItem
+  extends yup.Asserts<typeof ProductsItemStructure> {}
+
+export type ProductsItemTypeKeys = keyof ProductsItem;
+
 export const ProductsResponseSchema = yup.object({
-  data: yup.array(yup.object(ProductResponseStructure)).required(),
+  data: yup.array(ProductsItemStructure).required(),
   current_page: yup.number().required(),
   last_page: yup.number().required(),
   per_page: yup.number().required(),

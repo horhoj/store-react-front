@@ -1,9 +1,9 @@
-import { ProductEntityTypeKeys } from '../../../types/products';
 import { GetEntitiesRequestConfig } from '../types';
+import { ProductsItemTypeKeys } from '../../../types/products';
 
 export interface GetProductsRequestConfig extends GetEntitiesRequestConfig {}
 
 export interface ProductsFormVisibleFields {
-  name: ProductEntityTypeKeys;
+  name: ProductsItemTypeKeys;
   title: string;
 }

@@ -1,5 +1,5 @@
 import { StoreState } from '../types';
-import { CategoryEntityType } from '../../types/categories';
+import { CategoryEntityType } from '../../types/category';
 
 export const getCategory = (state: StoreState): CategoryEntityType | null =>
   state.category.category;

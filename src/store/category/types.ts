@@ -1,4 +1,4 @@
-import { CategoryEntityType } from '../../types/categories';
+import { CategoryEntityType } from '../../types/category';
 
 export enum CategoryActionType {
   SET_CATEGORY = 'CATEGORY/SET_CATEGORY',

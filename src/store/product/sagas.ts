@@ -5,7 +5,7 @@ import {
   addProductRequest,
   getProductRequest,
   updateProductRequest,
-} from '../../api/entity/products';
+} from '../../api/entity/product';
 import { requestExecutor } from '../sagas';
 import {
   setError,

@@ -1,9 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import {
-  CategoryEntitySchema,
-  CategoryEntityType,
-} from '../../types/categories';
+import { CategoryEntitySchema, CategoryEntityType } from '../../types/category';
 import { CategoryFormInputProperties, CategoryFormProps } from './types';
 import styles from './styles.module.scss';
 

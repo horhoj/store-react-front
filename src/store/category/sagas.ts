@@ -4,7 +4,7 @@ import {
   addCategoryRequest,
   getCategoryRequest,
   updateCategoryRequest,
-} from '../../api/entity/categories';
+} from '../../api/entity/category';
 import { requestExecutor } from '../sagas';
 import { getHTTPStatusFromError } from '../../utils/helpers';
 import {

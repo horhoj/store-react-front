@@ -1,4 +1,4 @@
-import { ProductEntityType, ProductEntityTypeKeys } from '../../types/products';
+import { ProductEntityType, ProductEntityTypeKeys } from '../../types/product';
 
 export interface ProductFormProps {
   initialValues: ProductEntityType | null;
