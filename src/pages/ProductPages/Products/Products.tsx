@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useHistory } from 'react-router';
-import { productsActions, productsSelectors } from '../../store/products';
-import { DataTable } from '../../componets/DataTable';
+import { productsActions, productsSelectors } from '../../../store/products';
+import { DataTable } from '../../../componets/DataTable';
 import {
   DataTableAddBtnClkCb,
   DataTableChangePerPageCb,
   DataTableGoToPageBtnClkCb,
   DataTableRowActionBtnClkCb,
   DataTableSearchCb,
-} from '../../componets/DataTable/types';
-import { getPathByName } from '../../router';
-import { ENTITY_FORM_NEW_ID } from '../../config/app';
-import { ProductsFormVisibleFields } from '../../api/entity/products/types';
+} from '../../../componets/DataTable/types';
+import { getPathByName } from '../../../router';
+import { ProductsFormVisibleFields } from '../../../api/entity/products/types';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -48,7 +47,7 @@ export const Products: React.FC = () => {
 
   const rowActionBtnClkCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
     if (type === 'edit') {
-      const pathTemplate: string = getPathByName('product');
+      const pathTemplate: string = getPathByName('productEdit');
       const path: string = generatePath(pathTemplate, { id });
       history.push(path);
     } else if (type === 'delete') {
@@ -98,8 +97,7 @@ export const Products: React.FC = () => {
   };
 
   const addBtnClkCb: DataTableAddBtnClkCb = () => {
-    const pathTemplate: string = getPathByName('product');
-    const path: string = generatePath(pathTemplate, { id: ENTITY_FORM_NEW_ID });
+    const path: string = getPathByName('productNew');
     history.push(path);
   };
 

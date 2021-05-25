@@ -2,10 +2,8 @@ import { HomePage } from '../pages/HomePage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { AboutPage } from '../pages/AboutPage';
 import { LoginPage } from '../pages/LoginPage';
-import { Products } from '../pages/Products';
-import { Product } from '../pages/Product';
-import { Categories } from '../pages/Categories';
-import { Category } from '../pages/Category';
+import { Products, ProductNew, ProductEdit } from '../pages/ProductPages';
+import { Categories, CategoryNew, CategoryEdit } from '../pages/CategoryPages';
 import { RouterPathNames, RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -42,12 +40,20 @@ export const routes: RouteItem[] = [
     component: Products,
   },
   {
-    name: 'product',
+    name: 'productEdit',
     path: '/product/:id',
     exact: true,
     always: false,
     private: true,
-    component: Product,
+    component: ProductEdit,
+  },
+  {
+    name: 'productNew',
+    path: '/product_new',
+    exact: true,
+    always: false,
+    private: true,
+    component: ProductNew,
   },
   {
     name: 'categories',
@@ -58,12 +64,20 @@ export const routes: RouteItem[] = [
     component: Categories,
   },
   {
-    name: 'category',
+    name: 'categoryEdit',
     path: '/category/:id',
     exact: true,
     always: false,
     private: true,
-    component: Category,
+    component: CategoryEdit,
+  },
+  {
+    name: 'categoryNew',
+    path: '/category_new',
+    exact: true,
+    always: false,
+    private: true,
+    component: CategoryNew,
   },
   {
     name: 'routeNotFound',

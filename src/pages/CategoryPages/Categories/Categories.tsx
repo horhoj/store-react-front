@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useHistory } from 'react-router';
-import { categoriesActions, categoriesSelectors } from '../../store/categories';
-import { CategoriesFormVisibleFields } from '../../api/entity/categories/types';
-import { DataTable } from '../../componets/DataTable';
+import {
+  categoriesActions,
+  categoriesSelectors,
+} from '../../../store/categories';
+import { CategoriesFormVisibleFields } from '../../../api/entity/categories/types';
+import { DataTable } from '../../../componets/DataTable';
 import {
   DataTableAddBtnClkCb,
   DataTableChangePerPageCb,
@@ -12,9 +15,8 @@ import {
   DataTableRowActionBtnClkCb,
   DataTableSearchCb,
   DataTableUpdateBtnClkCb,
-} from '../../componets/DataTable/types';
-import { getPathByName } from '../../router';
-import { ENTITY_FORM_NEW_ID } from '../../config/app';
+} from '../../../componets/DataTable/types';
+import { getPathByName } from '../../../router';
 
 export const Categories: React.FC = () => {
   const dispatch = useDispatch();
@@ -62,14 +64,13 @@ export const Categories: React.FC = () => {
   };
 
   const addBtnClkCb: DataTableAddBtnClkCb = () => {
-    const pathTemplate: string = getPathByName('category');
-    const path: string = generatePath(pathTemplate, { id: ENTITY_FORM_NEW_ID });
+    const path: string = getPathByName('categoryNew');
     history.push(path);
   };
 
   const actionCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
     if (type === 'edit') {
-      const pathTemplate: string = getPathByName('category');
+      const pathTemplate: string = getPathByName('categoryEdit');
       const path: string = generatePath(pathTemplate, { id });
       history.push(path);
     } else if (type === 'delete') {
