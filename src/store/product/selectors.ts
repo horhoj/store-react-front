@@ -9,6 +9,3 @@ export const getIsLoading = (state: StoreState): boolean =>
 
 export const getError = (state: StoreState): number | null =>
   state.product.error;
-
-export const getRedirectToProductList = (state: StoreState): boolean =>
-  state.product.redirectToProductList;

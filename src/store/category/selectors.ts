@@ -9,6 +9,3 @@ export const getError = (state: StoreState): number | null =>
 
 export const getIsLoading = (state: StoreState): boolean =>
   state.category.isLoading;
-
-export const getRedirectToCategoryList = (state: StoreState): boolean =>
-  state.category.redirectToCategoryList;

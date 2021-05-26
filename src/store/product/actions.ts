@@ -8,7 +8,6 @@ import {
   SetError,
   SetIsLoading,
   SetProduct,
-  SetRedirectToProductList,
   UpdateProduct,
 } from './types';
 
@@ -46,15 +45,6 @@ export const updateProduct = (
   type: ProductActionType.UPDATE_PRODUCT,
   payload: {
     productData,
-  },
-});
-
-export const setRedirectToProductList = (
-  redirect: boolean,
-): SetRedirectToProductList => ({
-  type: ProductActionType.SET_REDIRECT_TO_PRODUCT_LIST,
-  payload: {
-    redirect,
   },
 });
 

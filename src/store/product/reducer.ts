@@ -5,14 +5,12 @@ import {
   SetError,
   SetIsLoading,
   SetProduct,
-  SetRedirectToProductList,
 } from './types';
 
 const initialState: ProductState = {
   product: null,
   isLoading: false,
   error: null,
-  redirectToProductList: false,
 };
 
 export const productReducer = (
@@ -29,18 +27,11 @@ export const productReducer = (
       };
     case ProductActionType.SET_PRODUCT:
       return { ...state, product: (action as SetProduct).payload.product };
-    case ProductActionType.SET_REDIRECT_TO_PRODUCT_LIST:
-      return {
-        ...state,
-        redirectToProductList: (action as SetRedirectToProductList).payload
-          .redirect,
-      };
     case ProductActionType.CLEAR:
       return {
         ...state,
         error: null,
         product: null,
-        redirectToProductList: false,
       };
     default:
       return state;

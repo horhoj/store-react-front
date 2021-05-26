@@ -5,14 +5,12 @@ import {
   SetCategory,
   SetError,
   SetIsLoading,
-  SetRedirectToCategoryAction,
 } from './types';
 
 const initialState: CategoryState = {
   isLoading: false,
   error: null,
   category: null,
-  redirectToCategoryList: false,
 };
 
 export const categoryReducer = (
@@ -35,18 +33,11 @@ export const categoryReducer = (
         ...state,
         category: (action as SetCategory).payload.category,
       };
-    case CategoryActionType.SET_REDIRECT_TO_CATEGORY_LIST:
-      return {
-        ...state,
-        redirectToCategoryList: (action as SetRedirectToCategoryAction).payload
-          .redirect,
-      };
     case CategoryActionType.CLEAR:
       return {
         ...state,
         category: null,
         error: null,
-        redirectToCategoryList: false,
       };
     default:
       return {

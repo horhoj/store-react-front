@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generatePath, useHistory } from 'react-router';
+import { generatePath } from 'react-router';
 import { productsActions, productsSelectors } from '../../../store/products';
 import { DataTable } from '../../../componets/DataTable';
 import {
@@ -12,6 +12,7 @@ import {
 } from '../../../componets/DataTable/types';
 import { getPathByName } from '../../../router';
 import { ProductsFormVisibleFields } from '../../../api/entity/products/types';
+import { appActions } from '../../../store/app';
 
 export const Products: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ export const Products: React.FC = () => {
   const error = useSelector(productsSelectors.getError);
   const isLoading = useSelector(productsSelectors.getIsLoading);
   const currentRequestConfig = useSelector(productsSelectors.getRequestConfig);
-  const history = useHistory();
 
   const productsVisibleFields: ProductsFormVisibleFields[] = [
     { name: 'id', title: 'ИД' },
@@ -49,7 +49,7 @@ export const Products: React.FC = () => {
     if (type === 'edit') {
       const pathTemplate: string = getPathByName('productEdit');
       const path: string = generatePath(pathTemplate, { id });
-      history.push(path);
+      dispatch(appActions.redirectToPath(path));
     } else if (type === 'delete') {
       dispatch(productsActions.deleteProduct(id));
     }
@@ -98,7 +98,7 @@ export const Products: React.FC = () => {
 
   const addBtnClkCb: DataTableAddBtnClkCb = () => {
     const path: string = getPathByName('productNew');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   return (

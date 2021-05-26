@@ -8,7 +8,6 @@ import {
   SetCategory,
   SetError,
   SetIsLoading,
-  SetRedirectToCategoryAction,
   UpdateCategory,
 } from './types';
 
@@ -46,15 +45,6 @@ export const updateCategory = (
   type: CategoryActionType.UPDATE_CATEGORY,
   payload: {
     categoryData,
-  },
-});
-
-export const setRedirectToCategoryAction = (
-  redirect: boolean,
-): SetRedirectToCategoryAction => ({
-  type: CategoryActionType.SET_REDIRECT_TO_CATEGORY_LIST,
-  payload: {
-    redirect,
   },
 });
 

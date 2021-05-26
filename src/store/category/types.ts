@@ -6,7 +6,6 @@ export enum CategoryActionType {
   GET_CATEGORY = 'CATEGORY/GET_CATEGORY',
   SET_ERROR = 'CATEGORY/SET_ERROR',
   UPDATE_CATEGORY = 'CATEGORY/UPDATE_CATEGORY',
-  SET_REDIRECT_TO_CATEGORY_LIST = 'CATEGORY/SET_REDIRECT_TO_CATEGORY_LIST',
   ADD_CATEGORY = 'CATEGORY/ADD_CATEGORY',
   CLEAR = 'CATEGORY/CLEAR',
 }
@@ -15,7 +14,6 @@ export interface CategoryState {
   category: CategoryType;
   isLoading: boolean;
   error: number | null;
-  redirectToCategoryList: boolean;
 }
 
 export type CategoryType = CategoryEntityType | null;
@@ -43,10 +41,6 @@ export type SetError = CategoryAction<{
 
 export type UpdateCategory = CategoryAction<{
   categoryData: CategoryEntityType;
-}>;
-
-export type SetRedirectToCategoryAction = CategoryAction<{
-  redirect: boolean;
 }>;
 
 export type AddCategory = CategoryAction<{

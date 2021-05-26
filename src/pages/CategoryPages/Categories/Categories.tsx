@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generatePath, useHistory } from 'react-router';
+import { generatePath } from 'react-router';
 import {
   categoriesActions,
   categoriesSelectors,
@@ -17,6 +17,7 @@ import {
   DataTableUpdateBtnClkCb,
 } from '../../../componets/DataTable/types';
 import { getPathByName } from '../../../router';
+import { appActions } from '../../../store/app';
 
 export const Categories: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,6 @@ export const Categories: React.FC = () => {
   const currentRequestConfig = useSelector(
     categoriesSelectors.getRequestConfig,
   );
-  const history = useHistory();
 
   const categoriesVisibleFields: CategoriesFormVisibleFields[] = [
     { name: 'id', title: 'ИД' },
@@ -65,14 +65,14 @@ export const Categories: React.FC = () => {
 
   const addBtnClkCb: DataTableAddBtnClkCb = () => {
     const path: string = getPathByName('categoryNew');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   const actionCb: DataTableRowActionBtnClkCb = ({ id, type }) => {
     if (type === 'edit') {
       const pathTemplate: string = getPathByName('categoryEdit');
       const path: string = generatePath(pathTemplate, { id });
-      history.push(path);
+      dispatch(appActions.redirectToPath(path));
     } else if (type === 'delete') {
       dispatch(categoriesActions.deleteCategory(id));
     }

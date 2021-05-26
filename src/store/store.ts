@@ -9,8 +9,10 @@ import { productsReducer, productsWatcher } from './products';
 import { productReducer, productWatcher } from './product';
 import { categoriesReducer, categoriesWatcher } from './categories';
 import { categoryReducer, categoryWatcher } from './category';
+import { appReducer } from './app';
 
 const rootReducer = combineReducers<StoreState>({
+  app: appReducer,
   auth: authReducer,
   user: userReducer,
   products: productsReducer,

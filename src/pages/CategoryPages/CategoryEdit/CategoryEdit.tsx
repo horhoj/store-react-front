@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryForm } from '../../../componets/CategoryForm';
 import { categoryActions, categorySelectors } from '../../../store/category';
@@ -7,17 +7,14 @@ import { getPathByName } from '../../../router';
 import { CategoryEntityType } from '../../../types/category';
 import { Spinner } from '../../../componets/Spinner';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
+import { appActions } from '../../../store/app';
 
 export const CategoryEdit: React.FC = () => {
   const id = useParams<{ id: string }>().id;
   const dispatch = useDispatch();
   const isLoading = useSelector(categorySelectors.getIsLoading);
   const category = useSelector(categorySelectors.getCategory);
-  const history = useHistory();
   const error = useSelector(categorySelectors.getError);
-  const redirectToCategoryList = useSelector(
-    categorySelectors.getRedirectToCategoryList,
-  );
 
   useEffect(() => {
     dispatch(categoryActions.getCategory(Number(id)));
@@ -26,20 +23,13 @@ export const CategoryEdit: React.FC = () => {
     };
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (redirectToCategoryList) {
-      const path = getPathByName('categories');
-      history.push(path);
-    }
-  }, [redirectToCategoryList, history]);
-
   const submitCb = (values: CategoryEntityType) => {
     dispatch(categoryActions.updateCategory(values));
   };
 
   const cancelCb = () => {
     const path = getPathByName('categories');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   const categoryForm = (

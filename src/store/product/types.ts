@@ -6,7 +6,6 @@ export enum ProductActionType {
   GET_PRODUCT = 'PRODUCT/GET_PRODUCT',
   SET_ERROR = 'PRODUCT/SET_ERROR',
   UPDATE_PRODUCT = 'PRODUCT/UPDATE_PRODUCT',
-  SET_REDIRECT_TO_PRODUCT_LIST = 'PRODUCT/SET_REDIRECT_TO_PRODUCT_LIST',
   ADD_PRODUCT = 'PRODUCT/ADD_PRODUCT',
   CLEAR = 'PRODUCT/CLEAR',
 }
@@ -15,7 +14,6 @@ export interface ProductState {
   product: ProductType;
   isLoading: boolean;
   error: number | null;
-  redirectToProductList: boolean;
 }
 
 export type ProductType = ProductEntityType | null;
@@ -44,8 +42,6 @@ export type SetError = ProductAction<{
 export type UpdateProduct = ProductAction<{
   productData: ProductEntityType;
 }>;
-
-export type SetRedirectToProductList = ProductAction<{ redirect: boolean }>;
 
 export type AddProduct = ProductAction<{
   productData: ProductEntityType;

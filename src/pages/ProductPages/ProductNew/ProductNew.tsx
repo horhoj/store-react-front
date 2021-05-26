@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions, productSelectors } from '../../../store/product';
 import { getPathByName } from '../../../router';
@@ -11,16 +10,13 @@ import { ProductEntityType } from '../../../types/product';
 import { ProductForm } from '../../../componets/ProductForm';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
 import { Spinner } from '../../../componets/Spinner';
+import { appActions } from '../../../store/app';
 
 export const ProductNew: React.FC = () => {
   const dispatch = useDispatch();
   const error = useSelector(productSelectors.getError);
   const product = useSelector(productSelectors.getProduct);
   const isLoading = useSelector(productSelectors.getIsLoading);
-  const redirectToProductList = useSelector(
-    productSelectors.getRedirectToProductList,
-  );
-  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -28,20 +24,13 @@ export const ProductNew: React.FC = () => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (redirectToProductList) {
-      const path = getPathByName('products');
-      history.push(path);
-    }
-  }, [redirectToProductList, history]);
-
   const submitCb: ProductFormSubmitCb = (values: ProductEntityType) => {
     dispatch(productActions.addProduct(values));
   };
 
   const cancelCb: ProductFormCancelCb = () => {
     const path = getPathByName('products');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   const productForm = (

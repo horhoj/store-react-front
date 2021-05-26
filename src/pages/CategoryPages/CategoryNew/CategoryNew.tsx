@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoryActions, categorySelectors } from '../../../store/category';
 import { getPathByName } from '../../../router';
@@ -7,16 +6,13 @@ import { CategoryEntityType } from '../../../types/category';
 import { CategoryForm } from '../../../componets/CategoryForm';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
 import { Spinner } from '../../../componets/Spinner';
+import { appActions } from '../../../store/app';
 
 export const CategoryNew: React.FC = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(categorySelectors.getIsLoading);
   const category = useSelector(categorySelectors.getCategory);
-  const history = useHistory();
   const error = useSelector(categorySelectors.getError);
-  const redirectToCategoryList = useSelector(
-    categorySelectors.getRedirectToCategoryList,
-  );
 
   useEffect(() => {
     return () => {
@@ -24,20 +20,13 @@ export const CategoryNew: React.FC = () => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (redirectToCategoryList) {
-      const path = getPathByName('categories');
-      history.push(path);
-    }
-  }, [redirectToCategoryList, history]);
-
   const submitCb = (values: CategoryEntityType) => {
     dispatch(categoryActions.addCategory(values));
   };
 
   const cancelCb = () => {
     const path = getPathByName('categories');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   const categoryForm = (

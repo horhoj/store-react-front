@@ -7,12 +7,9 @@ import {
 } from '../../api/entity/category';
 import { requestExecutor } from '../sagas';
 import { getHTTPStatusFromError } from '../../utils/helpers';
-import {
-  setCategory,
-  setError,
-  setIsLoading,
-  setRedirectToCategoryAction,
-} from './actions';
+import { getPathByName } from '../../router';
+import { AppAction } from '../app/types';
+import { appActions } from '../app';
 import {
   AddCategory,
   CategoryAction,
@@ -20,6 +17,7 @@ import {
   GetCategory,
   UpdateCategory,
 } from './types';
+import { setCategory, setError, setIsLoading } from './actions';
 
 export function* categoryWatcher(): SagaIterator {
   yield takeEvery(CategoryActionType.GET_CATEGORY, getCategory);
@@ -53,7 +51,11 @@ export function* updateCategory(action: UpdateCategory): SagaIterator {
       updateCategoryRequest,
       action.payload.categoryData,
     );
-    yield put<CategoryAction>(setRedirectToCategoryAction(true));
+    const path: SagaReturnType<typeof getPathByName> = yield call(
+      getPathByName,
+      'categories',
+    );
+    yield put<AppAction>(appActions.redirectToPath(path));
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<CategoryAction>(setError(error));
@@ -70,7 +72,11 @@ export function* addCategory(action: AddCategory): SagaIterator {
       addCategoryRequest,
       action.payload.categoryData,
     );
-    yield put<CategoryAction>(setRedirectToCategoryAction(true));
+    const path: SagaReturnType<typeof getPathByName> = yield call(
+      getPathByName,
+      'categories',
+    );
+    yield put<AppAction>(appActions.redirectToPath(path));
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<CategoryAction>(setError(error));

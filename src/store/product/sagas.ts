@@ -7,12 +7,10 @@ import {
   updateProductRequest,
 } from '../../api/entity/product';
 import { requestExecutor } from '../sagas';
-import {
-  setError,
-  setIsLoading,
-  setProduct,
-  setRedirectToProductList,
-} from './actions';
+import { getPathByName } from '../../router';
+import { AppAction } from '../app/types';
+import { appActions } from '../app';
+import { setError, setIsLoading, setProduct } from './actions';
 import {
   AddProduct,
   GetProduct,
@@ -52,7 +50,11 @@ export function* updateProduct(action: UpdateProduct): SagaIterator {
       updateProductRequest,
       action.payload.productData,
     );
-    yield put<ProductAction>(setRedirectToProductList(true));
+    const path: SagaReturnType<typeof getPathByName> = yield call(
+      getPathByName,
+      'products',
+    );
+    yield put<AppAction>(appActions.redirectToPath(path));
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<ProductAction>(setError(error));
@@ -65,7 +67,11 @@ export function* addProduct(action: AddProduct): SagaIterator {
   try {
     yield put<ProductAction>(setIsLoading(true));
     yield call(requestExecutor, addProductRequest, action.payload.productData);
-    yield put<ProductAction>(setRedirectToProductList(true));
+    const path: SagaReturnType<typeof getPathByName> = yield call(
+      getPathByName,
+      'products',
+    );
+    yield put<AppAction>(appActions.redirectToPath(path));
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<ProductAction>(setError(error));

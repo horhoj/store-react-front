@@ -6,6 +6,7 @@ import { PrivateLayout } from '../layouts/PrivateLayout';
 import { PublicLayout } from '../layouts/PublicLayout';
 import { getPathByName, routes } from './routes';
 import { RouteItem } from './types';
+import { RedirectComponent } from './RedirectComponent';
 
 export const RoutesStructure: React.FC = () => {
   const userIsAuthenticated = useSelector(authSelectors.getIsAuthenticated);
@@ -45,6 +46,7 @@ export const RoutesStructure: React.FC = () => {
 
   return (
     <BrowserRouter>
+      <RedirectComponent />
       <Switch>
         {routes.map((route) => (
           <Route path={route.path} exact={route.exact} key={route.name}>

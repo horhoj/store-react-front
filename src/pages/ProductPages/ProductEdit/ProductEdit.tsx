@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions, productSelectors } from '../../../store/product';
@@ -11,6 +11,7 @@ import {
 import { ProductEntityType } from '../../../types/product';
 import { getPathByName } from '../../../router';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
+import { appActions } from '../../../store/app';
 
 export const ProductEdit: React.FC = () => {
   const id = useParams<{ id: string }>().id;
@@ -18,10 +19,6 @@ export const ProductEdit: React.FC = () => {
   const error = useSelector(productSelectors.getError);
   const product = useSelector(productSelectors.getProduct);
   const isLoading = useSelector(productSelectors.getIsLoading);
-  const redirectToProductList = useSelector(
-    productSelectors.getRedirectToProductList,
-  );
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(productActions.getProduct(Number(id)));
@@ -30,20 +27,13 @@ export const ProductEdit: React.FC = () => {
     };
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (redirectToProductList) {
-      const path = getPathByName('products');
-      history.push(path);
-    }
-  }, [redirectToProductList, history]);
-
   const submitCb: ProductFormSubmitCb = (values: ProductEntityType) => {
     dispatch(productActions.updateProduct(values));
   };
 
   const cancelCb: ProductFormCancelCb = () => {
     const path = getPathByName('products');
-    history.push(path);
+    dispatch(appActions.redirectToPath(path));
   };
 
   const productForm = (
