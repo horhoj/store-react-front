@@ -1,7 +1,7 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
-import { logger } from '../utils/logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { StoreState } from './types';
 import { authReducer, authWatcher } from './auth';
 import { userReducer, userWatcher } from './user';
@@ -21,23 +21,11 @@ const rootReducer = combineReducers<StoreState>({
   category: categoryReducer,
 });
 
-let composeEnhancers = null;
-try {
-  // composeEnhancers = compose;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-} catch (e) {
-  logger('не обнаружен redux dev-tools');
-}
-
 const sagaMiddleware = createSagaMiddleware();
 
 export const rootStore = createStore(
   rootReducer,
-  composeEnhancers
-    ? composeEnhancers(applyMiddleware(sagaMiddleware))
-    : applyMiddleware(sagaMiddleware),
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
 function* appWatcher() {
