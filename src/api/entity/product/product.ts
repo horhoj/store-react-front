@@ -41,7 +41,7 @@ export const addProductRequest = async (
   const requestConfig: AxiosRequestConfig = {
     url: '/products',
     method: 'post',
-    data: productData,
+    data: productRequestDataTransform(productData),
   };
 
   await ajaxRequestWithAuthHeader(requestConfig);
