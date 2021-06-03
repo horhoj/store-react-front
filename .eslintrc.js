@@ -157,5 +157,13 @@ module.exports = {
     '@typescript-eslint/no-extraneous-class': types.OFF,
     '@typescript-eslint/explicit-function-return-type': types.OFF,
     '@typescript-eslint/no-empty-function': types.OFF,
+    'react/button-has-type': [
+      types.ERROR,
+      {
+        button: true,
+        submit: true,
+        reset: true,
+      },
+    ],
   },
 };

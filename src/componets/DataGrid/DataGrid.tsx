@@ -15,11 +15,14 @@ export const DataGrid: React.FC<DataGridProps> = ({
   currentPage = 0,
   actionCb,
   findStr,
+  showSelectAction,
+  showDeleteAction,
+  showEditAction,
 }) => {
   const deleteActionHandle = (id: number) => {
     const result = window.confirm('Удалить?');
     if (result) {
-      actionCb({ id, type: 'delete' });
+      actionCb({ id, type: 'delete', data: null });
     }
   };
 
@@ -45,7 +48,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
   };
 
   return items && visibleFields ? (
-    <div className="mt-3">
+    <div className="">
       <table className="table table-striped table-sm font-weight-normal">
         <thead>
           <tr>
@@ -64,6 +67,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                 <button
                   className="btn w-100 text-white app__line-height-1"
                   onClick={() => columnClkCb(field.name)}
+                  type="button"
                 >
                   {field.title}&nbsp;
                   {field.name === sortField
@@ -99,18 +103,37 @@ export const DataGrid: React.FC<DataGridProps> = ({
               <td>
                 <div className="d-flex justify-content-center align-items-center">
                   <div className={styles.buttonsPanel}>
-                    <button
-                      className="btn btn-primary btn-sm mr-2"
-                      onClick={() => actionCb({ id: item.id, type: 'edit' })}
-                    >
-                      Изменить
-                    </button>
-                    <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => deleteActionHandle(item.id)}
-                    >
-                      Удалить
-                    </button>
+                    {showEditAction ? (
+                      <button
+                        className="btn btn-primary btn-sm m-1"
+                        onClick={() =>
+                          actionCb({ id: item.id, type: 'edit', data: null })
+                        }
+                        type="button"
+                      >
+                        Изменить
+                      </button>
+                    ) : null}
+                    {showDeleteAction ? (
+                      <button
+                        className="btn btn-primary btn-sm m-1"
+                        onClick={() => deleteActionHandle(item.id)}
+                        type="button"
+                      >
+                        Удалить
+                      </button>
+                    ) : null}
+                    {showSelectAction ? (
+                      <button
+                        className="btn btn-primary btn-sm m-1"
+                        onClick={() =>
+                          actionCb({ id: item.id, type: 'select', data: item })
+                        }
+                        type="button"
+                      >
+                        Выбрать
+                      </button>
+                    ) : null}
                   </div>
                 </div>
               </td>

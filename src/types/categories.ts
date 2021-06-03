@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 const CategoriesItemStructure = yup.object({
   id: yup.number().required(),
-  title: yup.string().required('должно быть заполнено').max(200),
+  title: yup.string().required().max(200),
   description: yup.string().nullable(),
 });
 

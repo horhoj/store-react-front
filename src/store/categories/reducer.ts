@@ -17,7 +17,7 @@ const initialState: CategoriesState = {
     sort_asc: 1,
     search: '',
     per_page: 10,
-    sort_field: 'title',
+    sort_field: 'id',
   },
 };
 

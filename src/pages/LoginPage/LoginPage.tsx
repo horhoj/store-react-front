@@ -99,6 +99,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   className="btn btn-primary btn-sm mt-3"
                   onClick={handleReset}
+                  type="button"
                 >
                   Сбросить
                 </button>

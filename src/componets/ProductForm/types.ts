@@ -1,4 +1,8 @@
-import { ProductEntityType, ProductEntityTypeKeys } from '../../types/product';
+import {
+  ProductAttachedCategoriesTypeKeys,
+  ProductEntityType,
+  ProductEntityTypeKeys,
+} from '../../types/product';
 
 export interface ProductFormProps {
   initialValues: ProductEntityType | null;
@@ -16,4 +20,9 @@ export interface ProductFormSubmitCb {
 
 export interface ProductFormCancelCb {
   (): void;
+}
+
+export interface ProductFormAttachedCategoryVisibleField {
+  name: ProductAttachedCategoriesTypeKeys;
+  title: string;
 }

@@ -4,6 +4,7 @@ import {
   ProductResponseSchema,
   ProductEntityType,
 } from '../../../types/product';
+import { productRequestDataTransform } from './helpers';
 
 export const getProductRequest = async (
   id: number,
@@ -28,7 +29,7 @@ export const updateProductRequest = async (
   const requestConfig: AxiosRequestConfig = {
     url,
     method: 'put',
-    data: productData,
+    data: productRequestDataTransform(productData),
   };
 
   await ajaxRequestWithAuthHeader(requestConfig);

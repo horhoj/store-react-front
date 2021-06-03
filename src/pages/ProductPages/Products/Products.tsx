@@ -133,6 +133,10 @@ export const Products: React.FC = () => {
             findStr={currentRequestConfig.search}
             changePerPageCb={changePerPageCb}
             addBtnClkCb={addBtnClkCb}
+            showDeleteAction={true}
+            showSelectAction={false}
+            showEditAction={true}
+            showAddAction={true}
           />
         </div>
       </div>

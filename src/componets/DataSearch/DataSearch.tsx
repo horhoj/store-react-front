@@ -47,6 +47,7 @@ export const DataSearch: React.FC<DataSearchProps> = ({
       <button
         className="btn btn-primary mr-2"
         onClick={findStrCLearBtnClkHandle}
+        type="button"
       >
         Очистить
       </button>

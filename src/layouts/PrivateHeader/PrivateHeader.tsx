@@ -17,15 +17,21 @@ export const PrivateHeader: React.FC = () => {
       className={`p-2 d-flex w-100 justify-content-between align-items-center ${styles.mainHeader}`}
     >
       <div>
-        <button className="mr-4 btn btn-primary">M</button>
+        <button className="mr-4 btn btn-primary" type="button">
+          M
+        </button>
         <span>Панель управления</span>
       </div>
 
       <div className="d-flex">
-        <button className="btn btn-primary mr-2">
+        <button className="btn btn-primary mr-2" type="button">
           {userData ? userData.email : ''}
         </button>
-        <button className="btn btn-primary" onClick={logoutHandle}>
+        <button
+          className="btn btn-primary"
+          onClick={logoutHandle}
+          type="button"
+        >
           Выход
         </button>
       </div>

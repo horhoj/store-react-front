@@ -1,0 +1,31 @@
+.modalWindowExternalContainer {
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.25s ease, visibility 0.2s ease;
+}
+
+.modalWindowInternalContainer {
+  overflow: auto;
+  width: 90vw;
+  height: 90vh;
+  transition: transform 0.25s ease;
+}
+
+
+
+.hiddenExternalContainer {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hiddenInternalContainer {
+  transform: scale(.1);
+}

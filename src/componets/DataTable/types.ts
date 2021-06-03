@@ -1,3 +1,4 @@
+import { bool } from 'yup';
 import {
   DataGridColumnClkCb,
   DataGridRowActionBtnClkCb,
@@ -26,6 +27,10 @@ export interface DataTableProps {
   findStr: string;
   changePerPageCb: DataTableChangePerPageCb;
   addBtnClkCb: DataTableAddBtnClkCb;
+  showSelectAction: boolean;
+  showDeleteAction: boolean;
+  showEditAction: boolean;
+  showAddAction: boolean;
 }
 
 export interface DataTableVisibleField extends DataGridVisibleField {}

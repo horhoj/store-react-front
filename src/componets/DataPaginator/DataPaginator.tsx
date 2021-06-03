@@ -60,12 +60,14 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
         <button
           className="btn btn-primary mr-2"
           onClick={goToFirstPageBtnClkHandle}
+          type="button"
         >
           {FIRST_PAGE}
         </button>
         <button
           className="btn btn-primary mr-2"
           onClick={goToPrevPageBtnClkHandle}
+          type="button"
         >
           {PREV_PAGE}
         </button>
@@ -84,10 +86,15 @@ export const DataPaginator: React.FC<DataPaginatorProps> = ({
         <button
           className="btn btn-primary mr-2"
           onClick={goToNextPageBtnClkHandle}
+          type="button"
         >
           {NEXT_PAGE}
         </button>
-        <button className="btn btn-primary" onClick={goToLastPageBtnClkHandle}>
+        <button
+          className="btn btn-primary"
+          onClick={goToLastPageBtnClkHandle}
+          type="button"
+        >
           {LAST_PAGE}
         </button>
       </div>

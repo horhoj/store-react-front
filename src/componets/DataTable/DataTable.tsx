@@ -22,6 +22,10 @@ export const DataTable: React.FC<DataTableProps> = ({
   findStr,
   changePerPageCb,
   addBtnClkCb,
+  showEditAction,
+  showDeleteAction,
+  showSelectAction,
+  showAddAction,
 }) => {
   return (
     <div className="w-100 position-relative app__transition-opacity">
@@ -29,20 +33,29 @@ export const DataTable: React.FC<DataTableProps> = ({
       {items && visibleFields ? (
         <fieldset disabled={isLoading}>
           <div className="mb-3">
-            <button className="btn btn-primary mr-2" onClick={addBtnClkCb}>
-              Добавить
-            </button>
-            <button className="btn btn-primary" onClick={updateBtnClkCb}>
+            {showAddAction ? (
+              <button
+                className="btn btn-primary mr-2"
+                onClick={addBtnClkCb}
+                type="button"
+              >
+                Добавить
+              </button>
+            ) : null}
+            <button
+              className="btn btn-primary"
+              onClick={updateBtnClkCb}
+              type="button"
+            >
               Обновить
             </button>
           </div>
-
           <DataSearch
             searchCb={searchCb}
             findStr={findStr}
             isLoading={isLoading}
           />
-          <div>
+          <div className="mt-3">
             <DataGrid
               items={items}
               currentPage={currentPage}
@@ -53,6 +66,9 @@ export const DataTable: React.FC<DataTableProps> = ({
               columnClkCb={columnClkCb}
               visibleFields={visibleFields}
               findStr={findStr}
+              showSelectAction={showSelectAction}
+              showDeleteAction={showDeleteAction}
+              showEditAction={showEditAction}
             />
           </div>
           <div>
