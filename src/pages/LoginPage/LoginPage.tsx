@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { authActions, authSelectors } from '../../store/auth';
-import { Spinner } from '../../componets/Spinner';
 import { UserCredential } from '../../types/auth';
 import { DEFAULT_LOGIN_EMAIL, DEFAULT_LOGIN_PASSWORD } from '../../config/API';
 import { LoginFormValidationSchema } from './types';
@@ -108,7 +107,6 @@ export const LoginPage: React.FC = () => {
           </form>
         )}
       </Formik>
-      {isLoading ? <Spinner /> : null}
     </div>
   );
 };

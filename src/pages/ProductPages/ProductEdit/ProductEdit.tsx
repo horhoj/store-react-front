@@ -2,7 +2,6 @@ import { useParams } from 'react-router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions, productSelectors } from '../../../store/product';
-import { Spinner } from '../../../componets/Spinner';
 import { ProductForm } from '../../../componets/ProductForm';
 import {
   ProductFormCancelCb,
@@ -59,7 +58,6 @@ export const ProductEdit: React.FC = () => {
           </div>
         </div>
       ) : null}
-      {isLoading ? <Spinner /> : null}
       <fieldset disabled={isLoading}>
         {error !== 404 && error !== SERVER_NOT_RESPONDING ? productForm : null}
       </fieldset>

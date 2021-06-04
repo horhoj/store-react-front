@@ -10,12 +10,12 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(userActions.getData());
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="d-flex min-vh-100">
-      {isLoading ? <Spinner /> : <RoutesStructure />}
+      <Spinner />
+      {isLoading ? null : <RoutesStructure />}
     </div>
   );
 };

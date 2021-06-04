@@ -1,5 +1,4 @@
 import React from 'react';
-import { Spinner } from '../Spinner';
 import { DataPaginator } from '../DataPaginator';
 import { DataSearch } from '../DataSearch';
 import { DataGrid } from '../DataGrid';
@@ -29,7 +28,6 @@ export const DataTable: React.FC<DataTableProps> = ({
 }) => {
   return (
     <div className="w-100 position-relative app__transition-opacity">
-      {isLoading ? <Spinner /> : ''}
       {items && visibleFields ? (
         <fieldset disabled={isLoading}>
           <div className="mb-3">

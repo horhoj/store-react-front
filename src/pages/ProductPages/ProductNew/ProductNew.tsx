@@ -9,7 +9,6 @@ import {
 import { ProductEntityType } from '../../../types/product';
 import { ProductForm } from '../../../componets/ProductForm';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
-import { Spinner } from '../../../componets/Spinner';
 import { appActions } from '../../../store/app';
 
 export const ProductNew: React.FC = () => {
@@ -54,7 +53,6 @@ export const ProductNew: React.FC = () => {
           </div>
         </div>
       ) : null}
-      {isLoading ? <Spinner /> : null}
       <fieldset disabled={isLoading}>
         {error !== 404 && error !== SERVER_NOT_RESPONDING ? productForm : null}
       </fieldset>

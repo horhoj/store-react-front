@@ -5,7 +5,6 @@ import { getPathByName } from '../../../router';
 import { CategoryEntityType } from '../../../types/category';
 import { CategoryForm } from '../../../componets/CategoryForm';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
-import { Spinner } from '../../../componets/Spinner';
 import { appActions } from '../../../store/app';
 
 export const CategoryNew: React.FC = () => {
@@ -50,7 +49,6 @@ export const CategoryNew: React.FC = () => {
           </div>
         </div>
       ) : null}
-      {isLoading ? <Spinner /> : null}
       <fieldset disabled={isLoading}>
         {error !== 404 && error !== SERVER_NOT_RESPONDING ? categoryForm : null}
       </fieldset>

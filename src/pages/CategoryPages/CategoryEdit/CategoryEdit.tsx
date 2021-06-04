@@ -5,7 +5,6 @@ import { CategoryForm } from '../../../componets/CategoryForm';
 import { categoryActions, categorySelectors } from '../../../store/category';
 import { getPathByName } from '../../../router';
 import { CategoryEntityType } from '../../../types/category';
-import { Spinner } from '../../../componets/Spinner';
 import { SERVER_NOT_RESPONDING } from '../../../config/API';
 import { appActions } from '../../../store/app';
 
@@ -55,7 +54,6 @@ export const CategoryEdit: React.FC = () => {
           </div>
         </div>
       ) : null}
-      {isLoading ? <Spinner /> : null}
       <fieldset disabled={isLoading}>
         {error !== 404 && error !== SERVER_NOT_RESPONDING ? categoryForm : null}
       </fieldset>
