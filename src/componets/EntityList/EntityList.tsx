@@ -83,7 +83,7 @@ export const EntityList: React.FC<EntityListProps> = ({
     <div>
       <div className="">
         <button
-          className="btn btn-primary mt-3"
+          className="btn btn-sm btn-primary mt-3 app__btn-min-width"
           type="button"
           onClick={addItemCb}
         >

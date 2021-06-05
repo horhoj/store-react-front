@@ -49,11 +49,11 @@ export const DataGrid: React.FC<DataGridProps> = ({
 
   return items && visibleFields ? (
     <div className="">
-      <table className="table table-striped table-sm font-weight-normal">
+      <table className="table table-striped table-sm font-weight-normal ">
         <thead>
           <tr>
             <th className="border bg-primary cur text-white text-center">
-              <div className="btn text-white app__cursor-default app__line-height-1">
+              <div className="btn btn-sm text-white app__cursor-default app__line-height-1">
                 №
               </div>
             </th>
@@ -65,7 +65,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                 key={field.name}
               >
                 <button
-                  className="btn w-100 text-white app__line-height-1"
+                  className="btn btn-sm w-100 text-white app__line-height-1"
                   onClick={() => columnClkCb(field.name)}
                   type="button"
                 >
@@ -79,7 +79,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
               </th>
             ))}
             <th className="border bg-primary text-white text-center">
-              <div className="btn  text-white app__cursor-default app__line-height-1 ">
+              <div className="btn btn-sm text-white app__cursor-default app__line-height-1 ">
                 Действия
               </div>
             </th>
@@ -105,7 +105,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                   <div className={styles.buttonsPanel}>
                     {showEditAction ? (
                       <button
-                        className="btn btn-primary btn-sm m-1"
+                        className="btn btn-primary btn-sm mr-1"
                         onClick={() =>
                           actionCb({ id: item.id, type: 'edit', data: null })
                         }
@@ -116,7 +116,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                     ) : null}
                     {showDeleteAction ? (
                       <button
-                        className="btn btn-primary btn-sm m-1"
+                        className="btn btn-primary btn-sm mr-1"
                         onClick={() => deleteActionHandle(item.id)}
                         type="button"
                       >
@@ -125,7 +125,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                     ) : null}
                     {showSelectAction ? (
                       <button
-                        className="btn btn-primary btn-sm m-1"
+                        className="btn btn-primary btn-sm"
                         onClick={() =>
                           actionCb({ id: item.id, type: 'select', data: item })
                         }

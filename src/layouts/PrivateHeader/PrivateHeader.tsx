@@ -24,11 +24,14 @@ export const PrivateHeader: React.FC = () => {
       </div>
 
       <div className="d-flex">
-        <button className="btn btn-primary mr-2" type="button">
+        <button
+          className="btn btn-primary mr-2 app__btn-min-width"
+          type="button"
+        >
           {userData ? userData.email : ''}
         </button>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary app__btn-min-width"
           onClick={logoutHandle}
           type="button"
         >

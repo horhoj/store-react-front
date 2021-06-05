@@ -33,7 +33,7 @@ export const DataTable: React.FC<DataTableProps> = ({
           <div className="mb-3">
             {showAddAction ? (
               <button
-                className="btn btn-primary mr-2"
+                className="btn btn-primary btn-sm mr-2 app__btn-min-width"
                 onClick={addBtnClkCb}
                 type="button"
               >
@@ -41,7 +41,7 @@ export const DataTable: React.FC<DataTableProps> = ({
               </button>
             ) : null}
             <button
-              className="btn btn-primary"
+              className="btn btn-sm btn-primary app__btn-min-width"
               onClick={updateBtnClkCb}
               type="button"
             >

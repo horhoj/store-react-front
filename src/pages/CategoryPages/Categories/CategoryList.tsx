@@ -109,7 +109,6 @@ export const CategoryList: React.FC<CategoryListProps> = ({
 
   return (
     <div className=" d-flex flex-grow-1 flex-column">
-      <h4>Категории</h4>
       {error !== null ? (
         <div className="alert alert-danger">
           <h5>Не удалось загрузить данные по товарам</h5>

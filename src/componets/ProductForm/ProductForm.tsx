@@ -68,20 +68,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     hideCb();
     if (categories.filter((category) => category.id === item.id).length === 0) {
       setCategories((prev) => [...prev, item]);
+    } else {
+      alert('Выбранная категория уже в списке добавленных');
     }
   };
 
   return (
     <div>
       <ModalWindow hideCb={hideCb} isShow={showSelectCategoryModalForm}>
-        <>
+        <div className="d-flex flex-column flex-grow-1">
+          <h4>Выберите категорию для добавления</h4>
           {showSelectCategoryModalForm ? (
             <CategoryList
               isModal={true}
               selectActionCb={categoryListSelectActionCb}
             />
           ) : null}
-        </>
+        </div>
       </ModalWindow>
       <Formik
         enableReinitialize={true}

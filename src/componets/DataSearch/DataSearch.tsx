@@ -45,7 +45,7 @@ export const DataSearch: React.FC<DataSearchProps> = ({
   return (
     <div className="d-flex">
       <button
-        className="btn btn-primary mr-2"
+        className="btn btn-primary btn-sm mr-2 app__btn-min-width"
         onClick={findStrCLearBtnClkHandle}
         type="button"
       >
@@ -53,7 +53,7 @@ export const DataSearch: React.FC<DataSearchProps> = ({
       </button>
       <input
         type="text"
-        className="form-control"
+        className="form-control form-control-sm w-100"
         value={findStrValue}
         onChange={(e) => setFindStrValue(e.target.value)}
         ref={searchInputRef}
