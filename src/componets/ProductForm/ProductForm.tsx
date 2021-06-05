@@ -65,9 +65,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     setShowSelectCategoryModalForm(false);
   };
   const categoryListSelectActionCb: CategoryListSelectActionCb = (item) => {
-    hideCb();
     if (categories.filter((category) => category.id === item.id).length === 0) {
       setCategories((prev) => [...prev, item]);
+      hideCb();
     } else {
       alert('Выбранная категория уже в списке добавленных');
     }

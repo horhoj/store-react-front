@@ -9,7 +9,6 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
   hideCb,
   isShow,
 }) => {
-  const [isShowChildren, setIsShowChildren] = useState(true);
   useEffect(() => {
     if (isShow) {
       const body = document.body;
@@ -24,32 +23,47 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
     }
   }, [isShow]);
 
+  const [isShowChildren, setIsShowChildren] = useState(false);
+  const [isShowInternal, setIsShowInternal] = useState(false);
   useEffect(() => {
     if (isShow) {
       setIsShowChildren(true);
+      delay(0).then(() => {
+        setIsShowInternal(true);
+      });
     } else {
-      (async () => {
-        await delay(MODAL_HIDE_CHILDREN_DELAY);
+      delay(MODAL_HIDE_CHILDREN_DELAY).then(() => {
         setIsShowChildren(false);
-      })();
+        setIsShowInternal(false);
+      });
     }
   }, [isShow]);
 
-  return (
+  return isShow || isShowInternal ? (
     <div
       className={`${styles.modalWindowExternalContainer} ${
-        !isShow ? styles.hiddenExternalContainer : ''
+        !(isShow && isShowInternal) ? styles.hiddenExternalContainer : ''
       }`}
       onClick={hideCb}
     >
       <div
-        className={`bg-white p-3 rounded ${
+        className={`bg-white pl-3 pr-3 pb-3 pt-5 rounded overflow-hidden position-relative ${
           styles.modalWindowInternalContainer
-        } ${!isShow ? styles.hiddenInternalContainer : ''}`}
+        } ${!(isShow && isShowInternal) ? styles.hiddenInternalContainer : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {isShowChildren ? children : ''}
+        <button
+          type="button"
+          className={`btn btn-sm btn-danger font-weight-bold ${styles.closeBtn}`}
+          onClick={hideCb}
+        >
+          X
+        </button>
+
+        <div className="overflow-auto w-100 h-100 ">
+          {isShowChildren ? children : ''}
+        </div>
       </div>
     </div>
-  );
+  ) : null;
 };
