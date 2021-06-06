@@ -13,7 +13,7 @@ export interface EntityListVisibleField {
 }
 
 export interface EntityListSetItems {
-  (items: any[]): void;
+  (items: Items): void;
 }
 
 export interface EntityListAddItemCb {

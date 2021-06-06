@@ -8,7 +8,7 @@ import {
 import { DataSearch } from '../DataSearch';
 import { DataSearchCb } from '../DataSearch/types';
 import { EntityListProps, Items } from './types';
-import { sortHelper } from './helpers';
+import { searchFilter, sortHelper } from './helpers';
 
 export const EntityList: React.FC<EntityListProps> = ({
   items,
@@ -20,8 +20,14 @@ export const EntityList: React.FC<EntityListProps> = ({
   const [sortField, setSortField] = useState('id');
   const [sortAsc, setSortAsc] = useState<DataGridSortAscType>(1);
 
+  const fieldNames: string[] = visibleFields.map((field) => field.name);
+
   const itemsFilter = (items: Items) => {
-    const result = items.sort(sortHelper(sortField));
+    const foundItems =
+      searchStr.trim().length > 0
+        ? searchFilter(items, searchStr, fieldNames)
+        : items;
+    const result = foundItems.sort(sortHelper(sortField));
     if (sortAsc === 0) {
       return result.reverse();
     }
