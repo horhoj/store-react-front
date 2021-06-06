@@ -8,14 +8,16 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   transition: opacity 0.25s ease, visibility 0.2s ease;
 }
 
 .modalWindowInternalContainer {
+  margin: 50px;
   overflow: auto;
   width: 90%;
   height: 90%;
+  max-height: 800px;
+  max-width: 1200px;
   transition: transform 0.25s ease;
 }
 
