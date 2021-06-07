@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { getPathByName } from '../../router';
 import styles from './styles.module.scss';
 
@@ -7,16 +7,18 @@ export const PrivateMenu: React.FC = () => {
   return (
     <div className={`p-2 ${styles.mainMenu}`}>
       <div>
-        <Link to={getPathByName('home')}>Главная</Link>
+        <NavLink exact={true} to={getPathByName('home')}>
+          Главная
+        </NavLink>
       </div>
       <div>
-        <Link to={getPathByName('products')}>Товары</Link>
+        <NavLink to={getPathByName('products')}>Товары</NavLink>
       </div>
       <div>
-        <Link to={getPathByName('categories')}>Категории</Link>
+        <NavLink to={getPathByName('categories')}>Категории</NavLink>
       </div>
       <div>
-        <Link to={getPathByName('about')}>О программе</Link>
+        <NavLink to={getPathByName('about')}>О программе</NavLink>
       </div>
     </div>
   );

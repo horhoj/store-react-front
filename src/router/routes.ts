@@ -41,7 +41,7 @@ export const routes: RouteItem[] = [
   },
   {
     name: 'productEdit',
-    path: '/product/:id',
+    path: '/products/edit/:id',
     exact: true,
     always: false,
     private: true,
@@ -49,7 +49,7 @@ export const routes: RouteItem[] = [
   },
   {
     name: 'productNew',
-    path: '/product_new',
+    path: '/products/new',
     exact: true,
     always: false,
     private: true,
@@ -65,7 +65,7 @@ export const routes: RouteItem[] = [
   },
   {
     name: 'categoryEdit',
-    path: '/category/:id',
+    path: '/categories/edit/:id',
     exact: true,
     always: false,
     private: true,
@@ -73,7 +73,7 @@ export const routes: RouteItem[] = [
   },
   {
     name: 'categoryNew',
-    path: '/category_new',
+    path: '/categories/new',
     exact: true,
     always: false,
     private: true,

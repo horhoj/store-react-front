@@ -1,0 +1,9 @@
+.mainMenu {
+  transition: opacity .25s ease, visibility .3s ease, margin-left .25s ease;
+}
+
+.mainMenuAlternateMode {
+  margin-left: -230px;
+  opacity: 0;
+  visibility: hidden;
+}

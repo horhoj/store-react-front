@@ -1,6 +1,5 @@
 $primary: #222436;
 $btn-disabled-opacity: .9;
-//$input-disabled-bg: white;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -17,15 +16,9 @@ body {
   cursor: default !important;
 }
 
-//.app__disabled {
-//  cursor: none;
-//  opacity: .65 !important;
-//}
-
 .app__line-height-1 {
   line-height: 1 !important;
 }
-
 
 .app__transition-opacity {
   transition: opacity .3s ease;
@@ -37,4 +30,11 @@ input, button {
 
 .app__btn-min-width {
   min-width: 100px;
+}
+
+.active {
+  color: magenta !important;
+  font-weight: bold;
+  //font-size: 120%;
+  //width: 100%;
 }
