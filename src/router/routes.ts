@@ -1,6 +1,5 @@
 import { HomePage } from '../pages/HomePage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
-import { AboutPage } from '../pages/AboutPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products, ProductNew, ProductEdit } from '../pages/ProductPages';
 import { Categories, CategoryNew, CategoryEdit } from '../pages/CategoryPages';
@@ -14,14 +13,6 @@ export const routes: RouteItem[] = [
     private: true,
     always: false,
     component: HomePage,
-  },
-  {
-    name: 'about',
-    path: '/about',
-    exact: true,
-    private: true,
-    always: false,
-    component: AboutPage,
   },
   {
     name: 'login',

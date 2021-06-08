@@ -28,7 +28,7 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
   useEffect(() => {
     if (isShow) {
       setIsShowChildren(true);
-      delay(0).then(() => {
+      delay(25).then(() => {
         setIsShowInternal(true);
       });
     } else {

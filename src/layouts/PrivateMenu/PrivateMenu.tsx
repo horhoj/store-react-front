@@ -17,9 +17,6 @@ export const PrivateMenu: React.FC = () => {
       <div>
         <NavLink to={getPathByName('categories')}>Категории</NavLink>
       </div>
-      <div>
-        <NavLink to={getPathByName('about')}>О программе</NavLink>
-      </div>
     </div>
   );
 };
