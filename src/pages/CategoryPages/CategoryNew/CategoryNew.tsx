@@ -38,7 +38,7 @@ export const CategoryNew: React.FC = () => {
 
   return (
     <div>
-      <h5>Добавление нового товара</h5>
+      <h5>Добавление новой категории</h5>
       {error !== null ? (
         <div className="alert alert-danger">
           <h5>Ошибка!</h5>
