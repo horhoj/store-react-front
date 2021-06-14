@@ -9,7 +9,7 @@ import { SERVER_NOT_RESPONDING } from '../../../config/API';
 import { appActions } from '../../../store/app';
 
 export const CategoryEdit: React.FC = () => {
-  const id = useParams<{ id: string }>().id;
+  const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const isLoading = useSelector(categorySelectors.getIsLoading);
   const category = useSelector(categorySelectors.getCategory);

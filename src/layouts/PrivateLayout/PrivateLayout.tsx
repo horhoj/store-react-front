@@ -21,7 +21,7 @@ export const PrivateLayout: React.FC = ({ children }) => {
         >
           <PrivateMenu />
         </div>
-        <div className="p-2 d-flex flex-grow-1">{children}</div>
+        <main className="p-2 d-flex flex-grow-1">{children}</main>
       </div>
       <div className="d-flex">
         <PrivateFooter />

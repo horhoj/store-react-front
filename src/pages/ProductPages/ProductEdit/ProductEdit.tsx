@@ -13,7 +13,7 @@ import { SERVER_NOT_RESPONDING } from '../../../config/API';
 import { appActions } from '../../../store/app';
 
 export const ProductEdit: React.FC = () => {
-  const id = useParams<{ id: string }>().id;
+  const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const error = useSelector(productSelectors.getError);
   const product = useSelector(productSelectors.getProduct);

@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 export const PrivateMenu: React.FC = () => {
   return (
-    <div className={`p-2 ${styles.mainMenu}`}>
+    <nav className={`p-2 ${styles.mainMenu}`}>
       <div>
         <NavLink exact={true} to={getPathByName('home')}>
           Главная
@@ -17,6 +17,6 @@ export const PrivateMenu: React.FC = () => {
       <div>
         <NavLink to={getPathByName('categories')}>Категории</NavLink>
       </div>
-    </div>
+    </nav>
   );
 };

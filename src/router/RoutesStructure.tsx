@@ -4,9 +4,10 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { authSelectors } from '../store/auth';
 import { PrivateLayout } from '../layouts/PrivateLayout';
 import { PublicLayout } from '../layouts/PublicLayout';
-import { getPathByName, routes } from './routes';
+import { routes } from './routes';
 import { RouteItem } from './types';
 import { RedirectComponent } from './RedirectComponent';
+import { getPathByName } from './helpers';
 
 export const RoutesStructure: React.FC = () => {
   const userIsAuthenticated = useSelector(authSelectors.getIsAuthenticated);

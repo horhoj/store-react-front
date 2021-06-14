@@ -3,7 +3,7 @@ import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products, ProductNew, ProductEdit } from '../pages/ProductPages';
 import { Categories, CategoryNew, CategoryEdit } from '../pages/CategoryPages';
-import { RouterPathNames, RouteItem } from './types';
+import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
   {
@@ -79,14 +79,3 @@ export const routes: RouteItem[] = [
     component: RouteNotFoundPage,
   },
 ];
-
-export const getPathByName = (name: RouterPathNames): string => {
-  const routeItem: RouteItem | undefined = routes.find(
-    (route) =>
-      route.name.toString().toLowerCase() === name.toString().toLowerCase(),
-  );
-  if (routeItem) {
-    return routeItem.path;
-  }
-  throw new Error('getPathByName: Unknown route!');
-};
