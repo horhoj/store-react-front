@@ -81,9 +81,10 @@ export const EntityList: React.FC<EntityListProps> = ({
       </div>
     );
 
-  const dataSearchRender = (
-    <DataSearch searchCb={searchCb} findStr={searchStr} isLoading={false} />
-  );
+  const dataSearchRender =
+    items.length > 0 ? (
+      <DataSearch searchCb={searchCb} findStr={searchStr} isLoading={false} />
+    ) : null;
 
   return (
     <div>
