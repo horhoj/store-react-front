@@ -3,6 +3,7 @@ import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products, ProductNew, ProductEdit } from '../pages/ProductPages';
 import { Categories, CategoryNew, CategoryEdit } from '../pages/CategoryPages';
+import { SignUpPage } from '../pages/SignUpPage/SignUpPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -21,6 +22,14 @@ export const routes: RouteItem[] = [
     private: false,
     always: false,
     component: LoginPage,
+  },
+  {
+    name: 'signUp',
+    path: '/sign_up',
+    exact: true,
+    private: false,
+    always: false,
+    component: SignUpPage,
   },
   {
     name: 'products',

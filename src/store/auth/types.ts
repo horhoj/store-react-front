@@ -1,20 +1,25 @@
 import { UserCredential } from '../../types/auth';
+import { SignUpData } from '../../types/signUp';
 
 export enum authActionType {
   SET_IS_AUTHENTICATED = 'AUTH/SET_IS_AUTHENTICATED',
   SET_IS_LOADING = 'AUTH/SET_IS_LOADING',
   LOGIN = 'AUTH/LOGIN',
-  SET_ERRORS = 'AUTH/SET_ERRORS',
+  SET_ERROR = 'AUTH/SET_ERROR',
+  SET_ERROR_DATA = 'AUTH/SET_ERROR_DATA',
   LOGOUT = 'AUTH/LOGOUT',
+  SIGN_UP = 'AUTH/SIGN_UP',
 }
 
 export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
-  loginError: LoginError;
+  error: Error;
+  errorData: ErrorData;
 }
 
-export type LoginError = number | null;
+export type ErrorData = any;
+export type Error = number | null;
 
 export interface AuthAction<T = any> {
   type: authActionType;
@@ -27,8 +32,12 @@ export type SetIsLoading = AuthAction<{
   isLoading: boolean;
 }>;
 
-export type SetLoginError = AuthAction<{ error: LoginError }>;
+export type SetError = AuthAction<{ error: Error }>;
+
+export type SetErrorData = AuthAction<{ errorData: ErrorData }>;
 
 export type Login = AuthAction<{ userCredential: UserCredential }>;
 
 export type Logout = AuthAction;
+
+export type SignUp = AuthAction<{ signUpData: SignUpData }>;

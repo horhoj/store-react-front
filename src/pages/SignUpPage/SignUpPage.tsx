@@ -1,26 +1,23 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { authActions, authSelectors } from '../../store/auth';
-import { UserCredential } from '../../types/auth';
-import { DEFAULT_LOGIN_EMAIL, DEFAULT_LOGIN_PASSWORD } from '../../config/API';
+import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPathByName } from '../../router';
-import { LoginFormValidationSchema } from '../../types/login';
+import { authActions, authSelectors } from '../../store/auth';
+import { SignUpData, SignUpFormValidationSchema } from '../../types/signUp';
+import { ErrorDataView } from '../../componets/ErrorDataView';
 import styles from './styles.module.scss';
 
-export const LoginPage: React.FC = () => {
-  const dispatch = useDispatch();
+export const SignUpPage: React.FC = () => {
   const isLoading = useSelector(authSelectors.getIsLoading);
   const error = useSelector(authSelectors.getError);
-
-  const initialValues: UserCredential = {
-    email: DEFAULT_LOGIN_EMAIL,
-    password: DEFAULT_LOGIN_PASSWORD,
-  };
-
-  const onSubmit = (values: UserCredential) => {
-    dispatch(authActions.login(values));
+  const errorData = useSelector(authSelectors.getErrorData);
+  const dispatch = useDispatch();
+  const initialValues: SignUpData = {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
   };
 
   useEffect(() => {
@@ -31,25 +28,32 @@ export const LoginPage: React.FC = () => {
     return () => clearError();
   }, [dispatch]);
 
+  const onSubmit = (values: SignUpData) => {
+    dispatch(authActions.signUp(values));
+  };
+
   return (
-    <div className={`d-flex  flex-grow-1 flex-column ${styles.loginForm}`}>
+    <div className={`d-flex  flex-grow-1 flex-column ${styles.signUpForm}`}>
       <h3>Вход в систему</h3>
       {error !== null ? (
         <div className="alert alert-danger">
-          <h5>Не удалось войти в систему</h5>
+          <h5>Не удалось зарегистрировать пользователя</h5>
           <div>
             {error === 0
               ? 'Не удалось подключится к серверу'
-              : error === 401
-              ? 'Неправильные логин или пароль'
+              : error === 422
+              ? 'вы не правильно указали данные пользователя для регистрации'
               : `ошибка с кодом ${error}`}
+          </div>
+          <div>
+            <ErrorDataView error={error} errorData={errorData} />
           </div>
         </div>
       ) : null}
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
-        validationSchema={LoginFormValidationSchema}
+        validationSchema={SignUpFormValidationSchema}
       >
         {({
           values,
@@ -62,6 +66,23 @@ export const LoginPage: React.FC = () => {
         }) => (
           <form onSubmit={handleSubmit} noValidate={true} autoComplete={'off'}>
             <fieldset disabled={isLoading}>
+              {/*имя*/}
+              <div className="mt-2 small">имя</div>
+              <input
+                className={`form-control ${
+                  errors.name && touched.name ? 'border-danger' : ''
+                }`}
+                type="text"
+                name="name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
+              />
+              <div className="small text-danger">
+                {errors.name && touched.name && errors.name}
+              </div>
+
+              {/*почта*/}
               <div className="mt-2 small">почта</div>
               <input
                 className={`form-control ${
@@ -76,6 +97,8 @@ export const LoginPage: React.FC = () => {
               <div className="small text-danger">
                 {errors.email && touched.email && errors.email}
               </div>
+
+              {/*пароль*/}
               <div className="mt-2 small">пароль</div>
               <input
                 className={`form-control ${
@@ -90,12 +113,34 @@ export const LoginPage: React.FC = () => {
               <div className="small text-danger">
                 {errors.password && touched.password && errors.password}
               </div>
+
+              {/*подтверждение пароля*/}
+              <div className="mt-2 small">подтверждение пароля</div>
+              <input
+                className={`form-control ${
+                  errors.password_confirmation && touched.password_confirmation
+                    ? 'border-danger'
+                    : ''
+                }`}
+                type="text"
+                name="password_confirmation"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password_confirmation}
+              />
+              <div className="small text-danger">
+                {errors.password_confirmation &&
+                  touched.password_confirmation &&
+                  errors.password_confirmation}
+              </div>
+
+              {/*панель кнопок*/}
               <div className={styles.buttonPanel}>
                 <button
                   className="btn btn-primary btn-sm mt-3 mr-2"
                   type="submit"
                 >
-                  Войти
+                  Зарегистрировать
                 </button>
                 <button
                   className="btn btn-primary btn-sm mt-3"
@@ -107,8 +152,8 @@ export const LoginPage: React.FC = () => {
               </div>
               <div className="mt-3">
                 Вы также можете&nbsp;
-                <Link to={getPathByName('signUp')} className="text-info">
-                  зарегистрироваться
+                <Link to={getPathByName('login')} className="text-info">
+                  войти
                 </Link>
               </div>
             </fieldset>

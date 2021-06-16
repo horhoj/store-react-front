@@ -1,16 +1,18 @@
 import {
-  SetIsAuthenticated,
-  SetIsLoading,
   AuthAction,
   authActionType,
   AuthState,
-  SetLoginError,
+  SetError,
+  SetErrorData,
+  SetIsAuthenticated,
+  SetIsLoading,
 } from './types';
 
 const initialState: AuthState = {
   isAuthenticated: false,
   isLoading: false,
-  loginError: null,
+  error: null,
+  errorData: null,
 };
 
 export const authReducer = (
@@ -23,10 +25,15 @@ export const authReducer = (
         ...state,
         isAuthenticated: (action as SetIsAuthenticated).payload.isAuthenticated,
       };
-    case authActionType.SET_ERRORS:
+    case authActionType.SET_ERROR:
       return {
         ...state,
-        loginError: (action as SetLoginError).payload.error,
+        error: (action as SetError).payload.error,
+      };
+    case authActionType.SET_ERROR_DATA:
+      return {
+        ...state,
+        errorData: (action as SetErrorData).payload.errorData,
       };
     case authActionType.SET_IS_LOADING:
       return {
