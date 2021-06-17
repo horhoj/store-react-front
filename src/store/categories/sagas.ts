@@ -14,6 +14,9 @@ import {
   getCategoriesRequest,
 } from '../../api/entity/categories';
 import { requestExecutor } from '../sagas';
+import { FlashMessageBody } from '../../types/flashMessage';
+import { FlashMessageAction } from '../flashMessage/types';
+import { flashMessageActions } from '../flashMessage';
 import { getRequestConfig } from './selectors';
 import {
   setCategories,
@@ -60,6 +63,7 @@ export function* getCategories(action: GetCategories): SagaIterator {
 }
 
 export function* deleteCategory(action: DeleteCategory): SagaIterator {
+  const { id } = action.payload;
   try {
     yield put<CategoriesAction>(setIsLoading(true));
     yield put<CategoriesAction>(setError(null));
@@ -73,9 +77,23 @@ export function* deleteCategory(action: DeleteCategory): SagaIterator {
       requestConfig,
     );
     yield put<CategoriesAction>(setCategories(response.data));
+    const successMessage: FlashMessageBody = {
+      message: `Вы успешно удалили категорию с ИД=${id}!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<CategoriesAction>(setError(error));
+    const errorMessage: FlashMessageBody = {
+      message: `Не удалось удалить категорию с ИД=${id}!`,
+      type: 'alert-danger',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(errorMessage),
+    );
   } finally {
     yield put<CategoriesAction>(setIsLoading(false));
   }

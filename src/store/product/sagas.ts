@@ -10,6 +10,9 @@ import { requestExecutor } from '../sagas';
 import { getPathByName } from '../../router';
 import { AppAction } from '../app/types';
 import { appActions } from '../app';
+import { FlashMessageBody } from '../../types/flashMessage';
+import { flashMessageActions } from '../flashMessage';
+import { FlashMessageAction } from '../flashMessage/types';
 import { setError, setIsLoading, setProduct } from './actions';
 import {
   AddProduct,
@@ -50,6 +53,16 @@ export function* updateProduct(action: UpdateProduct): SagaIterator {
       updateProductRequest,
       action.payload.productData,
     );
+
+    const { id } = action.payload.productData;
+    const successMessage: FlashMessageBody = {
+      message: `Данные по товару с ИД=${id} обновлены!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
+
     const path: SagaReturnType<typeof getPathByName> = yield call(
       getPathByName,
       'products',
@@ -67,6 +80,15 @@ export function* addProduct(action: AddProduct): SagaIterator {
   try {
     yield put<ProductAction>(setIsLoading(true));
     yield call(requestExecutor, addProductRequest, action.payload.productData);
+
+    const successMessage: FlashMessageBody = {
+      message: `Новый товар успешно добавлен!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
+
     const path: SagaReturnType<typeof getPathByName> = yield call(
       getPathByName,
       'products',

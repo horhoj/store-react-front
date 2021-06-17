@@ -10,6 +10,10 @@ import { getHTTPStatusFromError } from '../../utils/helpers';
 import { getPathByName } from '../../router';
 import { AppAction } from '../app/types';
 import { appActions } from '../app';
+import { FlashMessageBody } from '../../types/flashMessage';
+import { FlashMessageAction } from '../flashMessage/types';
+import { flashMessageActions } from '../flashMessage';
+import { setCategory, setError, setIsLoading } from './actions';
 import {
   AddCategory,
   CategoryAction,
@@ -17,7 +21,6 @@ import {
   GetCategory,
   UpdateCategory,
 } from './types';
-import { setCategory, setError, setIsLoading } from './actions';
 
 export function* categoryWatcher(): SagaIterator {
   yield takeEvery(CategoryActionType.GET_CATEGORY, getCategory);
@@ -51,6 +54,17 @@ export function* updateCategory(action: UpdateCategory): SagaIterator {
       updateCategoryRequest,
       action.payload.categoryData,
     );
+
+    const { id } = action.payload.categoryData;
+
+    const successMessage: FlashMessageBody = {
+      message: `Категория с ИД=${id} успешно обновлена!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
+
     const path: SagaReturnType<typeof getPathByName> = yield call(
       getPathByName,
       'categories',
@@ -72,6 +86,15 @@ export function* addCategory(action: AddCategory): SagaIterator {
       addCategoryRequest,
       action.payload.categoryData,
     );
+
+    const successMessage: FlashMessageBody = {
+      message: `Новая категория успешно добавлена!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
+
     const path: SagaReturnType<typeof getPathByName> = yield call(
       getPathByName,
       'categories',

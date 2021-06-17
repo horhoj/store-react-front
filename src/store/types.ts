@@ -5,6 +5,7 @@ import { ProductState } from './product/types';
 import { CategoriesState } from './categories/types';
 import { CategoryState } from './category/types';
 import { AppState } from './app/types';
+import { FlashMessageState } from './flashMessage/types';
 
 export interface StoreState {
   app: AppState;
@@ -14,4 +15,5 @@ export interface StoreState {
   product: ProductState;
   categories: CategoriesState;
   category: CategoryState;
+  flashMessage: FlashMessageState;
 }

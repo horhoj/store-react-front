@@ -10,6 +10,8 @@ import { productReducer, productWatcher } from './product';
 import { categoriesReducer, categoriesWatcher } from './categories';
 import { categoryReducer, categoryWatcher } from './category';
 import { appReducer } from './app';
+import { flashMessageReducer } from './flashMessage';
+import { flashMessageWatcher } from './flashMessage/sagas';
 
 const rootReducer = combineReducers<StoreState>({
   app: appReducer,
@@ -19,6 +21,7 @@ const rootReducer = combineReducers<StoreState>({
   product: productReducer,
   categories: categoriesReducer,
   category: categoryReducer,
+  flashMessage: flashMessageReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -36,6 +39,7 @@ function* appWatcher() {
     productWatcher(),
     categoriesWatcher(),
     categoryWatcher(),
+    flashMessageWatcher(),
   ]);
 }
 

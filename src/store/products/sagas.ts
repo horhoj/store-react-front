@@ -14,6 +14,9 @@ import { logger } from '../../utils/logger';
 import { requestExecutor } from '../sagas';
 import { getHTTPStatusFromError } from '../../utils/helpers';
 import { GetProductsRequestConfig } from '../../api/entity/products/types';
+import { FlashMessageBody } from '../../types/flashMessage';
+import { FlashMessageAction } from '../flashMessage/types';
+import { flashMessageActions } from '../flashMessage';
 import {
   setError,
   setIsLoading,
@@ -60,6 +63,7 @@ export function* getProducts(action: GetProducts): SagaIterator {
 }
 
 export function* deleteProduct(action: DeleteProduct): SagaIterator {
+  const { id } = action.payload;
   try {
     yield put<ProductsAction>(setIsLoading(true));
     yield put<ProductsAction>(setError(null));
@@ -73,9 +77,23 @@ export function* deleteProduct(action: DeleteProduct): SagaIterator {
       requestConfig,
     );
     yield put<ProductsAction>(setProducts(response.data));
+    const successMessage: FlashMessageBody = {
+      message: `Товар c ИД=${id} успешно удален!`,
+      type: 'alert-success',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(successMessage),
+    );
   } catch (e) {
     const error: number = getHTTPStatusFromError(e);
     yield put<ProductsAction>(setError(error));
+    const errorMessage: FlashMessageBody = {
+      message: `Не удалось удалить товар c ИД=${id}!`,
+      type: 'alert-danger',
+    };
+    yield put<FlashMessageAction>(
+      flashMessageActions.showMessage(errorMessage),
+    );
   } finally {
     yield put<ProductsAction>(setIsLoading(false));
   }

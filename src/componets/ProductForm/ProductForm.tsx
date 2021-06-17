@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import {
   ProductAttachedCategoriesType,
   ProductEntitySchema,
@@ -11,6 +12,8 @@ import { ModalWindow } from '../ModalWindow';
 import { ModalWindowHideCb } from '../ModalWindow/types';
 import { CategoryList } from '../../pages/CategoryPages';
 import { CategoryListSelectActionCb } from '../../pages/CategoryPages/Categories/types';
+import { FlashMessageBody } from '../../types/flashMessage';
+import { flashMessageActions } from '../../store/flashMessage';
 import {
   ProductFormAttachedCategoryVisibleField,
   ProductFormInputProperties,
@@ -43,6 +46,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const [showSelectCategoryModalForm, setShowSelectCategoryModalForm] =
     useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (initialValues) {
       setCategories(initialValues.categories);
@@ -69,7 +74,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       setCategories((prev) => [...prev, item]);
       hideCb();
     } else {
-      alert('Выбранная категория уже в списке добавленных');
+      const warningMessage: FlashMessageBody = {
+        message: 'Выбранная категория уже в списке добавленных!',
+        type: 'alert-warning',
+      };
+      dispatch(flashMessageActions.showMessage(warningMessage));
     }
   };
 

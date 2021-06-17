@@ -14,10 +14,10 @@ export const SignUpPage: React.FC = () => {
   const errorData = useSelector(authSelectors.getErrorData);
   const dispatch = useDispatch();
   const initialValues: SignUpData = {
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    name: 'a',
+    email: 'a@a.ru',
+    password: '12345678',
+    password_confirmation: '12345678',
   };
 
   useEffect(() => {
@@ -38,13 +38,13 @@ export const SignUpPage: React.FC = () => {
       {error !== null ? (
         <div className="alert alert-danger">
           <h5>Не удалось зарегистрировать пользователя</h5>
-          <div>
+          <h6>
             {error === 0
               ? 'Не удалось подключится к серверу'
               : error === 422
               ? 'вы не правильно указали данные пользователя для регистрации'
               : `ошибка с кодом ${error}`}
-          </div>
+          </h6>
           <div>
             <ErrorDataView error={error} errorData={errorData} />
           </div>
