@@ -14,10 +14,10 @@ export const SignUpPage: React.FC = () => {
   const errorData = useSelector(authSelectors.getErrorData);
   const dispatch = useDispatch();
   const initialValues: SignUpData = {
-    name: 'a',
-    email: 'a@a.ru',
-    password: '12345678',
-    password_confirmation: '12345678',
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
   };
 
   useEffect(() => {
@@ -122,7 +122,7 @@ export const SignUpPage: React.FC = () => {
                     ? 'border-danger'
                     : ''
                 }`}
-                type="text"
+                type="password"
                 name="password_confirmation"
                 onChange={handleChange}
                 onBlur={handleBlur}
