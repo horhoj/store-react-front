@@ -12,17 +12,36 @@ export interface FlashMessageState {
   currentId: number;
 }
 
-export interface FlashMessageAction<T = any> {
-  type: FlashMessageActionType;
-  payload: T;
+export type FlashMessageAction =
+  | AddMessage
+  | SetCurrentId
+  | ShowMessage
+  | DeleteMessage;
+
+export interface AddMessage {
+  type: FlashMessageActionType.ADD_MESSAGE;
+  payload: {
+    message: FlashMessageType;
+  };
 }
 
-export type AddMessage = FlashMessageAction<{ message: FlashMessageType }>;
+export interface SetCurrentId {
+  type: FlashMessageActionType.SET_CURRENT_ID;
+  payload: {
+    id: number;
+  };
+}
 
-export type SetCurrentId = FlashMessageAction<{ id: number }>;
+export interface ShowMessage {
+  type: FlashMessageActionType.SHOW_MESSAGE;
+  payload: {
+    message: FlashMessageBody;
+  };
+}
 
-export type ShowMessage = FlashMessageAction<{ message: FlashMessageBody }>;
-
-export type DeleteMessage = FlashMessageAction<{
-  id: number;
-}>;
+export interface DeleteMessage {
+  type: FlashMessageActionType.DELETE_MESSAGE;
+  payload: {
+    id: number;
+  };
+}

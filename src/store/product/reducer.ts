@@ -1,11 +1,4 @@
-import {
-  ProductAction,
-  ProductActionType,
-  ProductState,
-  SetError,
-  SetIsLoading,
-  SetProduct,
-} from './types';
+import { ProductAction, ProductActionType, ProductState } from './types';
 
 const initialState: ProductState = {
   product: null,
@@ -19,14 +12,14 @@ export const productReducer = (
 ): ProductState => {
   switch (action.type) {
     case ProductActionType.SET_ERROR:
-      return { ...state, error: (action as SetError).payload.error };
+      return { ...state, error: action.payload.error };
     case ProductActionType.SET_IS_LOADING:
       return {
         ...state,
-        isLoading: (action as SetIsLoading).payload.isLoading,
+        isLoading: action.payload.isLoading,
       };
     case ProductActionType.SET_PRODUCT:
-      return { ...state, product: (action as SetProduct).payload.product };
+      return { ...state, product: action.payload.product };
     case ProductActionType.CLEAR:
       return {
         ...state,

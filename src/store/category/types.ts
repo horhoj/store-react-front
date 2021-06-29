@@ -18,33 +18,56 @@ export interface CategoryState {
 
 export type CategoryType = CategoryEntityType | null;
 
-export interface CategoryAction<T = any> {
-  type: CategoryActionType;
-  payload: T;
+export type CategoryAction =
+  | SetCategory
+  | SetIsLoading
+  | GetCategory
+  | SetError
+  | UpdateCategory
+  | AddCategory
+  | Clear;
+
+export interface SetCategory {
+  type: CategoryActionType.SET_CATEGORY;
+  payload: {
+    category: CategoryType;
+  };
 }
 
-export type SetCategory = CategoryAction<{
-  category: CategoryType;
-}>;
+export interface SetIsLoading {
+  type: CategoryActionType.SET_IS_LOADING;
+  payload: {
+    isLoading: boolean;
+  };
+}
 
-export type SetIsLoading = CategoryAction<{
-  isLoading: boolean;
-}>;
+export interface GetCategory {
+  type: CategoryActionType.GET_CATEGORY;
+  payload: {
+    id: number;
+  };
+}
 
-export type GetCategory = CategoryAction<{
-  id: number;
-}>;
+export interface SetError {
+  type: CategoryActionType.SET_ERROR;
+  payload: {
+    error: number | null;
+  };
+}
 
-export type SetError = CategoryAction<{
-  error: number | null;
-}>;
+export interface UpdateCategory {
+  type: CategoryActionType.UPDATE_CATEGORY;
+  payload: { categoryData: CategoryEntityType };
+}
 
-export type UpdateCategory = CategoryAction<{
-  categoryData: CategoryEntityType;
-}>;
+export interface AddCategory {
+  type: CategoryActionType.ADD_CATEGORY;
+  payload: {
+    categoryData: CategoryEntityType;
+  };
+}
 
-export type AddCategory = CategoryAction<{
-  categoryData: CategoryEntityType;
-}>;
-
-export type Clear = CategoryAction;
+export interface Clear {
+  type: CategoryActionType.CLEAR;
+  payload: null;
+}

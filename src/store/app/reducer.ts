@@ -1,4 +1,4 @@
-import { AppAction, AppActionType, AppState, RedirectToPath } from './types';
+import { AppAction, AppActionType, AppState } from './types';
 
 const initialState: AppState = {
   redirectPath: null,
@@ -13,7 +13,7 @@ export const appReducer = (
     case AppActionType.REDIRECT:
       return {
         ...state,
-        redirectPath: (action as RedirectToPath).payload.path,
+        redirectPath: action.payload.path,
       };
     case AppActionType.TOGGLE_MENU_MODE:
       return {

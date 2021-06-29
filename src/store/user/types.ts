@@ -13,13 +13,23 @@ export interface UserState {
 
 export type UserData = UserEntityType | null;
 
-export interface UserAction<T = any> {
-  type: UserActionType;
-  payload: T;
+export type UserAction = SetData | GetData | SetIsLoading;
+
+export interface SetData {
+  type: UserActionType.SET_DATA;
+  payload: {
+    data: UserData;
+  };
 }
 
-export type SetData = UserAction<{ data: UserData }>;
+export interface GetData {
+  type: UserActionType.GET_DATA;
+  payload: null;
+}
 
-export type GetData = UserAction;
-
-export type SetIsLoading = UserAction<{ isLoading: boolean }>;
+export interface SetIsLoading {
+  type: UserActionType.SET_IS_LOADING;
+  payload: {
+    isLoading: boolean;
+  };
+}

@@ -31,3 +31,7 @@ install:
 
 lint:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run lint"
+
+
+format:
+	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm format"

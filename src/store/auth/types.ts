@@ -1,7 +1,7 @@
 import { UserCredential } from '../../types/auth';
 import { SignUpData } from '../../types/signUp';
 
-export enum authActionType {
+export enum AuthActionType {
   SET_IS_AUTHENTICATED = 'AUTH/SET_IS_AUTHENTICATED',
   SET_IS_LOADING = 'AUTH/SET_IS_LOADING',
   LOGIN = 'AUTH/LOGIN',
@@ -21,23 +21,48 @@ export interface AuthState {
 export type ErrorData = any;
 export type Error = number | null;
 
-export interface AuthAction<T = any> {
-  type: authActionType;
-  payload: T;
+export type AuthAction =
+  | SetIsAuthenticated
+  | SetIsLoading
+  | SetError
+  | SetErrorData
+  | Login
+  | Logout
+  | SignUp;
+
+export interface SetIsAuthenticated {
+  type: AuthActionType.SET_IS_AUTHENTICATED;
+  payload: { isAuthenticated: boolean };
 }
 
-export type SetIsAuthenticated = AuthAction<{ isAuthenticated: boolean }>;
+export interface SetIsLoading {
+  type: AuthActionType.SET_IS_LOADING;
+  payload: {
+    isLoading: boolean;
+  };
+}
 
-export type SetIsLoading = AuthAction<{
-  isLoading: boolean;
-}>;
+export interface SetError {
+  type: AuthActionType.SET_ERROR;
+  payload: { error: Error };
+}
 
-export type SetError = AuthAction<{ error: Error }>;
+export interface SetErrorData {
+  type: AuthActionType.SET_ERROR_DATA;
+  payload: { errorData: ErrorData };
+}
 
-export type SetErrorData = AuthAction<{ errorData: ErrorData }>;
+export interface Login {
+  type: AuthActionType.LOGIN;
+  payload: { userCredential: UserCredential };
+}
 
-export type Login = AuthAction<{ userCredential: UserCredential }>;
+export interface Logout {
+  type: AuthActionType.LOGOUT;
+  payload: null;
+}
 
-export type Logout = AuthAction;
-
-export type SignUp = AuthAction<{ signUpData: SignUpData }>;
+export interface SignUp {
+  type: AuthActionType.SIGN_UP;
+  payload: { signUpData: SignUpData };
+}

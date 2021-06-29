@@ -18,33 +18,56 @@ export interface ProductState {
 
 export type ProductType = ProductEntityType | null;
 
-export interface ProductAction<T = any> {
-  type: ProductActionType;
-  payload: T;
+export type ProductAction =
+  | SetProduct
+  | SetIsLoading
+  | GetProduct
+  | SetError
+  | UpdateProduct
+  | AddProduct
+  | Clear;
+
+export interface SetProduct {
+  type: ProductActionType.SET_PRODUCT;
+  payload: {
+    product: ProductType;
+  };
 }
 
-export type SetProduct = ProductAction<{
-  product: ProductType;
-}>;
+export interface SetIsLoading {
+  type: ProductActionType.SET_IS_LOADING;
+  payload: {
+    isLoading: boolean;
+  };
+}
 
-export type SetIsLoading = ProductAction<{
-  isLoading: boolean;
-}>;
+export interface GetProduct {
+  type: ProductActionType.GET_PRODUCT;
+  payload: {
+    id: number;
+  };
+}
 
-export type GetProduct = ProductAction<{
-  id: number;
-}>;
+export interface SetError {
+  type: ProductActionType.SET_ERROR;
+  payload: { error: number | null };
+}
 
-export type SetError = ProductAction<{
-  error: number | null;
-}>;
+export interface UpdateProduct {
+  type: ProductActionType.UPDATE_PRODUCT;
+  payload: {
+    productData: ProductEntityType;
+  };
+}
 
-export type UpdateProduct = ProductAction<{
-  productData: ProductEntityType;
-}>;
+export interface AddProduct {
+  type: ProductActionType.ADD_PRODUCT;
+  payload: {
+    productData: ProductEntityType;
+  };
+}
 
-export type AddProduct = ProductAction<{
-  productData: ProductEntityType;
-}>;
-
-export type Clear = ProductAction;
+export interface Clear {
+  type: ProductActionType.CLEAR;
+  payload: null;
+}

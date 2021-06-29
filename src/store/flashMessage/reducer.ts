@@ -1,6 +1,4 @@
 import {
-  AddMessage,
-  DeleteMessage,
   FlashMessageAction,
   FlashMessageActionType,
   FlashMessageState,
@@ -19,7 +17,7 @@ export const flashMessageReducer = (
     case FlashMessageActionType.ADD_MESSAGE:
       return {
         ...state,
-        messages: [...state.messages, (action as AddMessage).payload.message],
+        messages: [...state.messages, action.payload.message],
       };
     case FlashMessageActionType.SET_CURRENT_ID:
       return {
@@ -27,7 +25,7 @@ export const flashMessageReducer = (
         currentId: state.currentId + 1,
       };
     case FlashMessageActionType.DELETE_MESSAGE: {
-      const id = (action as DeleteMessage).payload.id;
+      const id = action.payload.id;
       const newMessages = state.messages.filter((msg) => msg.id !== id);
       return {
         ...state,

@@ -19,23 +19,46 @@ export interface CategoriesState {
   requestConfig: GetCategoriesRequestConfig;
 }
 
-export interface CategoriesAction<T = any> {
-  type: CategoriesActionType;
-  payload: T;
+export type CategoriesAction =
+  | SetCategories
+  | SetIsLoading
+  | GetCategories
+  | SetRequestConfigDiff
+  | SetError
+  | DeleteCategory;
+
+export interface SetCategories {
+  type: CategoriesActionType.SET_CATEGORIES;
+  payload: {
+    categories: CategoriesType;
+  };
 }
 
-export type SetCategories = CategoriesAction<{ categories: CategoriesType }>;
+export interface SetIsLoading {
+  type: CategoriesActionType.SET_IS_LOADING;
+  payload: { isLoading: boolean };
+}
 
-export type SetIsLoading = CategoriesAction<{ isLoading: boolean }>;
+export interface GetCategories {
+  type: CategoriesActionType.GET_CATEGORIES;
+  payload: {
+    getCategoriesRequestConfig: Partial<GetCategoriesRequestConfig>;
+  };
+}
 
-export type GetCategories = CategoriesAction<{
-  getCategoriesRequestConfig: Partial<GetCategoriesRequestConfig>;
-}>;
+export interface SetRequestConfigDiff {
+  type: CategoriesActionType.SET_REQUEST_CONFIG_DIFF;
+  payload: {
+    requestConfigDiff: Partial<GetCategoriesRequestConfig>;
+  };
+}
 
-export type SetRequestConfigDiff = CategoriesAction<{
-  requestConfigDiff: Partial<GetCategoriesRequestConfig>;
-}>;
+export interface SetError {
+  type: CategoriesActionType.SET_ERROR;
+  payload: { error: number | null };
+}
 
-export type SetError = CategoriesAction<{ error: number | null }>;
-
-export type DeleteCategory = CategoriesAction<{ id: number }>;
+export interface DeleteCategory {
+  type: CategoriesActionType.DELETE_CATEGORIES;
+  payload: { id: number };
+}

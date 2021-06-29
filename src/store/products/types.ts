@@ -19,25 +19,52 @@ export interface ProductsState {
   requestConfig: GetProductsRequestConfig;
 }
 
-export interface ProductsAction<T = any> {
-  type: ProductsActionType;
-  payload: T;
+export type ProductsAction =
+  | SetProducts
+  | SetIsLoading
+  | GetProducts
+  | SetError
+  | SetRequestConfigDiff
+  | DeleteProduct;
+
+export interface SetProducts {
+  type: ProductsActionType.SET_PRODUCTS;
+  payload: {
+    products: ProductsType;
+  };
 }
 
-export type SetProducts = ProductsAction<{ products: ProductsType }>;
+export interface SetIsLoading {
+  type: ProductsActionType.SET_IS_LOADING;
+  payload: {
+    isLoading: boolean;
+  };
+}
 
-export type SetIsLoading = ProductsAction<{ isLoading: boolean }>;
+export interface GetProducts {
+  type: ProductsActionType.GET_PRODUCTS;
+  payload: {
+    getProductsRequestConfig: Partial<GetProductsRequestConfig>;
+  };
+}
 
-export type GetProducts = ProductsAction<{
-  getProductsRequestConfig: Partial<GetProductsRequestConfig>;
-}>;
+export interface SetError {
+  type: ProductsActionType.SET_ERROR;
+  payload: {
+    error: number | null;
+  };
+}
 
-export type SetError = ProductsAction<{ error: number | null }>;
+export interface SetRequestConfigDiff {
+  type: ProductsActionType.SET_REQUEST_CONFIG_DIFF;
+  payload: {
+    requestConfigDiff: Partial<GetProductsRequestConfig>;
+  };
+}
 
-export type SetRequestConfigDiff = ProductsAction<{
-  requestConfigDiff: Partial<GetProductsRequestConfig>;
-}>;
-
-export type DeleteProduct = ProductsAction<{
-  id: number;
-}>;
+export interface DeleteProduct {
+  type: ProductsActionType.DELETE_PRODUCT;
+  payload: {
+    id: number;
+  };
+}

@@ -1,4 +1,3 @@
-import { bool } from 'yup';
 import {
   DataGridColumnClkCb,
   DataGridRowActionBtnClkCb,

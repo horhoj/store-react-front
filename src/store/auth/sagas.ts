@@ -26,12 +26,12 @@ import {
   setIsAuthenticated,
   setErrorData,
 } from './actions';
-import { Login, AuthAction, authActionType, SignUp } from './types';
+import { Login, AuthAction, AuthActionType, SignUp } from './types';
 
 export function* authWatcher(): SagaIterator {
-  yield takeEvery(authActionType.LOGIN, login);
-  yield takeEvery(authActionType.LOGOUT, logout);
-  yield takeEvery(authActionType.SIGN_UP, signUp);
+  yield takeEvery(AuthActionType.LOGIN, login);
+  yield takeEvery(AuthActionType.LOGOUT, logout);
+  yield takeEvery(AuthActionType.SIGN_UP, signUp);
 }
 
 export function* login(action: Login): SagaIterator {

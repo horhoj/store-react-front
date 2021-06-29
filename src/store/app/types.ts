@@ -8,11 +8,16 @@ export interface AppState {
   alternateMenuMode: boolean;
 }
 
-export interface AppAction<T = any> {
-  type: AppActionType;
-  payload: T;
-}
+export type AppAction = RedirectToPath | ToggleMenuMode;
 
-export type RedirectToPath = AppAction<{ path: string | null }>;
+export type RedirectToPath = {
+  type: AppActionType.REDIRECT;
+  payload: {
+    path: string | null;
+  };
+};
 
-export type ToggleMenuMode = AppAction<null>;
+export type ToggleMenuMode = {
+  type: AppActionType.TOGGLE_MENU_MODE;
+  payload: null;
+};

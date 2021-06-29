@@ -1,7 +1,7 @@
 import { UserCredential } from '../../types/auth';
 import { SignUpData } from '../../types/signUp';
 import {
-  authActionType,
+  AuthActionType,
   ErrorData,
   Login,
   Logout,
@@ -15,45 +15,45 @@ import {
 export const setIsAuthenticated = (
   isAuthenticated: boolean,
 ): SetIsAuthenticated => ({
-  type: authActionType.SET_IS_AUTHENTICATED,
+  type: AuthActionType.SET_IS_AUTHENTICATED,
   payload: {
     isAuthenticated,
   },
 });
 
 export const setIsLoading = (isLoading: boolean): SetIsLoading => ({
-  type: authActionType.SET_IS_LOADING,
+  type: AuthActionType.SET_IS_LOADING,
   payload: { isLoading },
 });
 
 export const setError = (error: number | null): SetError => ({
-  type: authActionType.SET_ERROR,
+  type: AuthActionType.SET_ERROR,
   payload: {
     error,
   },
 });
 
 export const setErrorData = (errorData: ErrorData): SetErrorData => ({
-  type: authActionType.SET_ERROR_DATA,
+  type: AuthActionType.SET_ERROR_DATA,
   payload: {
     errorData,
   },
 });
 
 export const login = (userCredential: UserCredential): Login => ({
-  type: authActionType.LOGIN,
+  type: AuthActionType.LOGIN,
   payload: {
     userCredential,
   },
 });
 
 export const logout = (): Logout => ({
-  type: authActionType.LOGOUT,
+  type: AuthActionType.LOGOUT,
   payload: null,
 });
 
 export const signUp = (signUpData: SignUpData): SignUp => ({
-  type: authActionType.SIGN_UP,
+  type: AuthActionType.SIGN_UP,
   payload: {
     signUpData,
   },

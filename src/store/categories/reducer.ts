@@ -2,10 +2,6 @@ import {
   CategoriesAction,
   CategoriesActionType,
   CategoriesState,
-  SetCategories,
-  SetError,
-  SetIsLoading,
-  SetRequestConfigDiff,
 } from './types';
 
 const initialState: CategoriesState = {
@@ -29,24 +25,24 @@ export const categoriesReducer = (
     case CategoriesActionType.SET_IS_LOADING:
       return {
         ...state,
-        isLoading: (action as SetIsLoading).payload.isLoading,
+        isLoading: action.payload.isLoading,
       };
     case CategoriesActionType.SET_ERROR:
       return {
         ...state,
-        error: (action as SetError).payload.error,
+        error: action.payload.error,
       };
     case CategoriesActionType.SET_CATEGORIES:
       return {
         ...state,
-        categories: (action as SetCategories).payload.categories,
+        categories: action.payload.categories,
       };
     case CategoriesActionType.SET_REQUEST_CONFIG_DIFF:
       return {
         ...state,
         requestConfig: {
           ...state.requestConfig,
-          ...(action as SetRequestConfigDiff).payload.requestConfigDiff,
+          ...action.payload.requestConfigDiff,
         },
       };
     default:

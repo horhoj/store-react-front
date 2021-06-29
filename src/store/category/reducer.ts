@@ -1,11 +1,4 @@
-import {
-  CategoryAction,
-  CategoryActionType,
-  CategoryState,
-  SetCategory,
-  SetError,
-  SetIsLoading,
-} from './types';
+import { CategoryAction, CategoryActionType, CategoryState } from './types';
 
 const initialState: CategoryState = {
   isLoading: false,
@@ -21,17 +14,17 @@ export const categoryReducer = (
     case CategoryActionType.SET_IS_LOADING:
       return {
         ...state,
-        isLoading: (action as SetIsLoading).payload.isLoading,
+        isLoading: action.payload.isLoading,
       };
     case CategoryActionType.SET_ERROR:
       return {
         ...state,
-        error: (action as SetError).payload.error,
+        error: action.payload.error,
       };
     case CategoryActionType.SET_CATEGORY:
       return {
         ...state,
-        category: (action as SetCategory).payload.category,
+        category: action.payload.category,
       };
     case CategoryActionType.CLEAR:
       return {

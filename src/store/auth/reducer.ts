@@ -1,12 +1,4 @@
-import {
-  AuthAction,
-  authActionType,
-  AuthState,
-  SetError,
-  SetErrorData,
-  SetIsAuthenticated,
-  SetIsLoading,
-} from './types';
+import { AuthAction, AuthActionType, AuthState } from './types';
 
 const initialState: AuthState = {
   isAuthenticated: false,
@@ -20,25 +12,25 @@ export const authReducer = (
   action: AuthAction,
 ): AuthState => {
   switch (action.type) {
-    case authActionType.SET_IS_AUTHENTICATED:
+    case AuthActionType.SET_IS_AUTHENTICATED:
       return {
         ...state,
-        isAuthenticated: (action as SetIsAuthenticated).payload.isAuthenticated,
+        isAuthenticated: action.payload.isAuthenticated,
       };
-    case authActionType.SET_ERROR:
+    case AuthActionType.SET_ERROR:
       return {
         ...state,
-        error: (action as SetError).payload.error,
+        error: action.payload.error,
       };
-    case authActionType.SET_ERROR_DATA:
+    case AuthActionType.SET_ERROR_DATA:
       return {
         ...state,
-        errorData: (action as SetErrorData).payload.errorData,
+        errorData: action.payload.errorData,
       };
-    case authActionType.SET_IS_LOADING:
+    case AuthActionType.SET_IS_LOADING:
       return {
         ...state,
-        isLoading: (action as SetIsLoading).payload.isLoading,
+        isLoading: action.payload.isLoading,
       };
     default:
       return state;

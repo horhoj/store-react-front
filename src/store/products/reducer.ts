@@ -1,12 +1,4 @@
-import {
-  ProductsAction,
-  ProductsActionType,
-  ProductsState,
-  SetRequestConfigDiff,
-  SetError,
-  SetIsLoading,
-  SetProducts,
-} from './types';
+import { ProductsAction, ProductsActionType, ProductsState } from './types';
 
 const initialState: ProductsState = {
   isLoading: false,
@@ -29,24 +21,24 @@ export const productsReducer = (
     case ProductsActionType.SET_IS_LOADING:
       return {
         ...state,
-        isLoading: (action as SetIsLoading).payload.isLoading,
+        isLoading: action.payload.isLoading,
       };
     case ProductsActionType.SET_PRODUCTS:
       return {
         ...state,
-        products: (action as SetProducts).payload.products,
+        products: action.payload.products,
       };
     case ProductsActionType.SET_ERROR:
       return {
         ...state,
-        error: (action as SetError).payload.error,
+        error: action.payload.error,
       };
     case ProductsActionType.SET_REQUEST_CONFIG_DIFF:
       return {
         ...state,
         requestConfig: {
           ...state.requestConfig,
-          ...(action as SetRequestConfigDiff).payload.requestConfigDiff,
+          ...action.payload.requestConfigDiff,
         },
       };
     default:
