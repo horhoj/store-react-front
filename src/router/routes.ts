@@ -3,7 +3,7 @@ import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { Products, ProductNew, ProductEdit } from '../pages/ProductPages';
 import { Categories, CategoryNew, CategoryEdit } from '../pages/CategoryPages';
-import { SignUpPage } from '../pages/SignUpPage/SignUpPage';
+import { SignUpPage } from '../pages/SignUpPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [

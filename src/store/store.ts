@@ -10,8 +10,7 @@ import { productReducer, productWatcher } from './product';
 import { categoriesReducer, categoriesWatcher } from './categories';
 import { categoryReducer, categoryWatcher } from './category';
 import { appReducer } from './app';
-import { flashMessageReducer } from './flashMessage';
-import { flashMessageWatcher } from './flashMessage/sagas';
+import { flashMessageReducer, flashMessageWatcher } from './flashMessage';
 
 const rootReducer = combineReducers<StoreState>({
   app: appReducer,

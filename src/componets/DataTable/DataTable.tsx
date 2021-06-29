@@ -3,7 +3,7 @@ import { DataPaginator } from '../DataPaginator';
 import { DataSearch } from '../DataSearch';
 import { DataGrid } from '../DataGrid';
 import { DataTableProps } from './types';
-import { DataTableSkeleton } from './DataTableSkeleton/DataTableSkeleton';
+import { DataTableSkeleton } from './DataTableSkeleton';
 
 export const DataTable: React.FC<DataTableProps> = ({
   items,
