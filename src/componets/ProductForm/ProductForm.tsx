@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import {
   ProductAttachedCategoriesType,
   ProductEntitySchema,
@@ -19,7 +20,12 @@ import {
   ProductFormInputProperties,
   ProductFormProps,
 } from './types';
-import styles from './styles.module.scss';
+
+const ButtonsPanel = styled.div`
+  button {
+    width: 100px;
+  }
+`;
 
 const defaultValues: ProductEntityType = {
   id: 0,
@@ -167,7 +173,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 addItemCb={addItemCb}
               />
             </div>
-            <div className={`mt-3 ${styles.buttonsPanel}`}>
+            <ButtonsPanel className="mt-3">
               <button className="btn btn-primary btn-sm mr-2" type="submit">
                 Сохранить
               </button>
@@ -185,7 +191,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               >
                 Отмена
               </button>
-            </div>
+            </ButtonsPanel>
           </form>
         )}
       </Formik>

@@ -37,7 +37,7 @@ export const CategoryNew: React.FC = () => {
   );
 
   return (
-    <div>
+    <div className="d-flex flex-grow-1 flex-column">
       <h5>Добавление новой категории</h5>
       {error !== null ? (
         <div className="alert alert-danger">

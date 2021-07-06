@@ -1,9 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { authActions } from '../../store/auth';
 import { userSelectors } from '../../store/user';
 import { appActions } from '../../store/app';
-import styles from './styles.module.scss';
+
+const Wrapper = styled.div`
+  background-color: #3c8dbc;
+  color: white;
+  height: 4rem;
+`;
 
 export const PrivateHeader: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,8 +24,8 @@ export const PrivateHeader: React.FC = () => {
   };
 
   return (
-    <div
-      className={`p-2 d-flex w-100 justify-content-between align-items-center ${styles.mainHeader}`}
+    <Wrapper
+      className={`p-2 d-flex w-100 justify-content-between align-items-center`}
     >
       <div>
         <button
@@ -47,6 +53,6 @@ export const PrivateHeader: React.FC = () => {
           Выход
         </button>
       </div>
-    </div>
+    </Wrapper>
   );
 };

@@ -1,14 +1,21 @@
 import { Formik } from 'formik';
 import React from 'react';
+import styled from 'styled-components';
 import { CategoryEntitySchema, CategoryEntityType } from '../../types/category';
 import { CategoryFormInputProperties, CategoryFormProps } from './types';
-import styles from './styles.module.scss';
+
+const ButtonsPanel = styled.div`
+  button {
+    width: 100px;
+  }
+`;
 
 const defaultValues: CategoryEntityType = {
   id: 0,
   title: '',
   description: '',
 };
+
 export const CategoryForm: React.FC<CategoryFormProps> = ({
   initialValues,
   submitCb,
@@ -66,7 +73,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                   errors.description}
               </div>
             </div>
-            <div className={`mt-3 ${styles.buttonsPanel}`}>
+            <ButtonsPanel className="mt-3">
               <button className="btn btn-primary btn-sm mr-2" type="submit">
                 Сохранить
               </button>
@@ -84,7 +91,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
               >
                 Отмена
               </button>
-            </div>
+            </ButtonsPanel>
           </form>
         )}
       </Formik>

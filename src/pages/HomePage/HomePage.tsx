@@ -42,6 +42,7 @@ export const HomePage: React.FC = () => {
         <li>yup</li>
         <li>formik</li>
         <li>scss</li>
+        <li>styled-components</li>
         <li>axios</li>
         <li>bootstrap (только классы, без js)</li>
       </ul>

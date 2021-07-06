@@ -40,7 +40,7 @@ export const CategoryEdit: React.FC = () => {
   );
 
   return (
-    <div>
+    <div className="d-flex flex-grow-1 flex-column">
       <h5>Редактируется категория с ИД: {id}</h5>
       {error !== null ? (
         <div className="alert alert-danger">

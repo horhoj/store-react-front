@@ -1,10 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import styled, { css } from 'styled-components';
 import { PrivateFooter } from '../PrivateFooter';
 import { PrivateMenu } from '../PrivateMenu';
 import { PrivateHeader } from '../PrivateHeader';
 import { appSelectors } from '../../store/app';
-import styles from './styles.module.scss';
+
+const mainMenuAlternateMode = css`
+  margin-left: -230px;
+  opacity: 0;
+  visibility: hidden;
+`;
+
+const MainMenu = styled.div<{ isAlternateMenuMode: boolean }>`
+  transition: opacity 0.25s ease, visibility 0.3s ease, margin-left 0.25s ease;
+  ${({ isAlternateMenuMode }) =>
+    isAlternateMenuMode ? mainMenuAlternateMode : ''}
+`;
 
 export const PrivateLayout: React.FC = ({ children }) => {
   const isAlternateMenuMode = useSelector(appSelectors.getIsAlternateMenuMode);
@@ -14,13 +26,9 @@ export const PrivateLayout: React.FC = ({ children }) => {
         <PrivateHeader />
       </header>
       <div className="d-flex flex-grow-1">
-        <div
-          className={`d-flex ${styles.mainMenu} ${
-            isAlternateMenuMode ? styles.mainMenuAlternateMode : ''
-          }`}
-        >
+        <MainMenu isAlternateMenuMode={isAlternateMenuMode} className="d-flex">
           <PrivateMenu />
-        </div>
+        </MainMenu>
         <main className="p-2 d-flex flex-grow-1">{children}</main>
       </div>
       <div className="d-flex">

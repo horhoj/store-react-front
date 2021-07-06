@@ -2,11 +2,21 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { getPathByName } from '../../router';
 import { authActions, authSelectors } from '../../store/auth';
 import { SignUpData, SignUpFormValidationSchema } from '../../types/signUp';
 import { ErrorDataView } from '../../componets/ErrorDataView';
-import styles from './styles.module.scss';
+
+const SignUpForm = styled.div`
+  width: 360px;
+`;
+
+const ButtonPanel = styled.div`
+  button {
+    width: 100%;
+  }
+`;
 
 export const SignUpPage: React.FC = () => {
   const isLoading = useSelector(authSelectors.getIsLoading);
@@ -33,7 +43,7 @@ export const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div className={`d-flex  flex-grow-1 flex-column ${styles.signUpForm}`}>
+    <SignUpForm className={`d-flex  flex-grow-1 flex-column`}>
       <h3>Вход в систему</h3>
       {error !== null ? (
         <div className="alert alert-danger">
@@ -135,7 +145,7 @@ export const SignUpPage: React.FC = () => {
               </div>
 
               {/*панель кнопок*/}
-              <div className={styles.buttonPanel}>
+              <ButtonPanel className="d-flex">
                 <button
                   className="btn btn-primary btn-sm mt-3 mr-2"
                   type="submit"
@@ -149,7 +159,7 @@ export const SignUpPage: React.FC = () => {
                 >
                   Сбросить
                 </button>
-              </div>
+              </ButtonPanel>
               <div className="mt-3">
                 Вы также можете&nbsp;
                 <Link to={getPathByName('login')} className="text-info">
@@ -160,6 +170,6 @@ export const SignUpPage: React.FC = () => {
           </form>
         )}
       </Formik>
-    </div>
+    </SignUpForm>
   );
 };

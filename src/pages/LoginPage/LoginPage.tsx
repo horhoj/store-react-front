@@ -2,12 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { authActions, authSelectors } from '../../store/auth';
 import { UserCredential } from '../../types/auth';
 import { DEFAULT_LOGIN_EMAIL, DEFAULT_LOGIN_PASSWORD } from '../../config/API';
 import { getPathByName } from '../../router';
 import { LoginFormValidationSchema } from '../../types/login';
-import styles from './styles.module.scss';
+
+const LoginForm = styled.div`
+  width: 360px;
+`;
+
+const ButtonPanel = styled.div`
+  button {
+    width: 100%;
+  }
+`;
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,7 +42,7 @@ export const LoginPage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className={`d-flex  flex-grow-1 flex-column ${styles.loginForm}`}>
+    <LoginForm className={`d-flex  flex-grow-1 flex-column`}>
       <h3>Вход в систему</h3>
       {error !== null ? (
         <div className="alert alert-danger">
@@ -90,7 +100,7 @@ export const LoginPage: React.FC = () => {
               <div className="small text-danger">
                 {errors.password && touched.password && errors.password}
               </div>
-              <div className={styles.buttonPanel}>
+              <ButtonPanel className="d-flex">
                 <button
                   className="btn btn-primary btn-sm mt-3 mr-2"
                   type="submit"
@@ -104,7 +114,7 @@ export const LoginPage: React.FC = () => {
                 >
                   Сбросить
                 </button>
-              </div>
+              </ButtonPanel>
               <div className="mt-3">
                 Вы также можете&nbsp;
                 <Link to={getPathByName('signUp')} className="text-info">
@@ -115,6 +125,6 @@ export const LoginPage: React.FC = () => {
           </form>
         )}
       </Formik>
-    </div>
+    </LoginForm>
   );
 };

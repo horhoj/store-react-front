@@ -1,9 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 import { DataGridProps } from './types';
-import styles from './styles.module.scss';
 
 const ARRAY_UP = <>&uArr;</>;
 const ARRAY_DOWN = <>&dArr;</>;
+
+const ButtonPanel = styled.div`
+  button {
+    width: 100%;
+  }
+`;
 
 export const DataGrid: React.FC<DataGridProps> = ({
   visibleFields,
@@ -102,7 +108,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
               ))}
               <td>
                 <div className="d-flex justify-content-center align-items-center">
-                  <div className={styles.buttonsPanel}>
+                  <ButtonPanel className="d-flex">
                     {showEditAction ? (
                       <button
                         className="btn btn-primary btn-sm mr-1"
@@ -134,7 +140,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
                         Выбрать
                       </button>
                     ) : null}
-                  </div>
+                  </ButtonPanel>
                 </div>
               </td>
             </tr>
